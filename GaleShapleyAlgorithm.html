@@ -3,49 +3,51 @@
       <b>Gale-Shapley Algorithm for Stable Matching</b>
     </p>
     <p>
-      In this scenario, we are matching students with schools. The Gale-Shapley algorithm matches by 
+      In this scenario, we are matching animals with families. The Gale-Shapley algorithm matches by 
         having one group request the other, and the other either accepts or declines. 
       <br> <br>
-      Suppose we have the students request the schools. The student will request their most-preferred school. 
-      If the school has not already accepted another student, then it will accept.
+      Suppose we have the animals request the families. The animals will request their most-preferred family. 
+      If the family has not already accepted another animal, then it will accept.
       <br> <br>
-      If the school has already accepted another student, then there are two options.
+      If the family has already accepted another animal, then there are two options.
       <br> <br>
-      1) If the school prefers this student over the current student it has accepted, then it will abandon the old student and accept the new one. 
+      1) If the family prefers this animal over the current animal it has accepted, then it will abandon the old animal and accept the new one. 
       <br> <br>
-      2) If the school does not prefer this student over the current student, it will reject the student.
+      2) If the family does not prefer this animal over the current animal, it will reject the animal.
       <br>
       <br> <br>
       <br>
-      If a student has been rejected or abandoned, then they will choose their next prefered school to repeat.
+      If an animal has been rejected or abandoned, then they will choose their next prefered family to repeat the process.
       <br>
       <br>
-      This algorithm ensures that every student and every school each has a match, and that the matches are stable, since every student and school are matched in a manner so that there would not be a situation where both a student and school prefer each other over the matches they have.
+      This algorithm ensures that every animal and every family each has a match, and that the matches are stable, since every animal and family are matched in a manner so that there would not be a situation where both a student and school prefer each other over the matches they have.
     
     </p>
     <br>
-    <div>
-    <p>
-    <a href="../">Click here to return to the start</a>
-        <br>
-    </p>
-    </div>
+    
   </div>
 <div id = "psuedocodeBox" style="border-style:solid;border-width:1px;margin:5px;padding:5px;"><p>
       <pre><code >
         stableMatching():
-          init all s in students to free
-          init all c in schools to free
+          init all a in animals to free
+          init all f in families to free
 
           while(s is free):
-            c = most-preferred school by s which s has not requested
-            if c is free:
-              s and c become paired
-            else if c is not free (matched with s'):
-              if c prefers s to s':
-                s' becomes free
-                s and c become paired
+            f = most-preferred family by a which a has not requested
+            if f is free:
+              a and f become paired
+            else if f is not free (matched with a'):
+              if f prefers a to a':
+                a' becomes free
+                a and f become paired
               else:
-                s' and c remain paired
+                a' and f remain paired
       </code></pre>
     </p></div>
+<br><br>
+<div>
+    <p>
+    <a href="../">Click here to return to the homepage</a>
+        <br>
+    </p>
+    </div>
