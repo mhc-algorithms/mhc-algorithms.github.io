@@ -1,0 +1,30 @@
+<div id="algorithmExplanationWrapper">
+    <p>
+      <b>Gale-Shapley Algorithm for Stable Matching</b>
+    </p>
+    <p>
+      In this scenario, we are matching students with schools. The Gale-Shapley algorithm matches by 
+        having one group request the other, and the other either accepts or declines. 
+      <br> <br>
+      Suppose we have the students request the schools. The student will request their most-preferred school. 
+      If the school has not already accepted another student, then it will accept.
+      <br> <br>
+      If the school has already accepted another student, then there are two options.
+      <br> <br>
+      1) If the school prefers this student over the current student it has accepted, then it will abandon the old student and accept the new one. 
+      <br> <br>
+      2) If the school does not prefer this student over the current student, it will reject the student.
+      <br>
+      <br> <br>
+      <br>
+      If a student has been rejected or abandoned, then they will choose their next prefered school to repeat.
+      <br>
+      <br>
+      This algorithm ensures that every student and every school each has a match, and that the matches are stable, since every student and school are matched in a manner so that there would not be a situation where both a student and school prefer each other over the matches they have.
+    
+    </p>
+    
+    <p>//placeholder link for testing because I'm learning websites
+    <a href="https://mhc-algorithms.github.io/">Click here to return to the program</a>
+    </p>
+  </div>
