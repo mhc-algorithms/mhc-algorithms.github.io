@@ -23,8 +23,29 @@
       This algorithm ensures that every student and every school each has a match, and that the matches are stable, since every student and school are matched in a manner so that there would not be a situation where both a student and school prefer each other over the matches they have.
     
     </p>
-    
-    <p>//placeholder link for testing because I'm learning websites
+    <br>
+    <div>
+    <p>
     <a href="../">Click here to return to the start</a>
+        <br>
     </p>
+    </div>
   </div>
+<div id = "psuedocodeBox" style="border-style:solid;border-width:1px;margin:5px;padding:5px;"><p>
+      <pre><code >
+        stableMatching():
+          init all s in students to free
+          init all c in schools to free
+
+          while(s is free):
+            c = most-preferred school by s which s has not requested
+            if c is free:
+              s and c become paired
+            else if c is not free (matched with s'):
+              if c prefers s to s':
+                s' becomes free
+                s and c become paired
+              else:
+                s' and c remain paired
+      </code></pre>
+    </p></div>
