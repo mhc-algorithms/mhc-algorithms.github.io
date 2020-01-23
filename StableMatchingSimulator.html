@@ -1,16 +1,16 @@
 <div id="bigBoi" style="text-align:center;">
   <div id="problemExplanationWrapper">
     <p>
-      Let's say that you have <i>n</i> medical students who need to be assigned to <i>n</i> medical schools.
+      Let's say that you have <i>n</i> pets who need to be adopted by <i>n</i> families.
       <br>
       <br>
-      Each student attends 1 school and each school gets 1 student.
+      Each animal is adopted by one family, and each family adopts one animal.
       <br>
       <br>
-      Each student has a list of which schools they prefer, and each school has a list of which students it prefers.
+      Each animal has a list of which families they prefer, and each family has a list of which animals it prefers.
       <br>
       <br>
-      Can we construct an algorithm to match students to schools such that there are no cases where both a student and a school would prefer each other over the matches they have been assigned? 
+      Can we construct an algorithm to match animals to families such that there are no cases where both an animal and a family would prefer each other over the matches they have been assigned? 
       <br>
       <br>
       In other words, can we construct a matching with no unstable pairings?
@@ -307,7 +307,7 @@
         
       });
     </script>
-    <b>Number of students and schools:</b>
+    <b>Number of animals and families:</b>
     <input type="text" value=5 id="nInput">
     
     <div id="isMatchedBox" style="text-align:center; border-style:solid; border-width:1px; width:90%; height:150px; line-height:150px; background-color: white;">
@@ -317,17 +317,17 @@
     <div id="tableWrapper">
       <table id="preferenceListTable" align="center" style="display:inline-block;float:left;">
         <tr>
-          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Student ID</th>
-          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Student Preferences</th>
-          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">School ID</th>
-          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">School Preferences</th>
+          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Animal ID</th>
+          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Animal's Preferences</th>
+          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Family ID</th>
+          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Family's Preferences</th>
         </tr>
       </table>
       <div id="line" style="border-style:solid; border-wdith:1px; width:0px; height:0px; margin-left:10px; margin-right:10px;"></div>
       <table id="visualizerTable" align="center" style="display:inline-block;float:right;">
         <tr>
-          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Student</th>
-          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">School</th>
+          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Animal</th>
+          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Family</th>
         </tr>
       </table>
     </div>
