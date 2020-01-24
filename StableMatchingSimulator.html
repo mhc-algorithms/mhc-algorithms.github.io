@@ -217,8 +217,8 @@
       }
         
         
-        setInterval(checkMatched, 100); //Every 500 millis checks to see if a stable matching exists
-        
+        //setInterval(checkMatched, 100); //Every 500 millis checks to see if a stable matching exists
+        setInterval(allMatchCheck(), 100);
         function checkMatched(){
           //Check to see if a matching exists
           // If it doesn't, set #isMatchedBox to white, #isMatchedText to "No Matching"
@@ -290,6 +290,88 @@
           }
         }
         
+        function allMatchCheck(){
+          var matching = true;  //Is there a matching?
+          var matchedVals = [];
+          for(var i = 0; i < dropdowns.length; i++){
+            var val = dropdowns[i].value;
+            if(matchedVals.includes(val)){ //This is a repeat, so no matching
+              noMatching();
+              matching = false;
+            }else{
+              matchedVals.push(val);
+            }
+          }
+
+          if(matching){
+            var stable = true; //assume matching is stable, try to disprove
+          }
+
+          //make all possible matches
+          var possibleMatchesStu = [];
+          var possibleMatchesSch = [];
+          for (var x = 0; x< n; x++){
+            for (var y = 0; y < n; y++){
+              possibleMatchesStu.push(x);
+              possibleMatchesSch.push(letters[y]);
+            }
+          }
+          //check if stable
+          for(var i = 0; i < n; i++){  //For each student-school pairing
+              var student = i;
+              var school = dropdowns[i].value;
+              var schoolIndex = letters.indexOf(school);
+              
+              //Get prefered schools
+              var preferredSchools = [];
+              var prefList = stPrefs[i];
+              var doneChecking = false;
+              for(var j = 0; j < prefList.length; j++){
+                if(!doneChecking){
+                  if(prefList[j] != school){ //prefList[j] is a school which the student would prefer
+                   preferredSchools.push(prefList[j]);
+                  }else{ //No more schools to check
+                   doneChecking = true;
+                  }
+                }
+              }
+
+            
+            //go through the possible matches and check if it is in the current matching
+            for (var k = 0; k<possibleMatchesStu.length; k++){
+              //if it is not, then check for instability
+              if(!(possibleMatchesStu[k]==student && possibleMatchesSch==school)){
+                //if the match is an instability, then it is not stable
+                
+                //for each preferred school, see if it matches this possible match
+                for(var z =0; z <preferredSchools.length; z++){
+                  var pairedStudent = -1;
+                  for(var q = 0; q<dropdowns.length; q++){
+                    //if the dropdown matches the unpaired
+                    if(dropdowns[q].value == possibleMatchesSch[k]){
+                      pairedStudent = q;
+                    }
+                  }
+
+                  //does the school prefer student or currentPaired student?
+                  var schoolPrefList = schPrefs[letters.indexOf(school)];
+
+                  if(schoolPrefList.includes(possibleMatchesStu[k])){
+                    stable = false;
+                  }
+                }
+      
+              }
+
+            }
+            if(stable){
+              stableMatching();
+            }else{
+              unstableMatching();
+            }
+          }
+      }
+
         function noMatching(){
           document.getElementById("isMatchedBox").style = "text-align:center; border-style:solid; border-width:1px; margin:15px; width:90%; height:150px; line-height:150px; background-color: white;";
           document.getElementById("isMatchedText").innerHTML = "Not a match, families have been assigned multiple animals.";
@@ -335,5 +417,3 @@
     </div>
   </div>
 </div>
-
-
