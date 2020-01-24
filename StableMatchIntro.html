@@ -15,7 +15,7 @@
 		Suppose we have two groups, Animals and Families. We are trying to find families to adopt animals. Every animal and family has a preference list of who they want to be matched with.
 		<br><br>
 
-		&nbsp;&nbsp;&nbsp;&nbsp;<b>Match</b>: the set of family-animal pairs where wach family/animal is in <u>at most</u> 1 pair.
+		&nbsp;&nbsp;&nbsp;&nbsp;<b>Match</b>: the set of family-animal pairs where each family/animal is in <u>at most</u> 1 pair.
 
 		<br><br>
 
@@ -23,7 +23,7 @@
 
 		<br><br>
 
-		&nbsp;&nbsp;&nbsp;&nbsp;<b>Instability or unstable pair</b>: a family-animal pair that was not made, such that the family prefers the animal over the one it was matched with, and the animal prefers the family over the one it was matched with.
+		&nbsp;&nbsp;&nbsp;&nbsp;<b>Instability or unstable pair</b>: a family-animal pair not in the current match, such that the family prefers the animal over the one it was paired with, and the animal prefers the family over the one it was paired with.
 
 		<br><br>
 		<u>Example:</u> We have two families, the Adams and the Zhangs. The Adams were paired with a cat, and the Zhangs were paired with a dog. However, the Zhangs prefered the cat over the dog, and the cat prefered the Zhangs over the Adams. In this case, both the Zhangs and the cat would rather be with each other than what they were assigned. This is an unstable match.
