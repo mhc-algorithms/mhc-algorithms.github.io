@@ -303,7 +303,7 @@
         }
         
         function unstableMatching(problemList){
-	        var problemString = problemList.toString().replace(",", "<br>Also: ");
+	        var problemString = problemList.toString().replace(/,/g, "<br>Also: ");
           document.getElementById("isMatchedBox").style = "text-align:center; border-style:solid; border-width:1px; width:100%; padding-top:30px; padding-bottom:30px; background-color: red;";
           document.getElementById("isMatchedText").innerHTML = "The Matching is NOT Stable:<br><br>" + problemString;
         }
