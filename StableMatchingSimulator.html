@@ -275,7 +275,7 @@
                 //Does the school prefer student or pairedStudent? If so, unstable
                 var schoolPrefList = schPrefs[letters.indexOf(preferredSchools[j])];
                 if(schoolPrefList.indexOf(pairedStudent) > schoolPrefList.indexOf(student)){
-					problemPairs.push(student + " would rather be paired with " + preferredSchools[j] + " than its current pair: " + school + ", and " + preferredSchools[j] + " would rather be with " + student + " than with its pair: " + pairedStudent);
+					problemPairs.push(student + " would rather be paired with " + preferredSchools[j] + " than its current pair: " + school + ", and " + preferredSchools[j] + " would rather be with " + student + " than with its pair: " + pairedStudent + "<br>");
                  stable = false;
                 }
               }
