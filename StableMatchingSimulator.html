@@ -239,6 +239,7 @@
           }
           
           if(matching){
+		var problemPairs = []
             var stable = true;  //We assume that the matching is stable, then try to disprove
             
             //Check if matching is stable:
@@ -274,12 +275,13 @@
                 //Does the school prefer student or pairedStudent? If so, unstable
                 var schoolPrefList = schPrefs[letters.indexOf(school)];
                 if(schoolPrefList.indexOf(pairedStudent) > schoolPrefList.indexOf(student)){
+			problemPairs.append(student + " wants to be paired with " school + ", and " + school + " would rather be with " + student + " than with its pair: " + pairedStudent);
                  stable = false;
                 }
               }
             }
             
-            console.log(stable);
+            //console.log(stable);
             
             //Update the view to reflect the reality of stability
             if(stable){
@@ -300,9 +302,9 @@
           document.getElementById("isMatchedText").innerHTML = "The Matching is Stable";
         }
         
-        function unstableMatching(){
+        function unstableMatching(var problemList){
           document.getElementById("isMatchedBox").style = "text-align:center; border-style:solid; border-width:1px; margin:15px; width:90%; height:150px; line-height:150px; background-color: red;";
-          document.getElementById("isMatchedText").innerHTML = "The Matching is NOT Stable";
+          document.getElementById("isMatchedText").innerHTML = "The Matching is NOT Stable:<br><br>" + problemList.toString();
         }
         
       });
