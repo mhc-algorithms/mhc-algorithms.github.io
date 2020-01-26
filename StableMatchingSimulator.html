@@ -275,7 +275,7 @@
                 //Does the school prefer student or pairedStudent? If so, unstable
                 var schoolPrefList = schPrefs[letters.indexOf(school)];
                 if(schoolPrefList.indexOf(pairedStudent) > schoolPrefList.indexOf(student)){
-			problemPairs.append(student + " wants to be paired with " school + ", and " + school + " would rather be with " + student + " than with its pair: " + pairedStudent);
+					problemPairs.append(student + " wants to be paired with " + school + ", and " + school + " would rather be with " + student + " than with its pair: " + pairedStudent);
                  stable = false;
                 }
               }
@@ -302,7 +302,7 @@
           document.getElementById("isMatchedText").innerHTML = "The Matching is Stable";
         }
         
-        function unstableMatching(var problemList){
+        function unstableMatching(problemList){
           document.getElementById("isMatchedBox").style = "text-align:center; border-style:solid; border-width:1px; margin:15px; width:90%; height:150px; line-height:150px; background-color: red;";
           document.getElementById("isMatchedText").innerHTML = "The Matching is NOT Stable:<br><br>" + problemList.toString();
         }
