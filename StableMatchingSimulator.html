@@ -277,13 +277,11 @@
                 //Does the school prefer student or pairedStudent? If so, unstable
                 var schoolPrefList = schPrefs[letters.indexOf(preferredSchools[j])];
                 if(schoolPrefList.indexOf(pairedStudent) > schoolPrefList.indexOf(student)){
-					problemPairs.push(student + " would rather be paired with " + preferredSchools[j] + " than its current pair: " + school + ", and " + preferredSchools[j] + " would rather be with " + student + " than with its pair: " + pairedStudent + "<br>");
+					problemPairs.push("<b>" + student + "</b> would rather be paired with <b>" + preferredSchools[j] + "</b> than its current pair: <b>" + school + "</b> and <b>" + preferredSchools[j] + "</b> would rather be with <b>" + student + "</b> than with its pair: <b>" + pairedStudent + "</b>");
                  stable = false;
                 }
               }
             }
-            
-            //console.log(stable);
             
             //Update the view to reflect the reality of stability
             if(stable){
@@ -305,8 +303,9 @@
         }
         
         function unstableMatching(problemList){
+	        var problemString = problemList.toString().replace(",", "<br>Also: ");
           document.getElementById("isMatchedBox").style = "text-align:center; border-style:solid; border-width:1px; width:100%; padding-top:30px; padding-bottom:30px; background-color: red;";
-          document.getElementById("isMatchedText").innerHTML = "The Matching is NOT Stable:<br><br>" + problemList.toString();
+          document.getElementById("isMatchedText").innerHTML = "The Matching is NOT Stable:<br><br>" + problemString;
         }
         
       });
@@ -327,6 +326,7 @@
           <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Family's Preferences</th>
         </tr>
         <caption align="bottom"><b><a href = "GaleShapleyAlgorithm.html">Click here to view an explanation of the algorithm to create stable matches</a></b>
+          <br>
           <b><a href = "../">Click here to go back to the homepage</a></b>
         </caption>
       </table>
