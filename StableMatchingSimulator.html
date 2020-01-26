@@ -43,14 +43,13 @@
         
         //Update Line Height to Fit
         setInterval(function(){
-          console.log(document.getElementById("visualizerTable").style);
           document.getElementById("line").style.height = document.getElementById("visualizerTable").clientHeight;
         }, 100);
   
         //Checks if n has changed
         function checkN(){
           var newN = document.getElementById("nInput").value;
-          if(newN != n && newN > 0 && newN < 16){
+          if(newN != n && newN > 0 && newN < 8){
             n = newN;
             
             repopulate();
