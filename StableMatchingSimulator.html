@@ -24,7 +24,7 @@
   <div id="sandboxWrapper" style="text-align:center;">
     <script>
       document.addEventListener("DOMContentLoaded", function(event) {
-        var n = 5; //The number of students and schools
+        var n = 3; //The number of students and schools
         
         var stPrefs = [];  //The preference lists of the students
         
@@ -274,7 +274,7 @@
                 //Does the school prefer student or pairedStudent? If so, unstable
                 var schoolPrefList = schPrefs[letters.indexOf(preferredSchools[j])];
                 if(schoolPrefList.indexOf(pairedStudent) > schoolPrefList.indexOf(student)){
-					problemPairs.push(student + " wants to be paired with " + preferredSchools[j] + ", and " + preferredSchools[j] + " would rather be with " + student + " than with its pair: " + pairedStudent);
+					problemPairs.push(student + " would rather be paired with " + preferredSchools[j] + " than its current pair: " + school + ", and " + preferredSchools[j] + " would rather be with " + student + " than with its pair: " + pairedStudent);
                  stable = false;
                 }
               }
@@ -292,31 +292,31 @@
         }
         
         function noMatching(){
-          document.getElementById("isMatchedBox").style = "text-align:center; border-style:solid; border-width:1px; margin:15px; width:90%; height:150px; line-height:150px; background-color: white;";
+          document.getElementById("isMatchedBox").style = "text-align:center; border-style:solid; border-width:1px; width:100%; padding-top:30px; padding-bottom:30px; background-color: white;";
           document.getElementById("isMatchedText").innerHTML = "Not a match, families have been assigned multiple animals.";
         }
         
         function stableMatching(){
-          document.getElementById("isMatchedBox").style = "text-align:center; border-style:solid; border-width:1px; margin:15px; width:90%; height:150px; line-height:150px; background-color: green;";
+          document.getElementById("isMatchedBox").style = "text-align:center; border-style:solid; border-width:1px; width:100%; padding-top:30px; padding-bottom:30px; background-color: green;";
           document.getElementById("isMatchedText").innerHTML = "The Matching is Stable";
         }
         
         function unstableMatching(problemList){
-          document.getElementById("isMatchedBox").style = "text-align:center; border-style:solid; border-width:1px; margin:15px; width:90%; height:150px; line-height:150px; background-color: red;";
+          document.getElementById("isMatchedBox").style = "text-align:center; border-style:solid; border-width:1px; width:100%; padding-top:30px; padding-bottom:30px; background-color: red;";
           document.getElementById("isMatchedText").innerHTML = "The Matching is NOT Stable:<br><br>" + problemList.toString();
         }
         
       });
     </script>
     <b>Number of animals and families:</b>
-    <input type="text" value=5 id="nInput">
+    <input type="text" value=3 id="nInput">
     
-    <div id="isMatchedBox" style="text-align:center; border-style:solid; border-width:1px; width:90%; height:150px; line-height:150px; background-color: white;">
+    <div id="isMatchedBox" style="text-align:center; border-style:solid; border-width:1px; width:100%; padding-top:30px; padding-bottom:30px; background-color: white;">
       <p id="isMatchedText">Not a match, families have been assigned multiple animals.</p>
     </div>
     
-    <div id="tableWrapper">
-      <table id="preferenceListTable" align="center" style=" vertical-align: top; float:left;">
+    <div id="tableWrapper" style="margin:30px; padding:30px;">
+      <table id="preferenceListTable" align="center" style="display:inline-block; vertical-align: top;">
         <tr>
           <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Animal ID</th>
           <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Animal's Preferences</th>
@@ -325,8 +325,8 @@
         </tr>
         <caption align="bottom"><b><a href = "GaleShapleyAlgorithm.html">Click here to view an explanation of the algorithm to create stable matches</b></caption>
       </table>
-      <div id="line" style="border-style:solid; border-wdith:1px; width:0px; height:0px; margin-left:10px; margin-right:10px; float:left;"></div>
-      <table id="visualizerTable" align="center" style=" vertical-align: top; float:left;">
+      <div id="line" style="display:inline-block; border-style:solid; border-wdith:1px; width:0px; height:0px; margin-left:10px; margin-right:10px;"></div>
+      <table id="visualizerTable" align="center" style="display:inline-block; vertical-align: top;">
         <tr>
           <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Animal</th>
           <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Family</th>
