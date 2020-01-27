@@ -59,6 +59,11 @@
           var newN = document.getElementById("nInput").value;
           if(newN != n && newN > 0 && newN <= maxN){
             n = newN;
+
+            //Forgive us this easter egg
+            if(newN == 26){
+              console.log("Abandon all hope, ye who enter n = 26...");
+            }
             
             repopulate();
           }
