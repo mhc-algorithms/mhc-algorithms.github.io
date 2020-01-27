@@ -149,8 +149,8 @@
             var prefStList = document.createElement("p");
             prefStList.id = "prefStList" + i;
             var stPref = makePrefLists2(n);
-            stPrefs.push(stPref)
-            prefStList.innerHTML = stPref;
+            stPrefs.push(stPref);
+            prefStList.innerHTML = stPref.toString().replace(/,/g, ", ");
             prefStList.style = "border-style:solid;border-width:1px;margin:5px;padding:5px;";
   
             var prefSchNum = document.createElement("p");
@@ -162,7 +162,7 @@
             prefSchList.id = "prefSchList" + i;
             var schPref = makePrefLists(n);
             schPrefs.push(schPref);
-            prefSchList.innerHTML = schPref;
+            prefSchList.innerHTML = schPref.toString().replace(/,/g, ", ");
             prefSchList.style = "border-style:solid;border-width:1px;margin:5px;padding:5px;";
   
   
