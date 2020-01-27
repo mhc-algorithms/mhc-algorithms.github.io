@@ -45,12 +45,331 @@
                 a' and f remain paired
       </code></pre>
     </p></div>
+    <br><br>
+<div id="sandboxWrapper" style="text-align:center;">
+    <script>
+      document.addEventListener("DOMContentLoaded", function(event) {
+        var n = 3; //The number of students and schools
+        var maxN = 26;  //The highest number we'll let n go
+        
+        var stPrefs = [];  //The preference lists of the students
+        
+        var schPrefs = []; //The preference lists of the schools
+        
+        var visualizerRows = [];  //The list of rows to be deleted on an update
+        var prefRows = [];  //The list of rows to be deleted on an update
+        
+        var dropdowns = [];   //The list of the dropdowns used by the user to create matchings
+        
+        var letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];  //letters
+        
+        repopulate();  //First things first, generate the students and schools
+        
+        setInterval(checkN, 500); //Every 500 millis checks to see if n has changed
+        
+        //Update Line Height to Fit
+        setInterval(function(){
+          document.getElementById("line").style.height = document.getElementById("visualizerTable").clientHeight;
+        }, 100);
+  
+        //Checks if n has changed
+        function checkN(){
+          var newN = document.getElementById("nInput").value;
+          if(newN != n && newN > 0 && newN <= maxN){
+            n = newN;
+
+            //Forgive us this easter egg
+            if(newN == 26){
+              console.log("Through me you go to the grief wracked algorithms course;\nThrough me you go to everlasting pain;\nThrough me you go a pass among lost students.\nJustice inspired my exalted Professor:\nI am a website of the Holiest Power,\nof Wisdom in the Highest and of Mathematical Love.\nNothing till I was made was made, only Platonic beings.\nAnd I endure eternally.\nAbandon all hope — Ye Who Enter n = 26");
+            }
+            
+            repopulate();
+          }
+        }
+        
+        //If n has changed or if this is the beginning of the program:
+        function repopulate(){
+          //Clear #visualizerTable
+          for(var i = 0; i < visualizerRows.length; i++){
+           document.getElementById("visualizerTable").removeChild(visualizerRows[i]);
+          }
+          
+          visualizerRows = [];
+          
+          //Clear #preferenceListTable
+          for(var i = 0; i < prefRows.length; i++){
+           document.getElementById("preferenceListTable").removeChild(prefRows[i]);
+          }
+          
+          prefRows = [];
+          
+          //Clear dropdowns, prefLists
+          dropdowns = [];
+          stPrefs = [];
+          schPrefs = [];
+          
+          //Generate enough rows of #visualizerTable and #preferenceListTable
+          for(var i = 0; i < n; i++){
+            //First, visualizerTable
+            var visRow = document.createElement("tr");
+            visRow.id = "visRow" + i;
+            
+            var stCell = document.createElement("td");
+            stCell.id = "stCell" + i;
+            
+            var stNum = document.createElement("p");
+            stNum.id = "stNum" + i;
+            stNum.innerHTML = i;
+            stNum.style = "border-style:solid;border-width:1px;margin:5px;padding:5px;";
+            
+            var schCell = document.createElement("td");
+            schCell.id = "schCell" + i;
+            
+            var schNum = document.createElement("select");
+            schNum.id = "schNum" + i;
+            schNum.style = "border-style:solid;border-width:1px;margin:5px;padding:5px;";
+            for(var j = 0; j < n; j++){
+              var option = document.createElement("option");
+              option.id = "schNum" + i + "Option" + j;
+              option.value = letters[j];
+              option.innerHTML = letters[j];
+              
+              schNum.appendChild(option);
+            }
+              
+            dropdowns.push(schNum);
+            
+            stCell.appendChild(stNum);
+            schCell.appendChild(schNum);
+            visRow.appendChild(stCell);
+            visRow.appendChild(schNum);
+            document.getElementById("visualizerTable").appendChild(visRow);
+            
+            visualizerRows.push(visRow);
+            
+            //Then, preferenceListTable
+            var prefRow = document.createElement("tr");
+            prefRow.id = "prefRow" + i;
+  
+            //columns
+            var prefStCell = document.createElement("td");
+            prefStCell.id = "prefStCell" + i;
+  
+            var prefStPrefCell = document.createElement("td");
+            prefStPrefCell.id = "prefStPrefCell" + i;
+  
+            var prefSchCell = document.createElement("td");
+            prefSchCell.id = "prefSchCell" + i;
+  
+            var prefSchPrefCell = document.createElement("td");
+            prefSchPrefCell.id = "prefSchPrefCell" + i;
+  
+            var prefStNum = document.createElement("p");
+            prefStNum.id = "prefStNum" + i;
+            prefStNum.innerHTML = i;
+            prefStNum.style = "border-style:solid;border-width:1px;margin:5px;padding:5px;";
+  
+            var prefStList = document.createElement("p");
+            prefStList.id = "prefStList" + i;
+            var stPref = makePrefLists2(n);
+            stPrefs.push(stPref);
+            prefStList.innerHTML = stPref.toString().replace(/,/g, ", ");
+            prefStList.style = "border-style:solid;border-width:1px;margin:5px;padding:5px;";
+  
+            var prefSchNum = document.createElement("p");
+            prefSchNum.id = "prefSchNum" + i;
+            prefSchNum.innerHTML = letters[i];
+            prefSchNum.style = "border-style:solid;border-width:1px;margin:5px;padding:5px;";
+  
+            var prefSchList = document.createElement("p");
+            prefSchList.id = "prefSchList" + i;
+            var schPref = makePrefLists(n);
+            schPrefs.push(schPref);
+            prefSchList.innerHTML = schPref.toString().replace(/,/g, ", ");
+            prefSchList.style = "border-style:solid;border-width:1px;margin:5px;padding:5px;";
+  
+  
+            //student id
+            prefStCell.appendChild(prefStNum);
+            prefRow.appendChild(prefStCell);
+  
+            //student pref
+            prefStPrefCell.appendChild(prefStList);
+            prefRow.appendChild(prefStPrefCell);
+  
+            //school id
+            prefSchCell.appendChild(prefSchNum);
+            prefRow.appendChild(prefSchCell);
+  
+            //school preferences
+            prefSchPrefCell.appendChild(prefSchList);
+            prefRow.appendChild(prefSchPrefCell);
+  
+            document.getElementById("preferenceListTable").appendChild(prefRow);
+            
+            prefRows.push(prefRow);
+          }
+        }
+        
+        
+        function makePrefLists(n){
+          var listLen = [];
+          var prefList = [];
+  
+          //fill the number choice list
+          for(i=0; i<n; i++){
+            listLen.push(i);
+          }
+  
+          //fill the prefList
+          while(listLen.length!=0){
+            var rand = Math.floor(Math.random()*listLen.length);
+            prefList.push(listLen[rand]);
+            listLen.splice(rand, 1);
+          }
+          return prefList;
+        }
+        
+       function makePrefLists2(n){
+         //var letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+        var listLen = [];
+        var prefList = [];
+
+        for(var i=0; i<n; i++){
+          listLen.push(letters[i]);
+        }
+        while(listLen.length!=0){
+          var rand = Math.floor(Math.random()*listLen.length);
+          prefList.push(listLen[rand]);
+          listLen.splice(rand, 1);
+        }
+        return prefList;
+      }
+        
+        
+        setInterval(checkMatched, 100); //Every 500 millis checks to see if a stable matching exists
+        
+        function checkMatched(){
+          //Check to see if a matching exists
+          // If it doesn't, set #isMatchedBox to white, #isMatchedText to "No Matching"
+          // If it does, check to see if it's stable
+          //  If it is, set #isMatchedBox to green, #isMatchedText to "Matching is Stable"
+          //  If it isn't, set #isMatchedBox to red#isMatchedText to "Matching is NOT Stable"
+          
+          var matching = true;  //Is there a matching?
+          var matchedVals = [];
+          for(var i = 0; i < dropdowns.length; i++){
+            var val = dropdowns[i].value;
+            if(matchedVals.includes(val)){ //This is a repeat, so no matching
+              noMatching();
+              matching = false;
+            }else{
+              matchedVals.push(val);
+            }
+          }
+          
+          if(matching){
+    var problemPairs = []
+            var stable = true;  //We assume that the matching is stable, then try to disprove
+            
+            //Check if matching is stable:
+            for(var i = 0; i < n; i++){  //For each student-school pairing
+              var student = i;
+              var school = dropdowns[i].value;
+              var schoolIndex = letters.indexOf(school);
+              
+              //Get prefered schools
+              var preferredSchools = [];
+              var prefList = stPrefs[i];
+              var doneChecking = false;
+              for(var j = 0; j < prefList.length; j++){
+                if(!doneChecking){
+                  if(prefList[j] != school){ //prefList[j] is a school which the student would prefer
+                   preferredSchools.push(prefList[j]);
+                  }else{ //No more schools to check
+                   doneChecking = true;
+                  }
+                }
+              }
+              
+              //For each preferred school:
+              for(var j = 0; j < preferredSchools.length; j++){
+                //Find the student paired with this school
+                var pairedStudent = -1;
+                for(var k = 0; k < dropdowns.length; k++){
+                  if(dropdowns[k].value == preferredSchools[j]){ //This dropdown is the pairing in question
+                   pairedStudent = k;
+                  }
+                }
+                
+                //Does the school prefer student or pairedStudent? If so, unstable
+                var schoolPrefList = schPrefs[letters.indexOf(preferredSchools[j])];
+                if(schoolPrefList.indexOf(pairedStudent) > schoolPrefList.indexOf(student)){
+          problemPairs.push("<b>" + student + "</b> would rather be paired with <b>" + preferredSchools[j] + "</b> than its current pair: <b>" + school + "</b> and <b>" + preferredSchools[j] + "</b> would rather be with <b>" + student + "</b> than with its pair: <b>" + pairedStudent + "</b>");
+                 stable = false;
+                }
+              }
+            }
+            
+            //Update the view to reflect the reality of stability
+            if(stable){
+              stableMatching();
+            }else{
+              unstableMatching(problemPairs);
+            }
+          }
+        }
+        
+        function noMatching(){
+          document.getElementById("isMatchedBox").style = "text-align:center; border-style:solid; border-width:1px; width:100%; padding-top:30px; padding-bottom:30px; background-color: white;";
+          document.getElementById("isMatchedText").innerHTML = "Not a match, families have been assigned multiple animals.";
+        }
+        
+        function stableMatching(){
+          document.getElementById("isMatchedBox").style = "text-align:center; border-style:solid; border-width:1px; width:100%; padding-top:30px; padding-bottom:30px; background-color: green;";
+          document.getElementById("isMatchedText").innerHTML = "The Matching is Stable";
+        }
+        
+        function unstableMatching(problemList){
+          var problemString = problemList.toString().replace(/,/g, "<br>Also: ");
+          document.getElementById("isMatchedBox").style = "text-align:center; border-style:solid; border-width:1px; width:100%; padding-top:30px; padding-bottom:30px; background-color: red;";
+          document.getElementById("isMatchedText").innerHTML = "The Matching is NOT Stable:<br><br>" + problemString;
+        }
+        
+      });
+    </script>
+    <b>Number of animals and families: (max 26)</b>
+    <input type="text" value=3 id="nInput">
+    
+    <div id="isMatchedBox" style="text-align:center; border-style:solid; border-width:1px; width:100%; padding-top:30px; padding-bottom:30px; background-color: white;">
+      <p id="isMatchedText">Not a match, families have been assigned multiple animals.</p>
+    </div>
+    
+    <div id="tableWrapper" style="margin:30px; padding:30px;">
+      <table id="preferenceListTable" align="center" style="display:inline-block; vertical-align: top;">
+        <tr>
+          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Animal ID</th>
+          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Animal's Preferences</th>
+          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Family ID</th>
+          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Family's Preferences</th>
+        </tr>
+      </table>
+      <div id="line" style="display:inline-block; border-style:solid; border-wdith:1px; width:0px; height:0px; margin-left:10px; margin-right:10px;"></div>
+      <table id="visualizerTable" align="center" style="display:inline-block; vertical-align: top;">
+        <tr>
+          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Animal</th>
+          <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Family</th>
+        </tr>
+
+      </table>
+    </div>
+  </div>
 <br><br>
 <div id="links">
     <p>
-        Now that you've seen the algorithm, we recommend you go back to the module and try to make matches by following this algorithm.
+        <!-- Now that you've seen the algorithm, we recommend you go back to the module and try to make matches by following this algorithm.
         <br>
-        Can you find the running time of the algorithm?
+        Can you find the running time of the algorithm? -->
         <br><br>
         <b><a href="StableMatchingSimulator.html">Go back to the simulator</a></b> 
         <br>
