@@ -32,6 +32,7 @@
     <script>
       document.addEventListener("DOMContentLoaded", function(event) {
         var n = 3; //The number of students and schools
+        var maxN = 26;  //The highest number we'll let n go
         
         var stPrefs = [];  //The preference lists of the students
         
@@ -56,7 +57,7 @@
         //Checks if n has changed
         function checkN(){
           var newN = document.getElementById("nInput").value;
-          if(newN != n && newN > 0 && newN < 26){
+          if(newN != n && newN > 0 && newN <= maxN){
             n = newN;
             
             repopulate();
