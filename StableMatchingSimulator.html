@@ -21,7 +21,9 @@
       Can we come up with an algorithm of O(n^2) to do so?
       <br><br>
       <br><br>
-      Use the drop menus on the right to select which animal goes to which family. <br> For example, if you want animal 1 to go to family c, then click the drop menu next to the row with animal 1, and set it to family c. <br>If you want to change the number of animals and families, type in the number in the text box labeled "number of animals and families"
+      <b>Instructions:</b><br><br>
+      Use the drop menus on the right to select which animal goes to which family. <br> For example, if you want animal 1 to go to family c, then click the drop menu next to the row with animal 1, and set it to family c. <br>If you want to change the number of animals and families, type in the number in the text box labeled "number of animals and families" 
+      <br><br>
       <b><a href = "StableMatchIntro.html">Click here to go back to the introduction</a></b>
     </p>
   </div>
@@ -54,7 +56,7 @@
         //Checks if n has changed
         function checkN(){
           var newN = document.getElementById("nInput").value;
-          if(newN != n && newN > 0 && newN < 8){
+          if(newN != n && newN > 0 && newN < 26){
             n = newN;
             
             repopulate();
@@ -312,7 +314,7 @@
         
       });
     </script>
-    <b>Number of animals and families: (max 7)</b>
+    <b>Number of animals and families: (max 26)</b>
     <input type="text" value=3 id="nInput">
     
     <div id="isMatchedBox" style="text-align:center; border-style:solid; border-width:1px; width:100%; padding-top:30px; padding-bottom:30px; background-color: white;">
