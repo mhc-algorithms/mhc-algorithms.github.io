@@ -49,6 +49,23 @@
 	padding: 10px 20px;
 }
 
+.button{
+	padding: 15px 15px;
+	border: none;
+	background-color: white;
+	color: black;
+	text-align: center;
+	display: inline-block;
+	font-size: 15px;
+	text-decoration: none;
+
+
+}
+
+.button-div{
+	text-align:center;
+}
+
 </style>
 
 
@@ -59,12 +76,12 @@
 
 <div class="navbar">
 	<a href = "index.html">Home</a>
-	<a href = "StableMatchIntro.html">Stable Matching Introduction</a>
+	<a href = "StableMatchIntro.html">Stable Matching Simulation</a>
 </div>
 
 <body style ="background-color:#d9d3db;">
 <div class="SimHeader">
-	<p><b>Stable Matching Simulation</b></p>
+	<p><b>Stable Matching Introduction</b></p>
 </div>
 <div id="Welcome">
 	<p>
@@ -127,9 +144,13 @@
 
 		With all this in mind, go on and try it out! 
 		<br>
-		<b><a href ="StableMatchingSimulator.html">Click here to try the simulator!</a></b>
-		  <br>
-      <a href="../">Click here to return to the homepage</a>
+		<div class="button-div">
+			<button class="button" id="simButton">
+				<b><a href ="StableMatchingSimulator.html">Click here to try the simulator!</a></b>
+			</button>
+		</div>
+        <br>
+        <br>
         <br>
   
 
