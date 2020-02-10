@@ -1,9 +1,75 @@
+<!DOCTYPE html>
+
+<!---styling the header with css-->
+<style>
+.header{
+	padding: 40px;
+	text-align: center;
+	background: #9785a8;
+	color: white;
+}
+
+.header h1{
+	font-size: 40px;
+}
+
+.navbar{
+	overflow: hidden;
+	background-color: #ffffff;
+}
+
+.navbar a{
+	float:left;
+	display: block;
+	color: black;
+	text-align: center;
+	padding: 15px 15px;
+	text-decoration: none;
+}
+.navbar a:hover{
+	padding: 15px;
+	background-color: #d4bff5;
+	color: white;
+}
+
+.SimHeader {
+	font-size:25px;
+	text-align: center;
+	border-color: black;
+	border-bottom-style: solid;
+	border-width: 1px;
+	font-family: Arial;
+}
+
+.defs {
+	border-style: dashed;
+	border-color: black;
+	border-width: 1px;
+	font-family: Arial;
+}
+
+</style>
+
+
+<div class="header">
+	<h1>Welcome to the MHC Algorithms Help Website!</h1>
+
+</div>
+
+<div class="navbar">
+	<a href = "index.html">Home</a>
+	<a href = "StableMatchIntro.html">Stable Matching Simulation</a>
+</div>
+
 <body style ="background-color:#d9d3db;">
+<div class="SimHeader">
+	<p><b>Stable Matching Simulation</b></p>
+</div>
 <div id="Welcome">
 	<p>
 		Hello! Welcome to the stable matching simulator!
 		<br>
-		This website is here to help you understand stable matching. 
+		This simulation is here to help you understand stable matching. 
 		<br>
 		<br>
 		First, we want to introduce some key definitions for understanding this concept.
@@ -11,29 +77,32 @@
 		<br>
 	</p>
 </div>
+
+
 <div id="definitions">
 	<p>
 		Suppose we have two groups, Animals and Families. We are trying to find families to adopt animals. Every animal and family has a preference list of who they want to be matched with.
 		<br><br>
 
-		&nbsp;&nbsp;&nbsp;&nbsp;<b>Match</b>: the set of family-animal pairs where each family/animal is in <u>at most</u> 1 pair.
+		<div class="defs">
+		<b>Match</b>: the set of family-animal pairs where each family/animal is in <u>at most</u> 1 pair.
 
 		<br><br>
 
-		&nbsp;&nbsp;&nbsp;&nbsp;<b>Perfect Match</b>: the set of family-animal pairs where each family/animal is in <u>exactly</u> one pair.
+		<b>Perfect Match</b>: the set of family-animal pairs where each family/animal is in <u>exactly</u> one pair.
 
 		<br><br>
 
-		&nbsp;&nbsp;&nbsp;&nbsp;<b>Instability or unstable pair</b>: a family-animal pair not in the current match, such that the family prefers the animal over the one it was paired with, and the animal prefers the family over the one it was paired with.
+		<b>Instability or unstable pair</b>: a family-animal pair not in the current match, such that the family prefers the animal over the one it was paired with, and the animal prefers the family over the one it was paired with.
 
 		<br><br>
-		<u>Example:</u> We have two families, the Adams and the Zhangs. The Adams were paired with a cat, and the Zhangs were paired with a dog. However, the Zhangs prefered the cat over the dog, and the cat prefered the Zhangs over the Adams. In this case, both the Zhangs and the cat would rather be with each other than what they were assigned. This is an unstable match.
+		<i><u>Example:</u> We have two families, the Adams and the Zhangs. The Adams were paired with a cat, and the Zhangs were paired with a dog. However, the Zhangs prefered the cat over the dog, and the cat prefered the Zhangs over the Adams. In this case, both the Zhangs and the cat would rather be with each other than what they were assigned. This is an unstable match.</i>
 
 		<br><br>
 
-		&nbsp;&nbsp;&nbsp;&nbsp;<b>Stable Match</b>: A perfect match where there is no instability.
-
-		<br><br><br>
+		<b>Stable Match</b>: A perfect match where there is no instability.
+	</div>
+		<br><br>
 
 	</p>
 </div>
