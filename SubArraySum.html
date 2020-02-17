@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+	<div id="pointArray" style="margin:30px; padding:30px;"></div>
+	<div id="subarraySum"></div>
+
+<script>
+	//creates an array of size n of values between -10 and 10
+	function generateArray(n){
+		var points = [];
+		var min = -4; //negative 4 just so that the numbers are more interesting for gameplay?
+		var max = 10;
+		var negativeCount = 0;
+
+		for(var i=0; i<n; i++){
+			var rand = Math.floor(Math.random()*(+max - +min))+ +min;
+			
+			//this prevents all the numbers from being negative
+			if(rand<0){
+				negativeCount++;
+			}
+			if(negativeCount==n){
+				rand = rand*-1;
+			}
+			points.push(rand);
+		}
+
+		return points;
+	}
+
+
+	function maxSubarraySum(array){
+		var max_end = 0;
+		var max_count = 0;
+
+		for(var i = 0; i<array.length; i++){
+			max_end += array[i];
+
+			if(max_count < max_end){
+				max_count = max_end;
+			}
+
+			if(max_end < 0){
+				max_end = 0;
+			}
+		}
+		//if it's all negative numbers it defaults to zero... added preventative measure to genArray
+		return max_count;
+	}
+
+	var testArray = generateArray(5);
+	document.getElementById("pointArray").innerHTML = testArray;
+	document.getElementById("subarraySum").innerHTML = maxSubarraySum(testArray);
+
+
+
+
+</script>
+
+
+
+	
+</body>
+</html>
