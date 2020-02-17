@@ -188,7 +188,10 @@
 		    	duck.id = "duck" + i;
 		    	duck.className = "duck";
 
-		    	var duckImg = document.createElement("div");		//Div for now, will be img when we have img of duck
+		    	//var duckImg = document.createElement("div");		//Div for now, will be img when we have img of duck
+		    	var duckImg = document.createElement("IMG");
+		    	duckImg.setAttribute("src", "./duck.png");
+
 		    	duckImg.className = "duckPart";
 		    	duckImg.style = "width:50px;height:50px;background-color:yellow";
 
