@@ -162,35 +162,6 @@
 	        	}
 		    }
 
-		    //Handle Duck Being Clicked
-		    $(".duck").click(function(){
-		    	var duck = $(this)[0];
-		    	var duckId = duck.id;
-		    	var duckNum = parseInt(duckId.substring(4));
-
-		    	if(startDuck == -1 && endDuck == -1){		//First Click of the Game
-		    		startDuck = duckNum;
-		    		endDuck = duckNum;
-		    	}else{									//There already exists a start and end duck
-		    		if(duckNum > endDuck){	//This should be the new end duck
-		    			endDuck = duckNum;
-		    		}else if(duckNum < startDuck){	//This should be the new start duck
-		    			startDuck = duckNum;
-		    		}else{							//This should be the new start or end duck, whichever is closest
-		    			var distToStart = duckNum - startDuck;
-		    			var distToEnd = endDuck - duckNum;
-
-		    			if(distToEnd < distToStart){
-		    				endDuck = duckNum;
-		    			}else{
-		    				startDuck = duckNum;
-		    			}
-		    		}
-		    	}
-
-		    	updateDuckSelection();
-		    });
-
 		    //Updates the GUI and selected subarray of ducks
 		    function updateDuckSelection(){
 		    	var runningSum = 0;
@@ -283,6 +254,37 @@
 				//if it's all negative numbers it defaults to zero... added preventative measure to genArray
 				return max_count;
 			}
+
+			$(document).ready(function(){
+			    //Handle Duck Being Clicked
+			    $("body").on("click", ".duck", function(){
+			    	var duck = $(this)[0];
+			    	var duckId = duck.id;
+			    	var duckNum = parseInt(duckId.substring(4));
+
+			    	if(startDuck == -1 && endDuck == -1){		//First Click of the Game
+			    		startDuck = duckNum;
+			    		endDuck = duckNum;
+			    	}else{									//There already exists a start and end duck
+			    		if(duckNum > endDuck){	//This should be the new end duck
+			    			endDuck = duckNum;
+			    		}else if(duckNum < startDuck){	//This should be the new start duck
+			    			startDuck = duckNum;
+			    		}else{							//This should be the new start or end duck, whichever is closest
+			    			var distToStart = duckNum - startDuck;
+			    			var distToEnd = endDuck - duckNum;
+
+			    			if(distToEnd < distToStart){
+			    				endDuck = duckNum;
+			    			}else{
+			    				startDuck = duckNum;
+			    			}
+			    		}
+			    	}
+
+			    	updateDuckSelection();
+			    });
+			});
 		</script>	
 	</body>
 </html>
