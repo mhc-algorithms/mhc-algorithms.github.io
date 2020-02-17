@@ -1,66 +1,288 @@
 <!DOCTYPE html>
 <html>
-
-<body>
-
-	<div id="pointArray" style="margin:30px; padding:30px;"></div>
-	<div id="subarraySum"></div>
-
-<script>
-	//creates an array of size n of values between -10 and 10
-	function generateArray(n){
-		var points = [];
-		var min = -4; //negative 4 just so that the numbers are more interesting for gameplay?
-		var max = 10;
-		var negativeCount = 0;
-
-		for(var i=0; i<n; i++){
-			var rand = Math.floor(Math.random()*(+max - +min))+ +min;
-			
-			//this prevents all the numbers from being negative
-			if(rand<0){
-				negativeCount++;
-			}
-			if(negativeCount==n){
-				rand = rand*-1;
-			}
-			points.push(rand);
-		}
-
-		return points;
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!---styling the header with css-->
+	<style>
+	.header{
+	  padding: 40px;
+	  text-align: center;
+	  background: #9785a8;
+	  color: white;
 	}
 
-
-	function maxSubarraySum(array){
-		var max_end = 0;
-		var max_count = 0;
-
-		for(var i = 0; i<array.length; i++){
-			max_end += array[i];
-
-			if(max_count < max_end){
-				max_count = max_end;
-			}
-
-			if(max_end < 0){
-				max_end = 0;
-			}
-		}
-		//if it's all negative numbers it defaults to zero... added preventative measure to genArray
-		return max_count;
+	.header h1{
+	  font-size: 40px;
 	}
 
-	var testArray = generateArray(5);
-	document.getElementById("pointArray").innerHTML = testArray;
-	document.getElementById("subarraySum").innerHTML = maxSubarraySum(testArray);
+	.navbar{
+	  overflow: hidden;
+	  background-color: #ffffff;
+	}
+
+	.navbar a{
+	  float:left;
+	  display: block;
+	  color: black;
+	  text-align: center;
+	  padding: 15px 15px;
+	  text-decoration: none;
+	}
+	.navbar a:hover{
+	  padding: 15px;
+	  background-color: #d4bff5;
+	  color: white;
+	}
+
+	.SimHeader {
+	  font-size:25px;
+	  text-align: center;
+	  border-color: black;
+	  border-bottom-style: solid;
+	  border-width: 1px;
+	  font-family: Arial;
+	}
+
+	.defs {
+	  border-style: dashed;
+	  border-color: black;
+	  border-width: 1px;
+	  font-family: Arial;
+	  padding: 10px 20px;
+	}
+
+	.duck {
+		margin:15px;
+		display:inline-block;
+		width:50px;
+		height:50px;
+	}
+
+	p {
+		/*This is a hack, please find a solution...*/
+		margin-top: -33px;
+	}
+
+	#duckWrapper {
+		margin:auto;
+		text-align: center;
+		width:100%;
+		position:relative;
+	}
+
+	#UIWrapper {
+		margin:auto;
+		margin-top:10px;
+		text-align: center;
+		width:100%;
+	}
+
+	#hose {
+		display:inline-block;
+		width:0px;
+		height:0px;
+
+		border-left: 30px solid transparent;
+		border-right: 30px solid transparent;
+		border-bottom: 80px solid red;
+	}
+
+	#hoseWrapper {
+		margin:auto;
+		margin-top:80px;
+		text-align: center;
+		width:100%;
+	}
+
+	</style>
+	<div class="header">
+	  <h1>Welcome to the MHC Algorithms Help Website!</h1>
+
+	</div>
+
+	<div class="navbar">
+	  <a href = "index.html">Home</a>
+	  <a href = "StableMatchIntro.html">Stable Matching Simulation</a>
+	</div>
 
 
+	<body>
+		<div id="duckWrapper"></div>
+		<div id="hoseWrapper">
+			<div id="hose"></div>	<!--This will be replaced by an image of a hose -->
+		</div>
+		<div id="UIWrapper">
+			<input type=text value=5 id="nInput">
+			<button type="button" onclick="repopulate()">New Game</button>
+			<button type="button" onclick="hose()">Confirm Selection</button>
+		</div>
+		<script>
+			var n = 5;
+			var maxN = 16;
 
+			var duckDOMs = [];
+			var duckValues = [];
+			var startDuck = -1;
+			var endDuck = -1;
 
-</script>
+			var playerSum = null;
 
+			repopulate();
 
+        	setInterval(checkN, 500); //Every 500 millis checks to see if n has changed
 
-	
-</body>
+        	//Checks if n has changed
+		    function checkN(){
+		      var newN = document.getElementById("nInput").value;
+		      if(newN != n && newN > 0 && newN <= maxN){
+		        n = newN;		        
+		        repopulate();
+		      }
+		    }
+
+		    //Restarts the game
+		    function repopulate(){
+				//Clear #duckWrapper
+				for(var i = 0; i < duckDOMs.length; i++){
+	        		document.getElementById("duckWrapper").removeChild(duckDOMs[i]);
+	        	}
+
+	        	duckDOMs = [];
+	        	duckValues = [];
+	        	startDuck = -1;
+	        	endDuck = -1;
+
+	        	playerSum = null;
+
+	        	duckValues = generateArray(n);
+
+	        	for(var i = 0; i < n; i++){
+	        		var duck = makeDuck(duckValues[i], i);
+	        		duckDOMs[i] = duck;
+	        		duckWrapper.appendChild(duck);
+	        	}
+		    }
+
+		    //Handle Duck Being Clicked
+		    $(".duck").click(function(){
+		    	var duck = $(this)[0];
+		    	var duckId = duck.id;
+		    	var duckNum = parseInt(duckId.substring(4));
+
+		    	if(startDuck == -1 && endDuck == -1){		//First Click of the Game
+		    		startDuck = duckNum;
+		    		endDuck = duckNum;
+		    	}else{									//There already exists a start and end duck
+		    		if(duckNum > endDuck){	//This should be the new end duck
+		    			endDuck = duckNum;
+		    		}else if(duckNum < startDuck){	//This should be the new start duck
+		    			startDuck = duckNum;
+		    		}else{							//This should be the new start or end duck, whichever is closest
+		    			var distToStart = duckNum - startDuck;
+		    			var distToEnd = endDuck - duckNum;
+
+		    			if(distToEnd < distToStart){
+		    				endDuck = duckNum;
+		    			}else{
+		    				startDuck = duckNum;
+		    			}
+		    		}
+		    	}
+
+		    	updateDuckSelection();
+		    });
+
+		    //Updates the GUI and selected subarray of ducks
+		    function updateDuckSelection(){
+		    	var runningSum = 0;
+		    	for(var i = 0; i < n; i++){
+		    		var text = duckDOMs[i].children[1];
+
+		    		if(startDuck <= i && i <= endDuck){
+		    			text.style = "color:red";
+		    			var val = parseInt(text.innerHTML);
+		    			runningSum += val;
+		    		}else{
+		    			text.style = "color:black";
+		    		}
+		    	}
+
+		    	if(startDuck != -1){
+		    		playerSum = runningSum;
+		    	}
+		    }
+
+		    //Returns a duck GUI element with a value of val and id of duck + i
+		    function makeDuck(val, i){
+		    	var duck = document.createElement("div");
+		    	duck.id = "duck" + i;
+		    	duck.className = "duck";
+
+		    	var duckImg = document.createElement("div");		//Div for now, will be img when we have img of duck
+		    	duckImg.className = "duckPart";
+		    	duckImg.style = "width:50px;height:50px;background-color:yellow";
+
+		    	var duckNum = document.createElement("p");
+		    	duckNum.className = "duckPart";
+		    	duckNum.innerHTML = val;
+
+		    	duck.appendChild(duckImg);
+		    	duck.appendChild(duckNum);
+
+		    	return duck;
+		    }
+
+		    //Play the hose animation and check to see if player was right
+		    function hose(){
+		    	var correctSum = maxSubarraySum(duckValues);
+
+		    	if(correctSum == playerSum){
+		    		alert("Correct! Your value of " + playerSum + " was correct!");
+		    	}else{
+		    		alert("Incorrect :( Your sum was " + playerSum + ", but you could have gotten " + correctSum);
+		    	}
+		    }
+
+			//creates an array of size n of values between -4 and 10
+			function generateArray(n){
+				var points = [];
+				var min = -4; //negative 4 just so that the numbers are more interesting for gameplay?
+				var max = 10;
+				var negativeCount = 0;
+
+				for(var i=0; i<n; i++){
+					var rand = Math.floor(Math.random()*(+max - +min))+ +min;
+					
+					//this prevents all the numbers from being negative
+					if(rand<0){
+						negativeCount++;
+					}
+					if(negativeCount==n){
+						rand = rand*-1;
+					}
+					points.push(rand);
+				}
+
+				return points;
+			}
+
+			function maxSubarraySum(array){
+				var max_end = 0;
+				var max_count = 0;
+
+				for(var i = 0; i<array.length; i++){
+					max_end += array[i];
+
+					if(max_count < max_end){
+						max_count = max_end;
+					}
+
+					if(max_end < 0){
+						max_end = 0;
+					}
+				}
+				//if it's all negative numbers it defaults to zero... added preventative measure to genArray
+				return max_count;
+			}
+		</script>	
+	</body>
 </html>
