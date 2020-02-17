@@ -165,24 +165,20 @@
 
 		    //Updates the GUI and selected subarray of ducks
 		    function updateDuckSelection(){
-		    	if(startDuck == -1){
-		    		alert("Please make a selection");
-		    	}else{
-			    	var runningSum = 0;
-			    	for(var i = 0; i < n; i++){
-			    		var text = duckDOMs[i].children[1];
+		    	var runningSum = 0;
+		    	for(var i = 0; i < n; i++){
+		    		var text = duckDOMs[i].children[1];
 
-			    		if(startDuck <= i && i <= endDuck){
-			    			text.style = "color:red";
-			    			var val = parseInt(text.innerHTML);
-			    			runningSum += val;
-			    		}else{
-			    			text.style = "color:black";
-			    		}
-			    	}
-			    	
-			    	playerSum = runningSum;
+		    		if(startDuck <= i && i <= endDuck){
+		    			text.style = "color:red";
+		    			var val = parseInt(text.innerHTML);
+		    			runningSum += val;
+		    		}else{
+		    			text.style = "color:black";
+		    		}
 		    	}
+		    	
+		    	playerSum = runningSum;
 		    }
 
 		    //Returns a duck GUI element with a value of val and id of duck + i
@@ -210,13 +206,17 @@
 
 		    //Play the hose animation and check to see if player was right
 		    function hose(){
-		    	var correctSum = maxSubarraySum(duckValues);
-
-		    	if(correctSum == playerSum){
-		    		alert("Correct! Your value of " + playerSum + " was correct!");
+		    	if(startDuck == -1){
+		    		alert("Please make a selection");
 		    	}else{
-		    		alert("Incorrect :( Your sum was " + playerSum + ", but you could have gotten " + correctSum);
-		    	}
+			    	var correctSum = maxSubarraySum(duckValues);
+
+			    	if(correctSum == playerSum){
+			    		alert("Correct! Your value of " + playerSum + " was correct!");
+			    	}else{
+			    		alert("Incorrect :( Your sum was " + playerSum + ", but you could have gotten " + correctSum);
+			    	}
+			    }
 		    }
 
 			//creates an array of size n of values between -4 and 10
