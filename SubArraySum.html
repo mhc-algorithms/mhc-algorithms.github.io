@@ -59,7 +59,8 @@
 
 	p {
 		/*This is a hack, please find a solution...*/
-		margin-top: -33px;
+		margin-top: -39px;
+		margin-left: 10px;
 	}
 
 	#duckWrapper {
@@ -164,21 +165,23 @@
 
 		    //Updates the GUI and selected subarray of ducks
 		    function updateDuckSelection(){
-		    	var runningSum = 0;
-		    	for(var i = 0; i < n; i++){
-		    		var text = duckDOMs[i].children[1];
+		    	if(startDuck == -1){
+		    		alert("Please make a selection");
+		    	}else{
+			    	var runningSum = 0;
+			    	for(var i = 0; i < n; i++){
+			    		var text = duckDOMs[i].children[1];
 
-		    		if(startDuck <= i && i <= endDuck){
-		    			text.style = "color:red";
-		    			var val = parseInt(text.innerHTML);
-		    			runningSum += val;
-		    		}else{
-		    			text.style = "color:black";
-		    		}
-		    	}
-
-		    	if(startDuck != -1){
-		    		playerSum = runningSum;
+			    		if(startDuck <= i && i <= endDuck){
+			    			text.style = "color:red";
+			    			var val = parseInt(text.innerHTML);
+			    			runningSum += val;
+			    		}else{
+			    			text.style = "color:black";
+			    		}
+			    	}
+			    	
+			    	playerSum = runningSum;
 		    	}
 		    }
 
@@ -193,7 +196,7 @@
 		    	duckImg.setAttribute("src", "./duck.png");
 
 		    	duckImg.className = "duckPart";
-		    	duckImg.style = "width:50px;height:50px;background-color:yellow";
+		    	duckImg.style = "width:60px;height:60px;";
 
 		    	var duckNum = document.createElement("p");
 		    	duckNum.className = "duckPart";
