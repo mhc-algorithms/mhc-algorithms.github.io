@@ -94,6 +94,22 @@
 		width:100%;
 	}
 
+	#Explanation {
+		display: none;
+		margin: 15px;
+		text-align: center;
+	}
+
+	#ExplanationWrapper {
+		margin: 50px;
+	}
+
+	.explanationButtons {
+		margin: auto;
+		text-align: center;
+		display:block;
+	}
+
 	</style>
 	<div class="header">
 	  <h1>Welcome to the MHC Algorithms Help Website!</h1>
@@ -115,6 +131,48 @@
 			<button type="button" onclick="repopulate()">New Game</button>
 			<input type=text value=5 id="nInput">
 			<button type="button" onclick="hose()">Confirm Selection</button>
+		</div>
+
+		<div id="ExplanationWrapper">
+			<button id="showExplanation" class="explanationButtons" type="button" onclick="
+				$('#Explanation').css('display', 'block');
+				
+				$('#hideExplanation').css('display', 'block');
+				$('#showExplanation').css('display', 'none');
+			">Show Algorithm Explanation</button>
+			<button id="hideExplanation" class="explanationButtons" style="display:none" type="button" onclick="
+				$('#Explanation').css('display', 'none');
+				
+				$('#hideExplanation').css('display', 'none');
+				$('#showExplanation').css('display', 'block');
+			">Hide Algorithm Explanation</button>
+			<p id="Explanation">
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+				Explanation Goes Here<br>
+			</p>
 		</div>
 		<script>
 			var n = 5;
