@@ -129,7 +129,7 @@
 		</div>
 		<div id="UIWrapper">
 			<button type="button" onclick="repopulate()">New Game</button>
-			<input type=text value=5 id="nInput">
+			<input type=text value=2 id="nInput">
 			<button type="button" onclick="hose()">Confirm Selection</button>
 		</div>
 
@@ -175,7 +175,9 @@
 			</p>
 		</div>
 		<script>
-			var n = 5;
+			var level = 0;
+
+			var n = 2;
 			var maxN = 16;
 
 			var duckDOMs = [];
@@ -187,7 +189,33 @@
 
 			repopulate();
 
-        	setInterval(checkN, 500); //Every 500 millis checks to see if n has changed
+			//setInterval(checkLevel, 500); 
+        	//setInterval(checkN, 500); //Every 500 millis checks to see if n has changed
+
+        	//set levels
+        	function checkLevel(){
+	        	if(level==0){
+	        		n=2;
+	        		document.getElementById("nInput").value = n;
+	        		repopulate();
+	        	}
+	        	else if(level==1){
+	        		n=4;
+	        		document.getElementById("nInput").value = n;
+	        		repopulate();
+	        	}
+	        	else if(level==2){
+	        		n=8;
+	        		document.getElementById("nInput").value = n;
+	        		repopulate();
+	        	}
+	        	else{
+	        		repopulate();
+	        		checkN();
+	        		setInterval(checkN, 500); 
+	        		//allow to make own numbers
+	        	}
+        	}
 
         	//Checks if n has changed
 		    function checkN(){
@@ -271,6 +299,8 @@
 
 			    	if(correctSum == playerSum){
 			    		alert("Correct! Your value of " + playerSum + " was correct!");
+			    		level++;
+			    		checkLevel();
 			    	}else{
 			    		alert("Incorrect :( Your sum was " + playerSum + ", but you could have gotten " + correctSum);
 			    	}
@@ -280,7 +310,7 @@
 			//creates an array of size n of values between -4 and 10
 			function generateArray(n){
 				var points = [];
-				var min = -4; //negative 4 just so that the numbers are more interesting for gameplay?
+				var min = -10; //negative 4 just so that the numbers are more interesting for gameplay?
 				var max = 10;
 				var negativeCount = 0;
 
