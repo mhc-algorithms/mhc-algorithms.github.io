@@ -52,6 +52,7 @@
 
 	.duck {
 		margin:15px;
+		margin-top:200px;
 		display:inline-block;
 		width:50px;
 		height:50px;
@@ -72,26 +73,41 @@
 
 	#UIWrapper {
 		margin:auto;
-		margin-top:10px;
+		margin-top:100px;
 		text-align: center;
 		width:100%;
 	}
 
 	#hose {
-		display:inline-block;
+		width:50px;
+		height:80px;
+		/*display:inline-block;
 		width:0px;
 		height:0px;
 
 		border-left: 30px solid transparent;
 		border-right: 30px solid transparent;
-		border-bottom: 80px solid red;
+		border-bottom: 80px solid red;*/
+
 	}
 
 	#hoseWrapper {
 		margin:auto;
-		margin-top:80px;
+		margin-top:95px;
 		text-align: center;
 		width:100%;
+	}
+
+	#backgroundWrapper{
+		margin:auto;
+		margin-top:0px;
+		text-align: center;
+		background-size:cover;
+		width:900px;
+		height:550px;
+		object-fit: center;
+		background-repeat: no-repeat;
+
 	}
 
 	#Explanation {
@@ -123,9 +139,11 @@
 
 
 	<body>
+		<div id ="backgroundWrapper" style="background-image: url('background.png');">
 		<div id="duckWrapper"></div>
 		<div id="hoseWrapper">
-			<div id="hose"></div>	<!--This will be replaced by an image of a hose -->
+			<img id="hose" src ="./hose.png"></img>	<!--This will be replaced by an image of a hose -->
+		</div>
 		</div>
 		<div id="UIWrapper">
 			<button type="button" onclick="repopulate()">New Game</button>
@@ -298,19 +316,19 @@
 			    	var correctSum = maxSubarraySum(duckValues);
 
 			    	if(correctSum == playerSum){
-			    		alert("Correct! Your value of " + playerSum + " was correct!");
+			    		alert("Winner! Your value of " + playerSum + " was the best you could get!");
 			    		level++;
 			    		checkLevel();
 			    	}else{
-			    		alert("Incorrect :( Your sum was " + playerSum + ", but you could have gotten " + correctSum);
+			    		alert("Sorry :( Your sum was " + playerSum + ", but you could have gotten " + correctSum);
 			    	}
 			    }
 		    }
 
-			//creates an array of size n of values between -4 and 10
+			//creates an array of size n of values between -10 and 10
 			function generateArray(n){
 				var points = [];
-				var min = -10; //negative 4 just so that the numbers are more interesting for gameplay?
+				var min = -10; 
 				var max = 10;
 				var negativeCount = 0;
 
