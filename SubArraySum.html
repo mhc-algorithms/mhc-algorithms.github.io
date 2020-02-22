@@ -52,10 +52,14 @@
 
 	.duck {
 		margin:15px;
-		margin-top:200px;
+		margin-top:0px;
 		display:inline-block;
 		width:50px;
 		height:50px;
+	}
+
+	#spacing{
+		height:200px;
 	}
 
 	p {
@@ -73,7 +77,7 @@
 
 	#UIWrapper {
 		margin:auto;
-		margin-top:100px;
+		margin-top:50px;
 		text-align: center;
 		width:100%;
 	}
@@ -93,7 +97,7 @@
 
 	#hoseWrapper {
 		margin:auto;
-		margin-top:95px;
+		margin-top:180px;
 		text-align: center;
 		width:100%;
 	}
@@ -103,8 +107,8 @@
 		margin-top:0px;
 		text-align: center;
 		background-size:cover;
-		width:900px;
-		height:550px;
+		width:975px;
+		height:650px;
 		object-fit: center;
 		background-repeat: no-repeat;
 
@@ -140,10 +144,11 @@
 
 	<body>
 		<div id ="backgroundWrapper" style="background-image: url('background.png');">
-		<div id="duckWrapper"></div>
-		<div id="hoseWrapper">
-			<img id="hose" src ="./hose.png"></img>	<!--This will be replaced by an image of a hose -->
-		</div>
+			<div id ="spacing"></div>
+			<div id="duckWrapper"></div>
+			<div id="hoseWrapper">
+				<img id="hose" src ="./hose.png"></img>	<!--This will be replaced by an image of a hose -->
+			</div>
 		</div>
 		<div id="UIWrapper">
 			<button type="button" onclick="repopulate()">New Game</button>
@@ -231,18 +236,27 @@
 	        		repopulate();
 	        		checkN();
 	        		setInterval(checkN, 500); 
+	        		if(n>10){
+		      			document.getElementByID("hoseWrapper").style.marginTop = "0px";
+		     		}
+		     		else if(n<=10){
+		      			document.getElementByID("hoseWrapper").style.marginTop = "95px";
+		    		}
+
 	        		//allow to make own numbers
 	        	}
         	}
 
         	//Checks if n has changed
 		    function checkN(){
+		    	
 		      var newN = document.getElementById("nInput").value;
 		      if(newN != n && newN > 0 && newN <= maxN){
 		        n = newN;		        
 		        repopulate();
-		      }
+		       }
 		    }
+		    
 
 		    //Restarts the game
 		    function repopulate(){
