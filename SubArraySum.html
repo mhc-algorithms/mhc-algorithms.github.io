@@ -432,8 +432,15 @@
 			    	if(startDuck == -1 && endDuck == -1){		//First Click of the Game
 			    		startDuck = duckNum;
 			    		endDuck = duckNum;
-			    	}else{									//There already exists a start and end duck
-			    		if(duckNum > endDuck){	//This should be the new end duck
+			    	}else{								//There already exists a start and end duck
+			    		if(duckNum == startDuck && startDuck == endDuck){
+			    			startDuck = -1;
+			    			endDuck = -1;
+			    		}else if(duckNum == startDuck){
+			    			startDuck++;
+			    		}else if(duckNum == endDuck){
+			    			endDuck--;
+			    		}else if(duckNum > endDuck){	//This should be the new end duck
 			    			endDuck = duckNum;
 			    		}else if(duckNum < startDuck){	//This should be the new start duck
 			    			startDuck = duckNum;
