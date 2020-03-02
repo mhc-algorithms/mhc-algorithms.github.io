@@ -1,0 +1,35 @@
+The Sub Set Sum problem is solved using a Divide and Conquer algorithm which divides the array in question up and, through the magic of recursion, conquers it.
+
+Let's say that we are trying to find the Maximum Sub Set Sum of the array -2, 1, -3, 8.
+
+Let's say that we divided this array in half into -2, 1 and -3, 8 and, through recusion, found out the Maximal Sub Set Sum of each of these halves.
+
+The maximum sum of the larger array is either the maximum sum of the left half, the maximum sum of the right half, or a new sum which is formed across the overlap of the two halves.
+
+If we knew this overlap sum, then we would look at the left sum, the right sum, and the overlap sum and return the largest of the three.
+
+This is the recursive step of this Divide and Conquer algorithm.
+
+Now, the big question is "How do we find the overlapping sum?".
+
+
+First, we'll start in the middle of the array and will grow left to find the start index, then we'll start back in the middle and grow right to find the end index.
+
+
+So we with an empty overlap sum. Then we consider the middle element, which is 1. Adding this 1 will grow our, currently empty, overlapping sum, so we add it.
+
+Then we grow left and consider the next element: -2. Adding the -2 shrinks our sum, and we're out of array, so we don't add it and we point the start index of the overlapping sum to the 1.
+
+
+Now, we start again with a new empty overlap sum. We consider the middle element, -3, and grow right. The -3 is better than the negative infinity of an empty sum, so we add it.
+
+Then we grow right and consider the next element: 8. Adding the 8 increases our sum, and we're out of array, so we point the end index of the overlapping sum to the 8.
+
+Now, we have the start and end index of the overlapping sum, and we can calculate that the best possible sum which overlaps both halves runs from the 1 to the 8, giving us a sum of 6.
+
+
+Finally, we can compare the left sum of 1, the right sum of 8, and the overlap sum of 6 and find that the maximal subset sum of this array is equal to the maximal subset sum of the right half, which is only the 8.
+
+
+
+This algorithm can easily seem like a lot more work than just figuring it out in your head for this array. But for an array of thousands or millions of elements, the utility of a divide and conquer algorithm becomes much more apparent.
