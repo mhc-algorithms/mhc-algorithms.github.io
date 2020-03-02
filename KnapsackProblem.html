@@ -83,12 +83,18 @@
 		text-align: center;
 		padding:5px;
 		display:inline-block;
+
+		position:relative;
+		z-index: 1;
 	}
 
 	#knapsack {
 		border: 2px solid black;
 		width: 60%;
 		height:350px;
+
+		position: relative;
+		z-index: 0;
 	}
 
 	#stats_DOM {
@@ -302,6 +308,11 @@
 			   //  }
 		    // }
 
+		    //Display total weight and price of knapsack
+		    function update_values(){
+
+		    }
+
 			//creates an array of size n of possible items
 			function generateShelf(){
 				return ALL_ITEMS;
@@ -346,48 +357,120 @@
 				// return max_count;
 			}
 
-			function repopulate_knapsack(){
+			//Refreshes the shelf and knapsack DOMS
+			function refresh_tables(){
+				console.log("refreshing!");
+
 				
+				var shelf_children = Array.from(document.getElementById("shelf").children);
+				var knapsack_children = Array.from(document.getElementById("knapsack").children);
+
+				//Refresh Shelf
+				for(var i = 0; i < shelf_children.length; i++){			//Remove any children which don't belong
+					if(shelf_items.indexOf(shelf_children[i]) == -1){
+						shelf_children[i].remove();
+					}
+				}
+
+				for(var i = 0; i < shelf_items.length; i++){					//Add any children which do belong
+					if(shelf_children.indexOf(shelf_items[i]) == -1){
+						$("#shelf").append(shelf_items[i]);
+					}
+				}
+
+		    	//Overwrite Background Colors
+		    	for(var i = 0; i < shelf_items.length; i++){
+			    	$(shelf_items[i]).css({"background-color":"#ffffff"});		//Non Selected Color
+		    	}
+				$(selected_item).css({"background-color":"#aa0000"});			//Selected Color
+
+				//Refresh Knapsack
+				for(var i = 0; i < knapsack_children.length; i++){			//Remove any children which don't belong
+					if(knapsack_items.indexOf(knapsack_children[i]) == -1){
+						knapsack_children[i].remove();
+					}
+				}
+
+				for(var i = 0; i < knapsack_items.length; i++){					//Add any children which do belong
+					if(knapsack_children.indexOf(knapsack_items[i]) == -1){
+						$("#knapsack").append(knapsack_items[i]);
+					}
+				}
+
+		    	//Overwrite Background Colors
+		    	for(var i = 0; i < knapsack_items.length; i++){
+			    	$(knapsack_items[i]).css({"background-color":"#ffffff"});		//Non Selected Color
+		    	}
+
+
+
+
+		    	//Update values
+		    	update_values();
 			}
 
 			$(document).ready(function(){
 			    //Handle Item on Shelf Being Clicked
-			    $("body").on("click", ".shelf_item", function(){
-			    	console.log(shelf_items);
-			    	console.log(knapsack_items);
+			   $(".shelf_item").click(function(event){
+			    	console.log("Shelf Item Clicked");
 
-			    	if(knapsack_items.includes($(this)[0])){	//A Knapsack Item has been clicked on
-			    		//Remove item from knapsack_items
-			    		var item_index = knapsack_items.indexOf($(this)[0]);
-			    		document.getElementById("knapsack").removeChild($(this)[0]);
-			    		if(item_index > -1){	//If it isn't an error:
-			    			knapsack_items.splice(item_index, 1);	//Remove from array
-			    		}
+			    	if(knapsack_items.length == 0){
+				    	//Update selected_item
+				    	selected_item = this;
+			    	}
 
-			    		//Add item to shelf_items
-			    		shelf_items.push($(this)[0]);
-			    		document.getElementById("shelf").appendChild($(this)[0]);
-			    	}else{		//A Shelf Item has been clicked on
-				    	//Overwrite Background Colors
-				    	for(var i = 0; i < shelf_items.length; i++){
-					    	$(shelf_items[i]).css({"background-color":"#ffffff"});		//Non Selected Color
-				    	}
+			    	for(var i = 0; i < knapsack_items.length; i++){
+			    		if(knapsack_items[i].id == this.id){	//A Knapsack Item has been clicked on
+				    		console.log("Shelf Item is in Knapsack");
+				    		//Remove item from knapsack_items
+				    		knapsack_items.splice(i, 1);	//Remove from array
 
-				    	selected_item = $(this)[0];
+				    		// //Add item to shelf_items
+				    		shelf_items.push(this);
+				    	}else{		//A Shelf Item has been clicked on
+				    		console.log("Shelf Item is in Shelf");
+					    	//Update selected_item
+					    	selected_item = this;
+					    }
+			    	}
 
-				    	$(selected_item).css({"background-color":"#aa0000"});			//Selected Color
-				    }
+
+				    //Display the changes
+			    	refresh_tables();
+			    	
 			    });
 
 
 			    //Handle Knapsack Being Clicked
-			    $("body").on("click", "#knapsack", function(){
-			    	if(selected_item != null){
+			    $("#knapsack").click(function(event){
+			    	if(selected_item != null && event.target.id == "knapsack"){
+				    	console.log("Knapsack Clicked");
+
+				    	//Add item to knapsack_items
 				    	knapsack_items.push(selected_item);
-				    	shelf_items.pop(selected_item);
-				    	document.getElementById("knapsack").appendChild(selected_item);
-				    	$(selected_item).css({"background-color": "#ffffff"});
+
+				    	for(var i = 0; i < shelf_items.length; i++){
+					    	//Remove item from shelf_items
+					    	// console.log(shelf_items[i]);
+					    	if(shelf_items[i].id == selected_item.id){
+					    		shelf_items.splice(i, 1);	//Remove from array
+					    		refresh_tables();
+					    	}
+				    	}
+
+				    	selected_item = null;
+
+
+			    		//Display changes
+			    		refresh_tables();
 				    }
+			    });
+
+			    //For debugging
+			    $("body").on("click", function(){
+				    console.log(shelf_items);
+				    console.log(knapsack_items);
+				    console.log("\n\n");
 			    });
 			});
 		</script>	
