@@ -77,9 +77,10 @@
 
 	#UIWrapper {
 		margin:auto;
-		margin-top:50px;
+		margin-top:0px;
 		text-align: center;
 		width:100%;
+
 	}
 
 	#hose {
@@ -104,7 +105,7 @@
 
 	#backgroundWrapper{
 		margin:auto;
-		margin-top:0px;
+		margin-top:10px;
 		text-align: center;
 		background-size:cover;
 		width:975px;
@@ -137,12 +138,31 @@
 	}
 	#InstructionWrapper{
 		margin: 50px;
+
 	}
 
 	.instructionButtons{
 		margin: auto;
 		text-align: center;
 		display:block;
+	}
+
+	#sprayButton{
+		width:125px;
+		height: 100px;
+		margin-top: 20px;
+		margin-left: 700px;
+		background-image: url('spraysign.png');
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		height: 73px;
+		width:115px;
+		border: none;
+	}
+
+	#sprayPicture{
+		width:115px;
+
 	}
 
 
@@ -196,18 +216,25 @@
 
 		</div>
 
-		<div id ="backgroundWrapper" style="background-image: url('background.png');">
+		<div id ="backgroundWrapper" style="background-image: url('background1.png');">
 			<div id ="spacing"></div>
 			<div id="duckWrapper"></div>
 			<div id="hoseWrapper">
-				<img id="hose" src ="./hose.png"></img>	<!--This will be replaced by an image of a hose -->
+				<img id="hose" src ="./hose.png"></img>
+
+			</div>
+			<button id="sprayButton" type="button" onclick="hose()"><!-- <img id="sprayPicture"src='spraysign.png'></img> --><!-- Confirm Selection --></button>
+			<div id="UIWrapper">
+			<button type="button" onclick="repopulate()">New Game</button>
+			<input type=text value=2 id="nInput">
 			</div>
 		</div>
-		<div id="UIWrapper">
+
+		<!-- <div id="UIWrapper">
 			<button type="button" onclick="repopulate()">New Game</button>
 			<input type=text value=2 id="nInput">
 			<button type="button" onclick="hose()">Confirm Selection</button>
-		</div>
+		</div> -->
 
 		<div id="ExplanationWrapper">
 			<button id="showExplanation" class="explanationButtons" type="button" onclick="
