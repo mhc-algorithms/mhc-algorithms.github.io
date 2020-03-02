@@ -77,11 +77,18 @@
 
 	.shelf_item {
 		border: 1px solid black;
-		background-color:grey;
+		background-color:#ffffff;
+		margin:3px;
+		/*width:100px;*/
+		text-align: center;
+		padding:5px;
+		display:inline-block;
 	}
 
 	#knapsack {
-
+		border: 2px solid black;
+		width: 60%;
+		height:350px;
 	}
 
 	#stats_DOM {
@@ -96,14 +103,14 @@
 	}
 
 	#backgroundWrapper{
-		margin:auto;
-		margin-top:0px;
-		text-align: center;
-		background-size:cover;
-		width:975px;
-		height:650px;
-		object-fit: center;
-		background-repeat: no-repeat;
+		/*margin:auto;*/
+		/*margin-top:0px;*/
+		/*text-align: center;*/
+		/*background-size:cover;*/
+		/*width:975px;
+		height:650px;*/
+		/*object-fit: center;*/
+		/*background-repeat: no-repeat;*/
 
 	}
 
@@ -173,23 +180,17 @@
 
 		<div id ="backgroundWrapper">
 			<div id="shelf">
-				<div id="shelf_item">
-					Test Item 1
-				</div>
-				<div id="shelf_item">
-					Test Item 2
-				</div>
-				<div id="shelf_item">
-					Test Item 3
-				</div>
+				Shelf:
 			</div>
-			<div id="knapsack"></div>
+			Knapsack:
+			<div id="knapsack">
+			</div>
 			<div id="stats_DOM"></div>
 		</div>
 		<div id="UIWrapper">
 			<button type="button" onclick="repopulate()">New Game</button>
-			<input type=text value=2 id="nInput">
-			<button type="button" onclick="hose()">Confirm Selection</button>
+			<input type=text value=5 id="nInput">
+			<!-- <button type="button" onclick="hose()">Confirm Selection</button> -->
 		</div>
 
 		<div id="ExplanationWrapper">
@@ -209,61 +210,32 @@
 			</p>
 		</div>
 		<script>
-			var level = 0;
+			//All the possible items: [Name, Weight, Value]
+			var ALL_ITEMS = [
+				["T-Shirt", 3, 15],
+				["Jeans", 7, 20],
+				["Cap", 1, 20],
+				["Sweater", 2, 60],
+				["Socks", 1, 13],
+				["Boots", 5, 200],
+			]
 
-			var n = 2;
-			var maxN = 16;
+			var n = 5;
+			var maxN = ALL_ITEMS.length;
 
-			var duckDOMs = [];
-			var duckValues = [];
-			var startDuck = -1;
-			var endDuck = -1;
-
-			var playerSum = null;
+			var selected_item = null;
+			var shelf_items = [];
+			var knapsack_items = [];
 
 			repopulate();
 
-			//setInterval(checkLevel, 500); 
-        	//setInterval(checkN, 500); //Every 500 millis checks to see if n has changed
-
-        	//set levels
-        	function checkLevel(){
-	        	if(level==0){
-	        		n=2;
-	        		document.getElementById("nInput").value = n;
-	        		repopulate();
-	        	}
-	        	else if(level==1){
-	        		n=4;
-	        		document.getElementById("nInput").value = n;
-	        		repopulate();
-	        	}
-	        	else if(level==2){
-	        		n=8;
-	        		document.getElementById("nInput").value = n;
-	        		repopulate();
-	        	}
-	        	else{
-	        		repopulate();
-	        		setInterval(checkN, 500); 
-	        		if(n<=12){
-		      			document.getElementById("hoseWrapper").style.marginTop = "180px";
-		     		}
-		     		else if(n>12){
-		      			document.getElementById("hoseWrapper").style.marginTop = "115px";
-		    		}
-
-	        		//allow to make own numbers
-	        	}
-        	}
+        	setInterval(checkN, 500); //Every 500 millis checks to see if n has changed
 
         	//Checks if n has changed
 		    function checkN(){
-		   
 		      var newN = document.getElementById("nInput").value;
 		      if(newN != n && newN > 0 && newN <= maxN){
-		        n = newN;	
-		        checkLevel();	        
+		        n = newN;        
 		        repopulate();
 		       }
 		    }
@@ -271,162 +243,151 @@
 
 		    //Restarts the game
 		    function repopulate(){
-				//Clear #duckWrapper
-				for(var i = 0; i < duckDOMs.length; i++){
-	        		document.getElementById("duckWrapper").removeChild(duckDOMs[i]);
-	        	}
-
-	        	duckDOMs = [];
-	        	duckValues = [];
-	        	startDuck = -1;
-	        	endDuck = -1;
-
-	        	playerSum = null;
-
-	        	duckValues = generateArray(n);
-
-	        	for(var i = 0; i < n; i++){
-	        		var duck = makeDuck(duckValues[i], i);
-	        		duckDOMs[i] = duck;
-	        		duckWrapper.appendChild(duck);
-	        	}
-		    }
-
-		    //Updates the GUI and selected subarray of ducks
-		    function updateDuckSelection(){
-		    	var runningSum = 0;
-		    	for(var i = 0; i < n; i++){
-		    		var text = duckDOMs[i].children[1];
-
-		    		if(startDuck <= i && i <= endDuck){
-		    			text.style = "color:red";
-		    			var val = parseInt(text.innerHTML);
-		    			runningSum += val;
-		    		}else{
-		    			text.style = "color:black";
-		    		}
+		    	//Clear Shelf and Knapsack
+		    	for(var i = 0; i < shelf_items.length; i++){
+		    		$("#shelf").removeChild(shelf_items[i]);
 		    	}
-		    	
-		    	playerSum = runningSum;
+		    	for(var i = 0; i < knapsack_items.length; i++){
+		    		$("#knapsack").removeChild(knapsack_items[i]);
+		    	}
+
+
+		    	//Repopulate Shelf
+		    	for(var i = 0; i < n; i++){
+		    		var new_shelf_item = makeShelfItem(i);
+		    		shelf_items.push(new_shelf_item);
+		    		document.getElementById("shelf").appendChild(new_shelf_item);
+		    	}
 		    }
 
-		    //Returns a duck GUI element with a value of val and id of duck + i
-		    function makeDuck(val, i){
-		    	var duck = document.createElement("div");
-		    	duck.id = "duck" + i;
-		    	duck.className = "duck";
+		    //Returns a shelf_item DOM from the i'th index of the possible items array
+		    function makeShelfItem(i){
+		    	var item = document.createElement("div");
+		    	item.id = "item" + i;
+		    	item.className = "shelf_item";
 
-		    	//var duckImg = document.createElement("div");		//Div for now, will be img when we have img of duck
-		    	var duckImg = document.createElement("IMG");
-		    	duckImg.setAttribute("src", "./duck.png");
+		    	// var itemImg = document.createElement("div");		//Div for now, will be img when we have img of things
+		    	// var itemImg = document.createElement("IMG");
+		    	// itemImg.setAttribute("src", "./duck.png");
 
-		    	duckImg.className = "duckPart";
-		    	duckImg.style = "width:80px;height:80px;";
+		    	// itemImg.className = "duckPart";
+		    	// itemImg.style = "width:80px;height:80px;";
+		    	// itemImg.style = "background-color: red;";
 
-		    	var duckNum = document.createElement("p");
-		    	duckNum.className = "duckPart";
-		    	duckNum.innerHTML = val;
+		    	// var itemText = document.createElement("p");
+		    	// itemText.innerHTML = ALL_ITEMS[i][0];
 
-		    	duck.appendChild(duckImg);
-		    	duck.appendChild(duckNum);
+		    	// item.appendChild(itemImg);
+		    	// item.appendChild(itemText);
 
-		    	return duck;
+		    	item.innerHTML = ALL_ITEMS[i][0];
+
+		    	return item;
 		    }
 
 		    //Play the hose animation and check to see if player was right
-		    function hose(){
-		    	if(startDuck == -1){
-		    		alert("Please make a selection");
-		    	}else{
-			    	var correctSum = maxSubarraySum(duckValues);
+		    // function hose(){
+		    // 	if(startDuck == -1){
+		    // 		alert("Please make a selection");
+		    // 	}else{
+			   //  	var correctSum = maxSubarraySum(duckValues);
 
-			    	if(correctSum == playerSum){
-			    		alert("Winner! Your value of " + playerSum + " was the best you could get!");
-			    		level++;
-			    		checkLevel();
-			    	}else{
-			    		alert("Sorry :( Your sum was " + playerSum + ", but you could have gotten " + correctSum);
-			    	}
-			    }
-		    }
+			   //  	if(correctSum == playerSum){
+			   //  		alert("Winner! Your value of " + playerSum + " was the best you could get!");
+			   //  		level++;
+			   //  		checkLevel();
+			   //  	}else{
+			   //  		alert("Sorry :( Your sum was " + playerSum + ", but you could have gotten " + correctSum);
+			   //  	}
+			   //  }
+		    // }
 
-			//creates an array of size n of values between -10 and 10
-			function generateArray(n){
-				var points = [];
-				var min = -4; 
-				var max = 10;
-				var negativeCount = 0;
+			//creates an array of size n of possible items
+			function generateShelf(){
+				return ALL_ITEMS;
+				// var points = [];
+				// var min = -4; 
+				// var max = 10;
+				// var negativeCount = 0;
 
-				for(var i=0; i<n; i++){
-					var rand = Math.floor(Math.random()*(+max - +min))+ +min;
+				// for(var i=0; i<n; i++){
+				// 	var rand = Math.floor(Math.random()*(+max - +min))+ +min;
 					
-					//this prevents all the numbers from being negative
-					if(rand<0){
-						negativeCount++;
-					}
-					if(negativeCount==n){
-						rand = rand*-1;
-					}
-					points.push(rand);
-				}
+				// 	//this prevents all the numbers from being negative
+				// 	if(rand<0){
+				// 		negativeCount++;
+				// 	}
+				// 	if(negativeCount==n){
+				// 		rand = rand*-1;
+				// 	}
+				// 	points.push(rand);
+				// }
 
-				return points;
+				// return points;
 			}
 
+			//Finds the maximum possible value of the knapsack for problem checking purposes
 			function maxSubarraySum(array){
-				var max_end = 0;
-				var max_count = 0;
+				// var max_end = 0;
+				// var max_count = 0;
 
-				for(var i = 0; i<array.length; i++){
-					max_end += array[i];
+				// for(var i = 0; i<array.length; i++){
+				// 	max_end += array[i];
 
-					if(max_count < max_end){
-						max_count = max_end;
-					}
+				// 	if(max_count < max_end){
+				// 		max_count = max_end;
+				// 	}
 
-					if(max_end < 0){
-						max_end = 0;
-					}
-				}
-				//if it's all negative numbers it defaults to zero... added preventative measure to genArray
-				return max_count;
+				// 	if(max_end < 0){
+				// 		max_end = 0;
+				// 	}
+				// }
+				// //if it's all negative numbers it defaults to zero... added preventative measure to genArray
+				// return max_count;
+			}
+
+			function repopulate_knapsack(){
+				
 			}
 
 			$(document).ready(function(){
-			    //Handle Duck Being Clicked
-			    $("body").on("click", ".duck", function(){
-			    	var duck = $(this)[0];
-			    	var duckId = duck.id;
-			    	var duckNum = parseInt(duckId.substring(4));
+			    //Handle Item on Shelf Being Clicked
+			    $("body").on("click", ".shelf_item", function(){
+			    	console.log(shelf_items);
+			    	console.log(knapsack_items);
 
-			    	if(startDuck == -1 && endDuck == -1){		//First Click of the Game
-			    		startDuck = duckNum;
-			    		endDuck = duckNum;
-			    	}else{								//There already exists a start and end duck
-			    		if(duckNum == startDuck && startDuck == endDuck){
-			    			startDuck = -1;
-			    			endDuck = -1;
-			    		}else if(duckNum == startDuck){
-			    			startDuck++;
-			    		}else if(duckNum == endDuck){
-			    			endDuck--;
-			    		}else if(duckNum > endDuck){	//This should be the new end duck
-			    			endDuck = duckNum;
-			    		}else if(duckNum < startDuck){	//This should be the new start duck
-			    			startDuck = duckNum;
-			    		}else{							//This should be the new start or end duck, whichever is closest
-			    			var distToStart = duckNum - startDuck;
-			    			var distToEnd = endDuck - duckNum;
-
-			    			if(distToEnd < distToStart){
-			    				endDuck = duckNum;
-			    			}else{
-			    				startDuck = duckNum;
-			    			}
+			    	if(knapsack_items.includes($(this)[0])){	//A Knapsack Item has been clicked on
+			    		//Remove item from knapsack_items
+			    		var item_index = knapsack_items.indexOf($(this)[0]);
+			    		document.getElementById("knapsack").removeChild($(this)[0]);
+			    		if(item_index > -1){	//If it isn't an error:
+			    			knapsack_items.splice(item_index, 1);	//Remove from array
 			    		}
-			    	}
 
-			    	updateDuckSelection();
+			    		//Add item to shelf_items
+			    		shelf_items.push($(this)[0]);
+			    		document.getElementById("shelf").appendChild($(this)[0]);
+			    	}else{		//A Shelf Item has been clicked on
+				    	//Overwrite Background Colors
+				    	for(var i = 0; i < shelf_items.length; i++){
+					    	$(shelf_items[i]).css({"background-color":"#ffffff"});		//Non Selected Color
+				    	}
+
+				    	selected_item = $(this)[0];
+
+				    	$(selected_item).css({"background-color":"#aa0000"});			//Selected Color
+				    }
+			    });
+
+
+			    //Handle Knapsack Being Clicked
+			    $("body").on("click", "#knapsack", function(){
+			    	if(selected_item != null){
+				    	knapsack_items.push(selected_item);
+				    	shelf_items.pop(selected_item);
+				    	document.getElementById("knapsack").appendChild(selected_item);
+				    	$(selected_item).css({"background-color": "#ffffff"});
+				    }
 			    });
 			});
 		</script>	
