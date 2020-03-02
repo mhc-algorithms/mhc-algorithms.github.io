@@ -50,18 +50,6 @@
 	  padding: 10px 20px;
 	}
 
-	.duck {
-		margin:15px;
-		margin-top:0px;
-		display:inline-block;
-		width:50px;
-		height:50px;
-	}
-
-	#spacing{
-		height:200px;
-	}
-
 	p {
 		/*This is a hack, please find a solution...*/
 		margin-top: -46px;
@@ -98,7 +86,7 @@
 	}
 
 	#stats_DOM {
-
+		display: inline-block;
 	}
 
 	#UIWrapper {
@@ -195,7 +183,8 @@
 		</div>
 		<div id="UIWrapper">
 			<button type="button" onclick="repopulate()">New Game</button>
-			<input type=text value=5 id="nInput">
+			n: <input type=text value=5 id="nInput">
+			Max Weight: <input type=text value=50 id="max_weightInput">
 			<!-- <button type="button" onclick="hose()">Confirm Selection</button> -->
 		</div>
 
@@ -229,19 +218,25 @@
 			var n = 5;
 			var maxN = ALL_ITEMS.length;
 
+			var max_weight = 50;
+
 			var selected_item = null;
 			var shelf_items = [];
 			var knapsack_items = [];
 
 			repopulate();
+			update_values();
 
-        	setInterval(checkN, 500); //Every 500 millis checks to see if n has changed
+        	setInterval(checkParams, 500); //Every 500 millis checks to see if n and max_weight have changed
+        	// setInterval(update_values, 50); //Every 50 millis checks to see if weights and values
 
         	//Checks if n has changed
-		    function checkN(){
+		    function checkParams(){
 		      var newN = document.getElementById("nInput").value;
-		      if(newN != n && newN > 0 && newN <= maxN){
+		      var new_max_weight = document.getElementById("max_weightInput").value;
+		      if((newN != n && newN > 0 && newN <= maxN) || new_max_weight != max_weight){
 		        n = newN;        
+		        max_weight = new_max_weight;
 		        repopulate();
 		       }
 		    }
@@ -249,12 +244,18 @@
 
 		    //Restarts the game
 		    function repopulate(){
+				var shelf_children = Array.from(document.getElementById("shelf").children);
+				var knapsack_children = Array.from(document.getElementById("knapsack").children);
+
+				shelf_items = [];
+				knapsack_items = [];
+
 		    	//Clear Shelf and Knapsack
-		    	for(var i = 0; i < shelf_items.length; i++){
-		    		$("#shelf").removeChild(shelf_items[i]);
+		    	for(var i = 0; i < shelf_children.length; i++){
+		    		shelf_children[i].remove();
 		    	}
-		    	for(var i = 0; i < knapsack_items.length; i++){
-		    		$("#knapsack").removeChild(knapsack_items[i]);
+		    	for(var i = 0; i < knapsack_children.length; i++){
+		    		knapsack_children[i].remove();
 		    	}
 
 
@@ -310,12 +311,37 @@
 
 		    //Display total weight and price of knapsack
 		    function update_values(){
+		    	//Get indexes of knapsack items
+		    	var indexes = [];
+		    	for(var i = 0; i < knapsack_items.length; i++){
+		    		indexes.push(parseInt(knapsack_items[i].id.substring(4)));
+		    	}
 
+		    	//Calculate Value and Weight of Knapsack
+		    	var value = 0;
+		    	var weight = 0;
+
+		    	for(var i = 0; i < indexes.length; i++){
+		    		value += ALL_ITEMS[indexes[i]][2];
+		    		weight += ALL_ITEMS[indexes[i]][1];
+		    	}
+
+		    	//Display value + weight
+		    	var stats_text;
+		    	if(weight <= max_weight){
+			    	stats_text = "Your Knapsack is worth $" + value + " and weighs in at " + weight + "lbs. out of a maximum of " + max_weight + "lbs.";
+			    	console.log("https://en.wikipedia.org/wiki/Giles_Corey#Death_by_pressing");
+			    	console.log("More...Weight...");
+			    }else{
+			    	stats_text = "Your Knapsack is worth $" + value + " and is overweight in at " + weight + "lbs. out of a maximum of " + max_weight + "lbs.";
+			    }
+
+		    	$("#stats_DOM").text(stats_text);
 		    }
 
 			//creates an array of size n of possible items
 			function generateShelf(){
-				return ALL_ITEMS;
+				return ALL_ITEMS;		//Temporary, until we implement this function
 				// var points = [];
 				// var min = -4; 
 				// var max = 10;
@@ -337,8 +363,8 @@
 				// return points;
 			}
 
-			//Finds the maximum possible value of the knapsack for problem checking purposes
-			function maxSubarraySum(array){
+			//Finds the maximum possible value of the knapsack for problem checking purposes given an array of possible items and a maximum weight
+			function max_knapsack_value(array, max_weight){
 				// var max_end = 0;
 				// var max_count = 0;
 
@@ -408,7 +434,7 @@
 
 			$(document).ready(function(){
 			    //Handle Item on Shelf Being Clicked
-			   $(".shelf_item").click(function(event){
+			    $("body").on("click", ".shelf_item", function(event){
 			    	if(knapsack_items.length == 0){
 				    	//Update selected_item
 				    	selected_item = this;
@@ -416,14 +442,16 @@
 
 			    	for(var i = 0; i < knapsack_items.length; i++){
 			    		if(knapsack_items[i].id == this.id){	//A Knapsack Item has been clicked on
+			    			console.log("Removing from knapsack");
 				    		//Remove item from knapsack_items
 				    		knapsack_items.splice(i, 1);	//Remove from array
 
 				    		// //Add item to shelf_items
-				    		shelf_items.push(this);
-				    		selected_item = null;
+				    		selected_item = null;		//This isn't always happening...very strange...
 
-				    		refresh_tables();		//How strange... this shouldn't need to be here, yet it doesn't work unless this is here
+				    		shelf_items.push(this);
+
+				    		refresh_tables();		//How strange... this shouldn't need to be here, yet it doesn't work unless this is here...
 				    	}else{		//A Shelf Item has been clicked on
 					    	//Update selected_item
 					    	selected_item = this;
