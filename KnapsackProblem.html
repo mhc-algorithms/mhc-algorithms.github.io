@@ -359,9 +359,6 @@
 
 			//Refreshes the shelf and knapsack DOMS
 			function refresh_tables(){
-				console.log("refreshing!");
-
-				
 				var shelf_children = Array.from(document.getElementById("shelf").children);
 				var knapsack_children = Array.from(document.getElementById("knapsack").children);
 
@@ -412,8 +409,6 @@
 			$(document).ready(function(){
 			    //Handle Item on Shelf Being Clicked
 			   $(".shelf_item").click(function(event){
-			    	console.log("Shelf Item Clicked");
-
 			    	if(knapsack_items.length == 0){
 				    	//Update selected_item
 				    	selected_item = this;
@@ -421,14 +416,15 @@
 
 			    	for(var i = 0; i < knapsack_items.length; i++){
 			    		if(knapsack_items[i].id == this.id){	//A Knapsack Item has been clicked on
-				    		console.log("Shelf Item is in Knapsack");
 				    		//Remove item from knapsack_items
 				    		knapsack_items.splice(i, 1);	//Remove from array
 
 				    		// //Add item to shelf_items
 				    		shelf_items.push(this);
+				    		selected_item = null;
+
+				    		refresh_tables();		//How strange... this shouldn't need to be here, yet it doesn't work unless this is here
 				    	}else{		//A Shelf Item has been clicked on
-				    		console.log("Shelf Item is in Shelf");
 					    	//Update selected_item
 					    	selected_item = this;
 					    }
@@ -444,17 +440,13 @@
 			    //Handle Knapsack Being Clicked
 			    $("#knapsack").click(function(event){
 			    	if(selected_item != null && event.target.id == "knapsack"){
-				    	console.log("Knapsack Clicked");
-
 				    	//Add item to knapsack_items
 				    	knapsack_items.push(selected_item);
 
 				    	for(var i = 0; i < shelf_items.length; i++){
 					    	//Remove item from shelf_items
-					    	// console.log(shelf_items[i]);
 					    	if(shelf_items[i].id == selected_item.id){
 					    		shelf_items.splice(i, 1);	//Remove from array
-					    		refresh_tables();
 					    	}
 				    	}
 
@@ -464,13 +456,6 @@
 			    		//Display changes
 			    		refresh_tables();
 				    }
-			    });
-
-			    //For debugging
-			    $("body").on("click", function(){
-				    console.log(shelf_items);
-				    console.log(knapsack_items);
-				    console.log("\n\n");
 			    });
 			});
 		</script>	
