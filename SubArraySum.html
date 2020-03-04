@@ -132,7 +132,7 @@
 	}
 
 	#Instruction{
-		display: none;
+		display: block;
 		margin: 15px;
 		text-align:center;
 	}
@@ -181,37 +181,33 @@
 
 	<body>
 		<div id ="instructionWrapper">
-			<button id="showInstruction" class="instructionButtons" type="button" onclick="$('#Instruction').css('display', 'block');
-				
-				$('#hideInstruction').css('display', 'block');
-				$('#showInstruction').css('display', 'none');
-				">Show Instructions and Rules
-			</button>
-			<button id="hideInstruction" class="instructionButtons" style="display:none" type="button" onclick="
+			<button id="hideInstruction" class="instructionButtons" type="button" onclick="
 				$('#Instruction').css('display', 'none');
 				
 				$('#hideInstruction').css('display', 'none');
 				$('#showInstruction').css('display', 'block');
 			">Hide Instructions and Rules</button>
+			<button id="showInstruction" class="instructionButtons" style="display:none" type="button" onclick="$('#Instruction').css('display', 'block');
+				
+				$('#hideInstruction').css('display', 'block');
+				$('#showInstruction').css('display', 'none');
+				">Show Instructions and Rules
+			</button>
+			
 			<p id="Instruction">
 				In this game, your goal is to get the highest score possible! You have to choose a set of ducks that are in a row to spray with the hose. <br>
-				There are 3 levels, then a free play mode.
-				<br>
-				In the first level, you have 2 ducks, in the 2nd there are 4, and in the 3rd there are 8.
-				<br>
-				Once you complete all three levels you may use the input box at the bottom to change the number of ducks you would like. The most ducks you can have is 16.
-				<br><br>
 
+				There are 3 levels, then a free play mode where you can pick the number of ducks (with a max of 16).
+				<br>
+				<br>
+				
 				You choose the ducks by clicking on the duck at the start and at the end of the selection you want to make.
-				<br>
-
-				You can move the ends by clicking farther or earlier on the set of ducks. 
 				<br>
 
 				You may deselect a duck at the start or end of your selection by clicking on those ducks.
 				<br><br>
 
-				If you think you have chosen the best set of ducks, click the button that says "confirm selection"!
+				If you think you have chosen the best set of ducks, click the button that says "Spray"
 			</p>
 
 		</div>
