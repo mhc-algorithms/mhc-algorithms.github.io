@@ -219,20 +219,24 @@
 				<img id="hose" src ="./hose.png"></img>
 
 			</div>
-			<button id="sprayButton" type="button" onclick="hose()"><!-- <img id="sprayPicture"src='spraysign.png'></img> --><!-- Confirm Selection --></button>
+			<!-- Button for checking -->
+			<button id="sprayButton" type="button" onclick="hose()"></button>
 			<div id="UIWrapper">
-			<button type="button" onclick="repopulate()">New Game</button>
-			<input type=text value=2 id="nInput">
+				<button type="button" onclick="repopulate()">New Game</button>
+				<input type=text value=2 id="nInput">
 			</div>
 		</div>
 
-		<!-- <div id="UIWrapper">
-			<button type="button" onclick="repopulate()">New Game</button>
-			<input type=text value=2 id="nInput">
-			<button type="button" onclick="hose()">Confirm Selection</button>
-		</div> -->
-
+	
+		<!-- Algorithm explanation and expansion -->
 		<div id="ExplanationWrapper">
+			<p id ="explainationIntro" style="text-align:center">
+				Have you figured out a pattern to always get the highest score?
+				<br>
+				What if there were more ducks, maybe 100, 1,000, or even 1,000,000? Do you think you could still find a solution?
+				<br>
+				See how you could solve this with a divide-and-conquer method below.
+			</p>
 			<button id="showExplanation" class="explanationButtons" type="button" onclick="
 				$('#Explanation').css('display', 'block');
 				
@@ -246,72 +250,18 @@
 				$('#showExplanation').css('display', 'block');
 			">Hide Algorithm Explanation</button>
 			<p id="Explanation">
-				<a href="https://youtu.be/ohHWQf1HDfU?t=431">If a YouTube video would be easier, we found this one to be helpful.</a><br><br>
-
-				<br>
-
-				In this example we will refer to this example array: <b>arr = [-2, 1, -3, 8]</b><br><br>
-
-				Let's break arr down into equal halves and pretend that we already know the Maximum Subarray Sum of each of them:<br>
-				<b>sub_one = [-2, 1], sum_one = 1           sub_two = [-3, 8], sum_two = 8</b><br>
-				We'll explain how we know sum_one and sum_two in a minute.<br><br>
-
-				The Maximum Subarray for <b>arr</b> is either <b>sub_one</b>, <b>sub_two</b>, some overlap between <b>sub_one</b> and <b>sub_two</b> called <b>sub_overlap</b>.<br>
-				So first we must calculate <b>sub_overlap</b>, then we can chose the largest of the three sums.<br><br>
-
-				To calculate <b>sub_overlap</b> we will get a start index from <b>sub_one</b> and an end index from <b>sub_two</b>.<br>
-				To do this, we build a maximal <b>sub_sub_one</b> from right to left:<br>
-				<b>
-					the first sub_sub_one is empty<br>
-					sub_sub_one = []<br><br>
-
-					now, we try the second sub_sub_one array with a length of 1:<br>
-					new_sub_sub_one = [1]<br>
-					the sum of new_sub_sub_one > the sum of sub_sub_one, so sub_sub_one = new_sub_sub_one<br><br>
-
-					now, we try the third sub_sub_one array with a length of 2:<br>
-					new_sub_sub_one = [1, -2]<br>
-					the sum of new_sub_sub_one < the sum of sub_sub_one, so sub_sub_one stays the same<br><br>
-
-					we have reached the end of sub_one with sub_sub_one = [1]<br><br>
-				</b>
-				So now we know that the start index of <b>sub_overlap</b> = 1.<br><br>
-				To find the end index of <b>sub_overlap</b>, we build a maximal <b>sub_sub_two</b> from left to right:<br>
-				<b>
-					the first sub_sub_two is empty<br>
-					sub_sub_two = []<br><br>
-
-					now, we try the second sub_sub_two array with a length of 1:<br>
-					new_sub_sub_two = [-3]<br>
-					the sum of new_sub_sub_two > the sum of sub_sub_two, so sub_sub_two = new_sub_sub_two<br><br>
-
-					now, we try the third sub_sub_two array with a length of 2:<br>
-					new_sub_sub_two = [-3, 8]<br>
-					the sum of new_sub_sub_two > the sum of sub_sub_two, so sub_sub_two = new_sub_sub_two<br><br>
-
-					we have reached the end of sub_two with sub_sub_two = [5]<br><br>
-				</b>
-				So now we know that the end index of <b>sub_overlap</b> = 3, and we can calculate <b>sum_overlap</b> to be sum(arr[1] through arr[3]) = <b>6</b>.<br><br>
-
-				Finally we can compare <b>sum_one</b>, <b>sum_two</b>, and <b>sum_overlap</b> to find that <b>sum_two</b> is the greatest, so the Maximum Subarray Sum of <b>arr</b> is <b>arr[3] through arr[3] = 8</b>.<br><br><br><br>
-
-
-
-				This proceedure is the recursive step we'll be using. We break the given array down into smaller and smaller subarrays until we reach a base case.<br>
-				Using our <b>arr</b> example:<br>
-				[-2, 1, -3, 8] =><br>
-				[-2, 1] and [-3, 8]<br>
-				[-2, 1] =><br>
-				-2 and 1<br>
-				Here we would compare <b>sub_one</b>: -2, <b>sub_two</b>: 1, and <b>sub_overlap</b>: -1<br>
-				We would choose <b>sub_two</b>, since it is larger.<br>
-				This is how we got <b>sub_one</b>, <b>sum_one</b>, <b>sub_two</b>, and <b>sum_two</b> in the above description of the recursive step!<br><br><br>
-
+				<br><br>
+				<a href="https://www.youtube.com/watch?v=6yBYcFg-v5g&feature=youtu.be">We've put together this video which explains the divide-and-conquer method for this problem.</a>
+				<br><br>
 
 				This algorithm works very cleanly for arrays with a number of elements equal to some power of two. The process is the same for less convenient numbers, but the math isn't as beautiful.<br><br><br>
 
 
 				Feel free to experiment with different values of n! Once you get to level 8 (where the number of ducks = n = 8), you are free to type in any number between 1 and 16 inclusive and try out your algorithmic understanding.
+
+				<br><br>
+
+				<a href="https://youtu.be/ohHWQf1HDfU?t=431">If you'd like a more detailed explanation, we recommend this video!</a>
 			</p>
 		</div>
 		<script>
