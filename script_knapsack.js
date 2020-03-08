@@ -14,7 +14,7 @@ $(document).ready(function(){
 
 	var max_weight = 50;
 
-	var selected_item = null;
+	// var selected_item = null;
 	var shelf_items = [];
 	var knapsack_items = [];
 
@@ -22,7 +22,6 @@ $(document).ready(function(){
 	update_values();
 
 	setInterval(checkParams, 500); //Every 500 millis checks to see if n and max_weight have changed
-	// setInterval(update_values, 50); //Every 50 millis checks to see if weights and values
 
 	//Checks if n has changed
 	function checkParams(){
@@ -86,23 +85,6 @@ $(document).ready(function(){
 		return item;
 	}
 
-	//Play the hose animation and check to see if player was right
-	// function hose(){
-	// 	if(startDuck == -1){
-	// 		alert("Please make a selection");
-	// 	}else{
-	   //  	var correctSum = maxSubarraySum(duckValues);
-
-	   //  	if(correctSum == playerSum){
-	   //  		alert("Winner! Your value of " + playerSum + " was the best you could get!");
-	   //  		level++;
-	   //  		checkLevel();
-	   //  	}else{
-	   //  		alert("Sorry :( Your sum was " + playerSum + ", but you could have gotten " + correctSum);
-	   //  	}
-	   //  }
-	// }
-
 	//Display total weight and price of knapsack
 	function update_values(){
 		//Get indexes of knapsack items
@@ -124,8 +106,8 @@ $(document).ready(function(){
 		var stats_text;
 		if(weight <= max_weight){
 	    	stats_text = "Your Knapsack is worth $" + value + " and weighs in at " + weight + "lbs. out of a maximum of " + max_weight + "lbs.";
-	    	console.log("https://en.wikipedia.org/wiki/Giles_Corey#Death_by_pressing");
-	    	console.log("More...Weight...");
+	    	// console.log("https://en.wikipedia.org/wiki/Giles_Corey#Death_by_pressing");
+	    	// console.log("More...Weight...");
 	    }else{
 	    	stats_text = "Your Knapsack is worth $" + value + " and is overweight in at " + weight + "lbs. out of a maximum of " + max_weight + "lbs.";
 	    }
@@ -136,49 +118,16 @@ $(document).ready(function(){
 	//creates an array of size n of possible items
 	function generateShelf(){
 		return ALL_ITEMS;		//Temporary, until we implement this function
-		// var points = [];
-		// var min = -4; 
-		// var max = 10;
-		// var negativeCount = 0;
-
-		// for(var i=0; i<n; i++){
-		// 	var rand = Math.floor(Math.random()*(+max - +min))+ +min;
-			
-		// 	//this prevents all the numbers from being negative
-		// 	if(rand<0){
-		// 		negativeCount++;
-		// 	}
-		// 	if(negativeCount==n){
-		// 		rand = rand*-1;
-		// 	}
-		// 	points.push(rand);
-		// }
-
-		// return points;
 	}
 
 	//Finds the maximum possible value of the knapsack for problem checking purposes given an array of possible items and a maximum weight
 	function max_knapsack_value(array, max_weight){
-		// var max_end = 0;
-		// var max_count = 0;
-
-		// for(var i = 0; i<array.length; i++){
-		// 	max_end += array[i];
-
-		// 	if(max_count < max_end){
-		// 		max_count = max_end;
-		// 	}
-
-		// 	if(max_end < 0){
-		// 		max_end = 0;
-		// 	}
-		// }
-		// //if it's all negative numbers it defaults to zero... added preventative measure to genArray
-		// return max_count;
 	}
 
 	//Refreshes the shelf and knapsack DOMS
 	function refresh_tables(){
+		console.log(shelf_items);
+		console.log(knapsack_items);
 		var shelf_children = Array.from(document.getElementById("shelf").children);
 		var knapsack_children = Array.from(document.getElementById("knapsack").children);
 
@@ -195,12 +144,6 @@ $(document).ready(function(){
 			}
 		}
 
-		//Overwrite Background Colors
-		for(var i = 0; i < shelf_items.length; i++){
-	    	$(shelf_items[i]).css({"background-color":"#ffffff"});		//Non Selected Color
-		}
-		$(selected_item).css({"background-color":"#aa0000"});			//Selected Color
-
 		//Refresh Knapsack
 		for(var i = 0; i < knapsack_children.length; i++){			//Remove any children which don't belong
 			if(knapsack_items.indexOf(knapsack_children[i]) == -1){
@@ -214,68 +157,44 @@ $(document).ready(function(){
 			}
 		}
 
-		//Overwrite Background Colors
-		for(var i = 0; i < knapsack_items.length; i++){
-	    	$(knapsack_items[i]).css({"background-color":"#ffffff"});		//Non Selected Color
-		}
-
-
-
-
 		//Update values
 		update_values();
 	}
 
     //Handle Item on Shelf Being Clicked
     $("body").on("click", ".shelf_item", function(event){
-    	if(knapsack_items.length == 0){
-	    	//Update selected_item
-	    	selected_item = this;
-    	}
+    	var moved = false;
 
     	for(var i = 0; i < knapsack_items.length; i++){
     		if(knapsack_items[i].id == this.id){	//A Knapsack Item has been clicked on
     			console.log("Removing from knapsack");
 	    		//Remove item from knapsack_items
 	    		knapsack_items.splice(i, 1);	//Remove from array
-
-	    		// //Add item to shelf_items
-	    		selected_item = null;		//This isn't always happening...very strange...
-
 	    		shelf_items.push(this);
 
+	    		moved = true;
+
 	    		refresh_tables();		//How strange... this shouldn't need to be here, yet it doesn't work unless this is here...
-	    	}else{		//A Shelf Item has been clicked on
-		    	//Update selected_item
-		    	selected_item = this;
-		    }
+	    	}
     	}
+
+    	if(!moved){
+	    	for(var i = 0; i < shelf_items.length; i++){
+	    		console.log(shelf_items[i].id);
+	    		if(shelf_items[i].id == this.id){
+	    			console.log("Removing from Shelf");
+	    			//Remove item from shelf_items
+			    	shelf_items.splice(i, 1);
+
+			    	//Add item to knapsack_items
+			    	knapsack_items.push(this);
+	    		}
+	    	}
+	    }
 
 
 	    //Display the changes
     	refresh_tables();
     	
-    });
-
-
-    //Handle Knapsack Being Clicked
-    $("#knapsack").click(function(event){
-    	if(selected_item != null && event.target.id == "knapsack"){
-	    	//Add item to knapsack_items
-	    	knapsack_items.push(selected_item);
-
-	    	for(var i = 0; i < shelf_items.length; i++){
-		    	//Remove item from shelf_items
-		    	if(shelf_items[i].id == selected_item.id){
-		    		shelf_items.splice(i, 1);	//Remove from array
-		    	}
-	    	}
-
-	    	selected_item = null;
-
-
-    		//Display changes
-    		refresh_tables();
-	    }
     });
 });
