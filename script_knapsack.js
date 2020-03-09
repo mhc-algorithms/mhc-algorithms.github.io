@@ -21,6 +21,15 @@ $(document).ready(function(){
 	repopulate();
 	update_values();
 
+	//Name, Value, Weight: [A, 20, 2], [B, 10, 15], [C, 5, 1], [D, 15, 10]
+	displayMemTable([
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],						//0
+		[0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],		//A
+		[0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30],		//A, B
+		[0, 5, 20, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 30, 35, 35, 35],		//A, B, C
+		[0, 5, 20, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 30, 35, 35, 35],		//A, B, C, D Not worked on
+	])
+
 	setInterval(checkParams, 500); //Every 500 millis checks to see if n and max_weight have changed
 
 	//Checks if n has changed
@@ -203,6 +212,13 @@ $(document).ready(function(){
 		}
 
 		console.log(table);
+
+	}
+
+	//Takes in a 2D array and displays it
+	function displayMemTable(table){
+		var table_display = document.getElementById("memoize_table");
+
 
 	}
 
