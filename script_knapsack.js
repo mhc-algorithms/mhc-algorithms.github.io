@@ -161,6 +161,51 @@ $(document).ready(function(){
 		update_values();
 	}
 
+	//creates a table with the values OR DOESN'T I CAN'T FIGURE OUT WHATS GOING ON
+	function buildMemTable(){
+		//for every item in the knapsack, make the table
+		var costArray = [knapsack_items.length];
+		var weightArray = [knapsack_items.length];
+
+		//values go into the table
+		//x-axis is all possible numbers 0 through N (# of items to pick from)
+		//y-axis is the capacity 0 through max weight
+		//label axes not in the arrays
+
+		//com1=grid[row-1][col-new_item.w]
+		//com2=grid[row-1][col]
+
+		//com1+newItem.v verses com2
+
+		for(var i = 0; i<knapsack_items.length; i++){
+			//var item = knapsack_items[i];
+			var index  = parseInt(knapsack_items[i].id.substring(4));
+			console.log(index);
+			//var children = Array.from(document.getElementById("knapsack").children);
+			costArray.push(ALL_ITEMS[index][2]);
+			weightArray.push(ALL_ITEMS[index][1]);
+			
+			console.log(costArray.toString());
+
+		}
+
+		var table = [costArray.length][weightArray.length];
+
+		//var grin = new array(rows)
+		//for r=0<length of grid
+		//grid[r]= newArray(cols)
+
+
+		for(var j = 0; j<costArray.length; j++){
+			for(var k = 0; k<weightArray.length; k++){
+				table[j][k] = costArray[j]+weightArray[k]; //this is a place HOLDER
+			}
+		}
+
+		console.log(table);
+
+	}
+
     //Handle Item on Shelf Being Clicked
     $("body").on("click", ".shelf_item", function(event){
     	var moved = false;
@@ -195,6 +240,7 @@ $(document).ready(function(){
 
 	    //Display the changes
     	refresh_tables();
+    	buildMemTable();
     	
     });
 });
