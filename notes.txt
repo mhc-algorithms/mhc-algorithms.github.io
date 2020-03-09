@@ -1,0 +1,5 @@
+Knapsack Problem Algorithm Abstract:
+var comp1 = grid[row - 1][col - new_item.weight];
+var comp2 = grid[row - 1][col];
+
+grid[row][col] = max(comp1 + new_item.value, comp2);
