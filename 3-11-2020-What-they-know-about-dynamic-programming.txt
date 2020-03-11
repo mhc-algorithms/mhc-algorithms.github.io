@@ -1,0 +1,81 @@
+I attended the emergency algorithms course on 3-11-2020 to see what they would know about dynamic programming moving forward.
+
+Here are my notes:
+
+	- They're doing an activity in class about dynamic programming
+		- Knapsack example
+			- Knapsack of capacity 6
+			- Start with one item: oatmeal_cookie
+				- size: 2
+				- value: 8
+				- We, of course, decide to put oatmeal_cookie into the knapsack
+					- New knapsack value: 8
+			- Adds next item to your consideration: sugar_cookie
+				- size: 2
+				- value: 6
+				- We, of course, add oatmeal_cookie and sugar_cookie to the knapsack
+					- New knapsack value: 14
+			- Adds next item to your consideration: cupcakes
+				- size: 5
+				- value: 15
+				- Now things get complicated
+				- We put cupcakes into the knapsack
+					- New knapsack value: 15
+			- Adds next item to your consideration: jelly_roll
+				- size: 3
+				- value: 10
+				- We put jelly_roll and oatmeal_cookie in the knapsack
+					- New knapsack value: 18
+			- Change sugar_cookie value to 60
+				- We put sugar_cookie and jelly_roll in the knapsack
+					- New knapsack value: 70
+			- Change jelly_roll value to 5
+				- We put sugar_cookie and oatmeal_cookie in the knapsack
+					- New knapsack value: 68
+			- Change size of knapsack to 7
+				- We put sugar_cookie and cupcakes in the knapsack
+					- New knapsack value: 75
+
+	- Now that we understand the problem, let's do some algorithms
+		- Formulate the problem
+			- Given:
+				- A set of n items iwth v1, v2, ..., vn values and s1, s2, ..., sn sizes
+				- A knapsack with a capacity C
+			- Find the subset of items that maximizes the total value which fits within the knapsack
+		- Brief run through the algorithm (we will revisit this later in the semester):
+			- Brute force is slow, forget that. Let's just get down to the actual algorithm
+			- We don't have time to give you the intution for the algorithm, just bear with me
+			- We construct a table M with n + 1 rows and C + 1 columns
+				- On our original problem set, that is a table with 4+1 rows and 6+1 columns
+			- "The cell at row: r and column: c will hold the maximum value of a knapsack with capacity: c from the item set 1 to r"
+			- The entirety of the 0th row and the 0th column we fill with 0s
+			- Row 1 is being able to choose from oatmeal_cookie
+			- Row 2 is being able to choose from oatmeal_cookie, sugar_cookie
+			- Row 3 is being able to choose from oatmeal_cookie, sugar_cookie, cupcakes
+			- Row 4 is being able to choose from oatmeal_cookie, sugar_cookie, cupcakes, and jelly_roll
+			- Each row represents the options, not necessarily the things we actually choose.
+			- At r: 1, c: 1 we can't fit anything in, so value 0
+			- At r: 1, c: 2+ we can fit the only thing we have access to: oatmeal_cookie
+			- At r: 2, c: 1, same emptiness
+			- At r: 2, c: 2, 3, we can only fit in oatmeal_cookie
+			- At r: 2, c: 3+, we can fit in oatmeal_cookie and sugar_cookie
+			- At r: 3, c: 1, same emptiness
+			- At r: 3, c: 2, 3, same oatmeal_cookie
+			- At r: 3, c: 4, same both cookies
+			- At r: 3, c: 5+, only fit in cupcakes
+			- etc.
+			- At any given cell, I can at least get the value of right above me. I might even be able to do better
+				- Because I have access to new items, I can't do worse than the previous row, but I might be able to do better
+			- The general rule of how to fill the table is:
+				- Fill 0th row and 0th column with 0s
+				- Iterate across table, row by row and column by column. setting values at row, col using the following rule:
+					- If new_item.weight > col:
+						- M[row][col] = M[row - 1][col];
+					- Else:
+						var comp1 = M[row - 1][col - new_item.weight];
+						var comp2 = M[row - 1][col];
+
+						M[row][col] = max(comp1 + new_item.value, comp2);
+
+	- They're trying to cover the hardest material while they're in person
+		- But people aren't in the best headspace to do this, so it might not happen

@@ -73,15 +73,17 @@ p {
 
 #knapsack {
 	border: 2px solid black;
-	width: 60%;
-	height:350px;
+	width: 30%;
+	height:200px;
 
 	position: relative;
 	z-index: 0;
+	display: inline-block;
 }
 
 #stats_DOM {
-	display: inline-block;
+	margin: 10px;
+	margin-top: 40px;
 }
 
 #UIWrapper {
@@ -132,4 +134,19 @@ p {
 	margin: auto;
 	text-align: center;
 	display:block;
+}
+
+#memoize_table{
+	display: inline-block;
+	position:absolute;
+	right: 20px;
+}
+
+.memoize_row {
+	border: 1px solid black;
+}
+
+.memoize_cell {
+	border: 1px solid black;
+	padding: 5px;
 }

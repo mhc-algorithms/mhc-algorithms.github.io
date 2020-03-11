@@ -1,13 +1,23 @@
 $(document).ready(function(){
 	//All the possible items: [Name, Weight, Value]
 	var ALL_ITEMS = [
-		["T-Shirt", 3, 15],
-		["Jeans", 7, 20],
-		["Cap", 1, 20],
-		["Sweater", 2, 60],
-		["Socks", 1, 13],
-		["Boots", 5, 200],
+		["A", 2, 20],
+		["B", 15, 10],
+		["C", 1, 5],
+		["D", 10, 15],
+		["FILLER", 10, 15],
+		["_FILLER", 10, 15],
+		["_FILLER_prime", 10, 15]
 	]
+
+	// var ALL_ITEMS = [
+	// 	["T-Shirt", 3, 15],
+	// 	["Jeans", 7, 20],
+	// 	["Cap", 1, 20],
+	// 	["Sweater", 2, 60],
+	// 	["Socks", 1, 13],
+	// 	["Boots", 5, 200]
+	// ]
 
 	var n = 5;
 	var maxN = ALL_ITEMS.length;
@@ -23,11 +33,11 @@ $(document).ready(function(){
 
 	//Name, Value, Weight: [A, 20, 2], [B, 10, 15], [C, 5, 1], [D, 15, 10]
 	displayMemTable([
-		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],						//0
-		[0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],		//A
-		[0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30],		//A, B
-		[0, 5, 20, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 30, 35, 35, 35],		//A, B, C
-		[0, 5, 20, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 30, 35, 35, 35],		//A, B, C, D Not worked on D
+		[0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],						//0
+		[0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],		//A
+		[0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30],		//A, B
+		[0, 5, 20, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 30, 35, 35, 35, 35],		//A, B, C
+		[0, 5, 20, 25, 25, 25, 25, 25, 25, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40],		//A, B, C, D
 	])
 
 	setInterval(checkParams, 500); //Every 500 millis checks to see if n and max_weight have changed
@@ -216,11 +226,61 @@ $(document).ready(function(){
 	}
 
 	//Takes in a 2D array and displays it
+	//Assumes a number of rows < 10
 	function displayMemTable(table){
 		var table_display = document.getElementById("memoize_table");
 
+		for(var r = 0; r < table.length; r++){
+			var row = document.createElement("tr");
+			row.className = "memoize_row";
+			row.id = "row" + r;
 
+			for(var c = 0; c < table[r].length; c++){
+				var cell = document.createElement("td");
+				cell.className = "memoize_cell";
+				cell.id = r + "cell" + c;
+
+				cell.innerHTML = table[r][c];
+
+				row.appendChild(cell);
+			}
+
+			table_display.appendChild(row);
+		}
 	}
+
+	//Handles clicks on a cell of the memoization table
+	$(".memoize_cell").on("click", (event) => {
+		//Clear table highlighting
+		for(var row = 0; row < $("#memoize_table").children().length; row++){	//For each row
+			for(var col = 0; col < $("#row" + row).children().length; col++){	//For each cell
+				var cell = $("#row" + row).children()[col];
+
+				// $(cell.id).css("background-color", "white");;
+
+				document.getElementById(cell.id).style.backgroundColor = "white";
+			}
+		}
+
+		var cell = event.target;
+
+		var row = parseInt(cell.parentElement.id.slice(3));
+		var col = parseInt(cell.id.slice(5));
+
+		if(row > 0 && col > 0){		//Don't worry about the base cases
+			var above_cell = $("#row" + (row - 1)).children()[col];		//The cell directly above this one. Represents not adding new_item
+
+			document.getElementById(above_cell.id).style.backgroundColor = "red";
+
+			var new_item_weight = ALL_ITEMS[row - 1][1];
+			if(new_item_weight <= col){
+				var add_cell = $("#row" + (row - 1)).children()[col - new_item_weight];		//The cell which represents adding new_item
+
+				document.getElementById(add_cell.id).style.backgroundColor = "red";
+			}
+
+		}
+	});
 
     //Handle Item on Shelf Being Clicked
     $("body").on("click", ".shelf_item", function(event){
