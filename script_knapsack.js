@@ -8,7 +8,11 @@ $(document).ready(function(){
 		["FILLER", 10, 15],
 		["_FILLER", 10, 15],
 		["_FILLER_prime", 10, 15]
-	]
+	]		//This is necessary for the test table below
+
+	var highlight_color = "yellow";		//The color of highlighted memoization cells
+	var selected_highlight_color = "lime";		//The color of the selected memoization cell
+	var base_color = "white";			//The color of unhighlighted memoization cells
 
 	// var ALL_ITEMS = [
 	// 	["T-Shirt", 3, 15],
@@ -85,21 +89,7 @@ $(document).ready(function(){
 		item.id = "item" + i;
 		item.className = "shelf_item";
 
-		// var itemImg = document.createElement("div");		//Div for now, will be img when we have img of things
-		// var itemImg = document.createElement("IMG");
-		// itemImg.setAttribute("src", "./duck.png");
-
-		// itemImg.className = "duckPart";
-		// itemImg.style = "width:80px;height:80px;";
-		// itemImg.style = "background-color: red;";
-
-		// var itemText = document.createElement("p");
-		// itemText.innerHTML = ALL_ITEMS[i][0];
-
-		// item.appendChild(itemImg);
-		// item.appendChild(itemText);
-
-		item.innerHTML = ALL_ITEMS[i][0];
+		item.innerHTML = ALL_ITEMS[i][0] + "<br>" + ALL_ITEMS[i][1] + " lbs.<br>$" + ALL_ITEMS[i][2];
 
 		return item;
 	}
@@ -145,8 +135,8 @@ $(document).ready(function(){
 
 	//Refreshes the shelf and knapsack DOMS
 	function refresh_tables(){
-		console.log(shelf_items);
-		console.log(knapsack_items);
+		// console.log(shelf_items);
+		// console.log(knapsack_items);
 		var shelf_children = Array.from(document.getElementById("shelf").children);
 		var knapsack_children = Array.from(document.getElementById("knapsack").children);
 
@@ -249,6 +239,31 @@ $(document).ready(function(){
 		}
 	}
 
+	//Explains why the currently selected cell has its value
+	//Takes in an array of the two (or one) cells it is comparing and the selected cell
+	function updateExplanation(comps, selected){
+		var explanation = "";
+		if(comps.length == 1){			//Only above_cell is used
+			explanation = "The Knapsack is too small to fit the new item for this row, so the best we can do is the same as the best we can do without it.";
+		}else if(comps.length == 2){	//Both cells are used
+			explanation = "\
+			We are able to fit the new item in the Knapsack, so we need to figure out if we want to. We will consider what will happen if we do add it and compare that to what will happen if we don't\n\n\
+			If we do add the new item, then our Knapsack is effectively smaller. The value of the new item plus the (previously calculated) value of the smaller knapsack is the best we can do if we add the new item\n\n\
+			If we don't add the item, then the best value we could get without the new item is the best value we can get.\n\n\
+			In this case, ";
+
+			if(comps[0].innerHTML === selected.innerHTML){		//Above_cell was chosen
+				explanation += "the new item should not be added.";
+			}else{												//Add_cell was chosen
+				explanation += "the new item should be added.";
+			}
+		}else{							//Error
+			explanation = "Something went wrong in updateExplanation";
+		}
+
+		$("#explanation").text(explanation);
+	}
+
 	//Handles clicks on a cell of the memoization table
 	$(".memoize_cell").on("click", (event) => {
 		//Clear table highlighting
@@ -258,7 +273,7 @@ $(document).ready(function(){
 
 				// $(cell.id).css("background-color", "white");;
 
-				document.getElementById(cell.id).style.backgroundColor = "white";
+				document.getElementById(cell.id).style.backgroundColor = base_color;
 			}
 		}
 
@@ -268,15 +283,21 @@ $(document).ready(function(){
 		var col = parseInt(cell.id.slice(5));
 
 		if(row > 0 && col > 0){		//Don't worry about the base cases
+			document.getElementById(cell.id).style.backgroundColor = selected_highlight_color;
+
 			var above_cell = $("#row" + (row - 1)).children()[col];		//The cell directly above this one. Represents not adding new_item
 
-			document.getElementById(above_cell.id).style.backgroundColor = "red";
+			document.getElementById(above_cell.id).style.backgroundColor = highlight_color;
 
 			var new_item_weight = ALL_ITEMS[row - 1][1];
 			if(new_item_weight <= col){
 				var add_cell = $("#row" + (row - 1)).children()[col - new_item_weight];		//The cell which represents adding new_item
 
-				document.getElementById(add_cell.id).style.backgroundColor = "red";
+				document.getElementById(add_cell.id).style.backgroundColor = highlight_color;
+
+				updateExplanation([above_cell, add_cell], cell);
+			}else{
+				updateExplanation([above_cell], cell);
 			}
 
 		}
