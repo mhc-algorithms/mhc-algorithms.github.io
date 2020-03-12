@@ -1,56 +1,47 @@
 $(document).ready(function(){
 	//All the possible items: [Name, Weight, Value]
-	var ALL_ITEMS = [
-		["A", 2, 20],
-		["B", 15, 10],
-		["C", 1, 5],
-		["D", 10, 15],
-		["FILLER", 10, 15],
-		["_FILLER", 10, 15],
-		["_FILLER_prime", 10, 15]
-	]		//This is necessary for the test table below
+	// var ALL_ITEMS = [
+	// 	["A", 2, 20],
+	// 	["B", 15, 10],
+	// 	["C", 1, 5],
+	// 	["D", 10, 15],
+	// 	["FILLER", 10, 15],
+	// 	["_FILLER", 10, 15],
+	// 	["_FILLER_prime", 10, 15]
+	// ]		//This is necessary for the test table below
 
 	var highlight_color = "yellow";		//The color of highlighted memoization cells
 	var selected_highlight_color = "lime";		//The color of the selected memoization cell
 	var base_color = "white";			//The color of unhighlighted memoization cells
 
-	// var ALL_ITEMS = [
-	// 	["T-Shirt", 3, 15],
-	// 	["Jeans", 7, 20],
-	// 	["Cap", 1, 20],
-	// 	["Sweater", 2, 60],
-	// 	["Socks", 1, 13],
-	// 	["Boots", 5, 200]
-	// ]
+	var ALL_ITEMS = [
+		["T-Shirt", 3, 15],
+		["Jeans", 7, 20],
+		["Cap", 1, 20],
+		["Sweater", 2, 60],
+		["Socks", 1, 13],
+		["Boots", 5, 200]
+	]
 
 	var n = 5;
 	var maxN = ALL_ITEMS.length;
 
-	var max_weight = 50;
+	var max_weight = 15;
+	var max_max_weight = 20;
 
-	// var selected_item = null;
 	var shelf_items = [];
 	var knapsack_items = [];
 
 	repopulate();
 	update_values();
 
-	//Name, Value, Weight: [A, 20, 2], [B, 10, 15], [C, 5, 1], [D, 15, 10]
-	displayMemTable([
-		[0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],						//0
-		[0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],		//A
-		[0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30],		//A, B
-		[0, 5, 20, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 30, 35, 35, 35, 35],		//A, B, C
-		[0, 5, 20, 25, 25, 25, 25, 25, 25, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40],		//A, B, C, D
-	])
-
-	setInterval(checkParams, 500); //Every 500 millis checks to see if n and max_weight have changed
+	setInterval(checkParams, 100); //Every 500 millis checks to see if n and max_weight have changed
 
 	//Checks if n has changed
 	function checkParams(){
 	  var newN = document.getElementById("nInput").value;
 	  var new_max_weight = document.getElementById("max_weightInput").value;
-	  if((newN != n && newN > 0 && newN <= maxN) || new_max_weight != max_weight){
+	  if((newN != n && newN > 0 && newN <= maxN) || (new_max_weight != max_weight && new_max_weight <= max_max_weight)){
 	    n = newN;        
 	    max_weight = new_max_weight;
 	    repopulate();
@@ -81,6 +72,10 @@ $(document).ready(function(){
 			shelf_items.push(new_shelf_item);
 			document.getElementById("shelf").appendChild(new_shelf_item);
 		}
+
+		//Update memoization table
+		displayMemTable(buildMemTable());
+		update_values();
 	}
 
 	//Returns a shelf_item DOM from the i'th index of the possible items array
@@ -114,11 +109,11 @@ $(document).ready(function(){
 		//Display value + weight
 		var stats_text;
 		if(weight <= max_weight){
-	    	stats_text = "Your Knapsack is worth $" + value + " and weighs in at " + weight + "lbs. out of a maximum of " + max_weight + "lbs.";
+	    	stats_text = "Your Knapsack is worth $" + value + " and weighs in at " + weight + "lbs. out of a potential " + max_knapsack_value() + "lbs.";
 	    	// console.log("https://en.wikipedia.org/wiki/Giles_Corey#Death_by_pressing");
 	    	// console.log("More...Weight...");
 	    }else{
-	    	stats_text = "Your Knapsack is worth $" + value + " and is overweight in at " + weight + "lbs. out of a maximum of " + max_weight + "lbs.";
+	    	stats_text = "Your Knapsack is worth $" + value + " and is overweight in at " + weight + "lbs. out of a potential " + max_knapsack_value() + "lbs.";
 	    }
 
 		$("#stats_DOM").text(stats_text);
@@ -126,17 +121,22 @@ $(document).ready(function(){
 
 	//creates an array of size n of possible items
 	function generateShelf(){
-		return ALL_ITEMS;		//Temporary, until we implement this function
+		return ALL_ITEMS.slice(0, n);
 	}
 
 	//Finds the maximum possible value of the knapsack for problem checking purposes given an array of possible items and a maximum weight
-	function max_knapsack_value(array, max_weight){
+	function max_knapsack_value(){
+		var table = buildMemTable();
+
+		console.log(table);
+
+		return table[n][max_weight];
 	}
 
 	//Refreshes the shelf and knapsack DOMS
 	function refresh_tables(){
-		// console.log(shelf_items);
-		// console.log(knapsack_items);
+			// console.log(shelf_items);
+			// console.log(knapsack_items);
 		var shelf_children = Array.from(document.getElementById("shelf").children);
 		var knapsack_children = Array.from(document.getElementById("knapsack").children);
 
@@ -171,47 +171,92 @@ $(document).ready(function(){
 	}
 
 	//creates a table with the values OR DOESN'T I CAN'T FIGURE OUT WHATS GOING ON
+	//I think this works?
 	function buildMemTable(){
-		//for every item in the knapsack, make the table
-		var costArray = [knapsack_items.length];
-		var weightArray = [knapsack_items.length];
+		var table = [];
 
-		//values go into the table
-		//x-axis is all possible numbers 0 through N (# of items to pick from)
-		//y-axis is the capacity 0 through max weight
-		//label axes not in the arrays
+		//Initialize the table
+		for(var item_num = 0; item_num <= n; item_num++){
+			var row = [];
 
-		//com1=grid[row-1][col-new_item.w]
-		//com2=grid[row-1][col]
+			for(var weight = 0; weight <= max_weight; weight++){
+				row.push(0);
+			}
 
-		//com1+newItem.v verses com2
-
-		for(var i = 0; i<knapsack_items.length; i++){
-			//var item = knapsack_items[i];
-			var index  = parseInt(knapsack_items[i].id.substring(4));
-			console.log(index);
-			//var children = Array.from(document.getElementById("knapsack").children);
-			costArray.push(ALL_ITEMS[index][2]);
-			weightArray.push(ALL_ITEMS[index][1]);
-			
-			console.log(costArray.toString());
-
+			table.push(row);
 		}
 
-		var table = [costArray.length][weightArray.length];
+		//Populate the table
+		for(var row = 1; row < table.length; row++){
+			var new_item_weight = ALL_ITEMS[row - 1][1];
+			var new_item_value = ALL_ITEMS[row - 1][2];
+			for(var col = 1; col < table[row].length; col++){
+				var comp1 = table[row - 1][col - new_item_weight];
+				var comp2 = table[row - 1][col];
 
-		//var grin = new array(rows)
-		//for r=0<length of grid
-		//grid[r]= newArray(cols)
-
-
-		for(var j = 0; j<costArray.length; j++){
-			for(var k = 0; k<weightArray.length; k++){
-				table[j][k] = costArray[j]+weightArray[k]; //this is a place HOLDER
+				if(comp1 + new_item_value > comp2){
+					table[row][col] = comp1 + new_item_value;
+				}else{
+					table[row][col] = comp2;
+				}
 			}
 		}
 
 		console.log(table);
+
+		return table;
+
+		// return [
+		// 	[0, 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0],						//0
+		// 	[0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20],		//A
+		// 	[0, 0, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 30, 30, 30, 30, 30],		//A, B
+		// 	[0, 5, 20, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 30, 35, 35, 35, 35],		//A, B, C
+		// 	[0, 5, 20, 25, 25, 25, 25, 25, 25, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40],		//A, B, C, D
+		// ]
+
+
+
+
+		// //for every item in the knapsack, make the table
+		// var costArray = [knapsack_items.length];
+		// var weightArray = [knapsack_items.length];
+
+		// //values go into the table
+		// //x-axis is all possible numbers 0 through N (# of items to pick from)
+		// //y-axis is the capacity 0 through max weight
+		// //label axes not in the arrays
+
+		// //com1=grid[row-1][col-new_item.w]
+		// //com2=grid[row-1][col]
+
+		// //com1+newItem.v verses com2
+
+		// for(var i = 0; i<knapsack_items.length; i++){
+		// 	//var item = knapsack_items[i];
+		// 	var index  = parseInt(knapsack_items[i].id.substring(4));
+		// 	console.log(index);
+		// 	//var children = Array.from(document.getElementById("knapsack").children);
+		// 	costArray.push(ALL_ITEMS[index][2]);
+		// 	weightArray.push(ALL_ITEMS[index][1]);
+			
+		// 	console.log(costArray.toString());
+
+		// }
+
+		// var table = [costArray.length][weightArray.length];
+
+		// //var grin = new array(rows)
+		// //for r=0<length of grid
+		// //grid[r]= newArray(cols)
+
+
+		// for(var j = 0; j<costArray.length; j++){
+		// 	for(var k = 0; k<weightArray.length; k++){
+		// 		table[j][k] = costArray[j]+weightArray[k]; //this is a place HOLDER
+		// 	}
+		// }
+
+		// console.log(table);
 
 	}
 
@@ -219,6 +264,10 @@ $(document).ready(function(){
 	//Assumes a number of rows < 10
 	function displayMemTable(table){
 		var table_display = document.getElementById("memoize_table");
+
+		while(table_display.firstChild){
+			table_display.removeChild(table_display.lastChild);
+		}
 
 		for(var r = 0; r < table.length; r++){
 			var row = document.createElement("tr");
