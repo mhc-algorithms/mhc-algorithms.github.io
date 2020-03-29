@@ -349,23 +349,64 @@ $(document).ready(function(){
 		// }
 
 
+		//Clear the table
 		while(table_display.firstChild){
 			table_display.removeChild(table_display.lastChild);
 		}
 
-		for(var r = 0; r < table.length; r++){
+		//Add each new cell
+		for(var r = -1; r < table.length; r++){
 			var row = document.createElement("tr");
-			row.className = "memoize_row";
-			row.id = "row" + r;
+			if(r == -1){
+				//Add weight row
+				row.id = "weight_row";
 
-			for(var c = 0; c < table[r].length; c++){
-				var cell = document.createElement("td");
-				cell.className = "memoize_cell";
-				cell.id = r + "cell" + c;
+				for(var c = -1; c < table[0].length; c++){
+					var cell = document.createElement("td");
+					cell.id = "weight_cell" + c;
+					cell.className = "weight_cell";
 
-				cell.innerHTML = table[r][c];
+					if(c != -1){
+						cell.innerHTML = "<b>" + c + "lbs.</b>"
+					}
 
-				row.appendChild(cell);
+					row.appendChild(cell);
+				}
+			}else{
+				//Add normal row
+				row.id = "row" + r;
+				row.className = "memoize_row";
+
+				for(var c = -1; c < table[r].length; c++){
+					var cell = document.createElement("td");
+					if(c == -1){
+						//Add item col
+						cell.id = "item_cell" + r;
+						cell.className = "item_cell";
+
+						//Include all the items which are included
+						var included_item_text = ""
+						for(var i = 0; i < r; i++){
+							included_item_text += ALL_ITEMS[i][0] + ", ";
+						}
+
+						if(r == 0){
+							included_item_text = "No Items Included  ";
+						}
+
+						cell.innerHTML = "<b>" + included_item_text.substring(0, included_item_text.length - 2) + "</b>";
+
+						row.appendChild(cell);
+					}else{
+						//Add Normal col
+						cell.id = r + "cell" + c;
+						cell.className = "memoize_cell";
+
+						cell.innerHTML = table[r][c];
+					}
+
+					row.appendChild(cell);
+				}
 			}
 
 			table_display.appendChild(row);

@@ -158,3 +158,14 @@ p {
 	border: 1px solid black;
 	padding: 5px;
 }
+
+.weight_cell {
+	border: 1px solid black;
+	padding: 5px;
+}
+
+.item_cell {
+	border: 1px solid black;
+	padding: 5px;
+	text-align: right;
+}
