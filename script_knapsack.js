@@ -14,14 +14,37 @@ $(document).ready(function(){
 	var selected_highlight_color = "lime";		//The color of the selected memoization cell
 	var base_color = "white";			//The color of unhighlighted memoization cells
 
-	var ALL_ITEMS = [
+	//having multiple sets of items
+	var CLOTHES = [
 		["T-Shirt", 3, 15],
 		["Jeans", 7, 20],
 		["Cap", 1, 20],
 		["Sweater", 2, 60],
 		["Socks", 1, 13],
 		["Boots", 5, 200]
+	] 
+	
+	var BAKERY = [
+		["Bread", 5, 2],
+		["Muffin", 1, 4],
+		["Cookies", 6, 8],
+		["Danish", 4, 9],
+		["Cupcake", 2, 6],
+		["Croissant", 1, 3]
+		]
+
+	var GARDEN = [
+		["Daffodil", 4, 8],
+		["Apple Tree", 17, 30],
+		["Rose Bush", 8, 26],
+		["Sword Fern", 2, 6],
+		["Pumpkin", 6, 8],
+		["Mint", 3, 5],
+		["Blueberry Bush", 7, 20]
 	]
+
+	//default to bakery as per Audrey's request
+	var ALL_ITEMS = BAKERY;
 
 	var n = 5;
 	var maxN = ALL_ITEMS.length;
@@ -37,6 +60,20 @@ $(document).ready(function(){
 
 	setInterval(checkParams, 100); //Every 500 millis checks to see if n and max_weight have changed
 
+	function store(storeName){
+		console.log(storeName);
+		if(storeName=='bakery'){
+			ALL_ITEMS = BAKERY;
+
+		}
+		else if(storeName=='clothes'){
+			ALL_ITEMS = CLOTHES;
+		}
+		else if(storeName=='garden'){
+			ALL_ITEMS = GARDEN;
+		}
+		
+	}
 	//Checks if n has changed
 	function checkParams(){
 	  var newN = document.getElementById("nInput").value;
