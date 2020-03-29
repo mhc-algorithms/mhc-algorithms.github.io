@@ -25,10 +25,10 @@ $(document).ready(function(){
 	] 
 	
 	var BAKERY = [
-		["Muffin", 2, 8],
-		["Cookies", 2, 6],
-		["Jelly Roll", 3, 10],
-		["Cupcakes", 5, 15],
+		["Muffin", 2, 8, "muffin.png"],
+		["Cookies", 2, 6, "cookie.png"],
+		["Jelly Roll", 3, 10, "jellyroll.png"],
+		["Cupcakes", 5, 15, "cupcakes.png"],
 		]
 
 	var GARDEN = [
@@ -119,9 +119,12 @@ $(document).ready(function(){
 
 	//Returns a shelf_item DOM from the i'th index of the possible items array
 	function makeShelfItem(i){
-		var item = document.createElement("div");
+		var item = document.createElement("img");
 		item.id = "item" + i;
 		item.className = "shelf_item";
+		item.src = ALL_ITEMS[i][3];
+		//item.innerHTML = "<img src ='" + ALL_ITEMS[i][3] + "'>";
+		
 
 		item.innerHTML = ALL_ITEMS[i][0] + "<br>" + ALL_ITEMS[i][1] + " lbs.<br>$" + ALL_ITEMS[i][2];
 
@@ -427,5 +430,26 @@ $(document).ready(function(){
     	refresh_tables();
     	buildMemTable();
     	
+    });
+
+    $("shopType").on("click", ".bakeryButton", function(event){
+    	ALL_ITEMS = BAKERY;
+    	repopulate();
+    	refresh_tables();
+    	buildMemTable();
+    });
+
+    $("shopType").on("click", ".gardenButton", function(event){
+    	ALL_ITEMS = GARDEN;
+    	repopulate();
+    	refresh_tables();
+    	buildMemTable();
+    });
+    
+    $("shopType").on("click", ".clothesButton", function(event){
+    	ALL_ITEMS = CLOTHES;
+    	repopulate();
+    	refresh_tables();
+    	buildMemTable();
     });
 });
