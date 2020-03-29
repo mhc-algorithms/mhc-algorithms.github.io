@@ -32,13 +32,13 @@ $(document).ready(function(){
 	]
 
 	var GARDEN = [
-		["Daffodil", 4, 8],
-		["Apple Tree", 17, 30],
-		["Rose Bush", 8, 26],
-		["Sword Fern", 2, 6],
-		["Pumpkin", 6, 8],
-		["Mint", 3, 5],
-		["Blueberry Bush", 7, 20]
+		["Daffodil", 4, 8, "daffodil.png"],
+		["Apple Tree", 17, 30, "apple.png"],
+		["Rose Bush", 8, 26, "rose.png"],
+		["Sword Fern", 2, 6, "fern.png"],
+		["Pumpkin", 6, 8, "pumpkin.png"],
+		["Mint", 3, 5, "mint.png"],
+		["Blueberry Bush", 7, 20, "bluebush.png"]
 	]
 
 	//default to bakery as per Audrey's request
