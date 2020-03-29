@@ -212,6 +212,29 @@ $(document).ready(function(){
 		update_values();
 	}
 
+	//Creates a table which is a label for the weight
+	function buildWeightLabels(){
+		var table = [];
+		var weightLabel = [];
+		for(var w = 0; w<=max_weight; w++){
+			weightLabel.push(w);
+		}
+		table.push(weightLabel);
+
+		return table;
+	}
+
+	//creates a table which is a label for the objects
+	function buildObjectLabels(){
+		var table = [];
+		for(var obj = 0; obj<=n; obj++){
+			table.push(ALL_ITEMS[obj][0]);
+		}
+
+		return table;
+	}
+
+
 	//creates a table with the values OR DOESN'T I CAN'T FIGURE OUT WHATS GOING ON
 	//I think this works?
 	function buildMemTable(){
@@ -305,7 +328,24 @@ $(document).ready(function(){
 	//Takes in a 2D array and displays it
 	//Assumes a number of rows < 10
 	function displayMemTable(table){
+		// var weight_display = document.getElementById("table_weight_label");
+		// var obj_display = document.getElementById("table_obj_label");
 		var table_display = document.getElementById("memoize_table");
+
+		// while(weight_display.firstChild){
+		// 	weight_display.removeChild(weight_display.lastChild);
+		// }
+
+		// for(var r = 0; r < max_weight; r++){
+		// 	var row = document.createElement("tr");
+		// 	row.id = "label";
+		// 	var cell = document.createElement("td");
+		// 	cell.className = "memoize_cell";
+		// 	cell.id = r +"table";
+		// 	cell.innerHTML = 
+
+		// }
+
 
 		while(table_display.firstChild){
 			table_display.removeChild(table_display.lastChild);
