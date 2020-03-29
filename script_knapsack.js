@@ -351,7 +351,7 @@ $(document).ready(function(){
 	}
 
 	//Handles clicks on a cell of the memoization table
-	$(".memoize_cell").on("click", (event) => {
+	$("body").on("click", ".memoize_cell", (event) => {
 		//Clear table highlighting
 		for(var row = 0; row < $("#memoize_table").children().length; row++){	//For each row
 			for(var col = 0; col < $("#row" + row).children().length; col++){	//For each cell
