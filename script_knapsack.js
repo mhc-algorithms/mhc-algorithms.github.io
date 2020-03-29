@@ -29,7 +29,7 @@ $(document).ready(function(){
 		["Cookies", 2, 6, "cookie.png"],
 		["Jelly Roll", 3, 10, "jellyroll.png"],
 		["Cupcakes", 5, 15, "cupcakes.png"],
-		]
+	]
 
 	var GARDEN = [
 		["Daffodil", 4, 8],
@@ -90,6 +90,8 @@ $(document).ready(function(){
 
 	//Restarts the game
 	function repopulate(){
+		maxN = ALL_ITEMS.length;
+
 		var shelf_children = Array.from(document.getElementById("shelf").children);
 		var knapsack_children = Array.from(document.getElementById("knapsack").children);
 
@@ -151,11 +153,11 @@ $(document).ready(function(){
 		//Display value + weight
 		var stats_text;
 		if(weight <= max_weight){
-	    	stats_text = "Your Knapsack is worth $" + value + " and weighs in at " + weight + "lbs. out of a potential " + max_knapsack_value() + "lbs.";
+	    	stats_text = "Your Knapsack is worth $" + value + " and weighs in at " + weight + "lbs. out of a potential $" + max_knapsack_value() + ".";
 	    	// console.log("https://en.wikipedia.org/wiki/Giles_Corey#Death_by_pressing");
 	    	// console.log("More...Weight...");
 	    }else{
-	    	stats_text = "Your Knapsack is worth $" + value + " and is overweight in at " + weight + "lbs. out of a potential " + max_knapsack_value() + "lbs.";
+	    	stats_text = "Your Knapsack is worth $" + value + " and is overweight in at " + weight + "lbs. out of a potential $" + max_knapsack_value() + ".";
 	    }
 
 		$("#stats_DOM").text(stats_text);
@@ -472,22 +474,30 @@ $(document).ready(function(){
     	
     });
 
-    $("shopType").on("click", ".bakeryButton", function(event){
+    $("body").on("click", "#bakeryButton", function(event){
+    	console.log("alsjdf");
     	ALL_ITEMS = BAKERY;
     	repopulate();
     	refresh_tables();
     	buildMemTable();
     });
 
-    $("shopType").on("click", ".gardenButton", function(event){
+    $("body").on("click", "#gardenButton", function(event){
     	ALL_ITEMS = GARDEN;
     	repopulate();
     	refresh_tables();
     	buildMemTable();
     });
     
-    $("shopType").on("click", ".clothesButton", function(event){
+    $("body").on("click", "#clothesButton", function(event){
     	ALL_ITEMS = CLOTHES;
+    	repopulate();
+    	refresh_tables();
+    	buildMemTable();
+    });
+    
+    $("#newGame").on("click", ".clothesButton", function(event){
+    	checkParams();
     	repopulate();
     	refresh_tables();
     	buildMemTable();
