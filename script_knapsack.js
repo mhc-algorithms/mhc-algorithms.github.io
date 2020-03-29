@@ -464,7 +464,7 @@ $(document).ready(function(){
 
 			var new_item_weight = ALL_ITEMS[row - 1][1];
 			if(new_item_weight <= col){
-				var add_cell = $("#row" + (row - 1)).children()[col - new_item_weight];		//The cell which represents adding new_item
+				var add_cell = $("#row" + (row - 1)).children()[col - new_item_weight+1];		//The cell which represents adding new_item
 
 				document.getElementById(add_cell.id).style.backgroundColor = highlight_color;
 
