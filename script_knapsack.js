@@ -25,12 +25,10 @@ $(document).ready(function(){
 	] 
 	
 	var BAKERY = [
-		["Bread", 5, 2],
-		["Muffin", 1, 4],
-		["Cookies", 6, 8],
-		["Danish", 4, 9],
-		["Cupcake", 2, 6],
-		["Croissant", 1, 3]
+		["Muffin", 2, 8],
+		["Cookies", 2, 6],
+		["Jelly Roll", 3, 10],
+		["Cupcakes", 5, 15],
 		]
 
 	var GARDEN = [
@@ -46,10 +44,10 @@ $(document).ready(function(){
 	//default to bakery as per Audrey's request
 	var ALL_ITEMS = BAKERY;
 
-	var n = 5;
+	var n = 4;
 	var maxN = ALL_ITEMS.length;
 
-	var max_weight = 15;
+	var max_weight = 6;
 	var max_max_weight = 20;
 
 	var shelf_items = [];
@@ -60,17 +58,21 @@ $(document).ready(function(){
 
 	setInterval(checkParams, 100); //Every 500 millis checks to see if n and max_weight have changed
 
+	//sets which store is being used
 	function store(storeName){
 		console.log(storeName);
 		if(storeName=='bakery'){
 			ALL_ITEMS = BAKERY;
+			repopulate();
 
 		}
 		else if(storeName=='clothes'){
 			ALL_ITEMS = CLOTHES;
+			repopulate();
 		}
 		else if(storeName=='garden'){
 			ALL_ITEMS = GARDEN;
+			repopulate();
 		}
 		
 	}
