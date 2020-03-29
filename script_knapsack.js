@@ -16,12 +16,12 @@ $(document).ready(function(){
 
 	//having multiple sets of items
 	var CLOTHES = [
-		["T-Shirt", 3, 15],
-		["Jeans", 7, 20],
-		["Cap", 1, 20],
-		["Sweater", 2, 60],
-		["Socks", 1, 13],
-		["Boots", 5, 200]
+		["T-Shirt", 3, 15, "t-shirt.png"],
+		["Jeans", 7, 20, "jeans.png"],
+		["Cap", 1, 20, "cap.png"],
+		["Sweater", 2, 60, "sweater.png"],
+		["Socks", 1, 13, "socks.png"],
+		["Boots", 5, 200, "boots.png"]
 	] 
 	
 	var BAKERY = [
