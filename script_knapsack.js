@@ -458,7 +458,7 @@ $(document).ready(function(){
 		if(row > 0 && col > 0){		//Don't worry about the base cases
 			document.getElementById(cell.id).style.backgroundColor = selected_highlight_color;
 
-			var above_cell = $("#row" + (row - 1)).children()[col];		//The cell directly above this one. Represents not adding new_item
+			var above_cell = $("#row" + (row - 1)).children()[col+1];		//The cell directly above this one. Represents not adding new_item
 
 			document.getElementById(above_cell.id).style.backgroundColor = highlight_color;
 
