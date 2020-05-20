@@ -16,28 +16,28 @@ $(document).ready(function(){
 
 	//having multiple sets of items
 	var CLOTHES = [
-		["T-Shirt", 3, 15, "t-shirt.png"],
-		["Jeans", 7, 20, "jeans.png"],
-		["Cap", 1, 20, "cap.png"],
-		["Sweater", 2, 60, "sweater.png"],
-		["Socks", 1, 13, "socks.png"],
-		["Boots", 5, 200, "boots.png"]
+		["T-Shirt", 3, 15, "KnapsackPic/t-shirt.png"],
+		["Jeans", 7, 20, "KnapsackPic/jeans.png"],
+		["Cap", 1, 20, "KnapsackPic/cap.png"],
+		["Sweater", 2, 60, "KnapsackPic/sweater.png"],
+		["Socks", 1, 13, "KnapsackPic/socks.png"],
+		["Boots", 5, 200, "KnapsackPic/boots.png"]
 	] 
 	
 	var BAKERY = [
-		["Cookie", 2, 8, "muffin.png"],
-		["Spookie", 2, 6, "cookie.png"],
-		["Jelly Roll", 3, 10, "jellyroll.png"],
-		["Cupcakes", 5, 15, "cupcakes.png"],
+		["Cookie", 2, 8, "KnapsackPic/muffin.png"],
+		["Spookie", 2, 6, "KnapsackPic/cookie.png"],
+		["Jelly Roll", 3, 10, "KnapsackPic/jellyroll.png"],
+		["Cupcakes", 5, 15, "KnapsackPic/cupcakes.png"],
 	]
 
 	var GARDEN = [
-		["Daffodil", 4, 8, "daffodil.png"],
-		["Apple Tree", 17, 30, "apple.png"],
-		["Rose Bush", 8, 26, "rose.png"],
-		["Sword Fern", 2, 6, "fern.png"],
-		["Mint", 3, 5, "mint.png"],
-		["Spider Plant", 7, 20, "spiderplant.png"]
+		["Daffodil", 4, 8, "KnapsackPic/daffodil.png"],
+		["Apple Tree", 17, 30, "KnapsackPic/apple.png"],
+		["Rose Bush", 8, 26, "KnapsackPic/rose.png"],
+		["Sword Fern", 2, 6, "KnapsackPic/fern.png"],
+		["Mint", 3, 5, "KnapsackPic/mint.png"],
+		["Spider Plant", 7, 20, "KnapsackPic/spiderplant.png"]
 	]
 
 	//default to bakery as per Audrey's request
