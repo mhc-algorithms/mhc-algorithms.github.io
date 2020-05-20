@@ -50,11 +50,13 @@
 }
 
 </style>
+
+<!--Website header-->
 <div class="header">
   <h1>Welcome to the MHC Algorithms Help Website!</h1>
 
 </div>
-
+<!--Website navigation bar -->
 <div class="navbar">
   <a href = "index.html">Home</a>
   <a href = "StableMatchIntro.html">Stable Matching Simulation</a>
@@ -62,12 +64,15 @@
   <a href = "KnapsackProblem.html">Knapsack Problem</a>
 </div>
 
+
+<!--Simulation page starts here-->
 <body style ="background-color:#d9d3db;">
 <div class="SimHeader">
   <p><b>Stable Matching Simulation</b></p>
 </div>
 
 <body style ="background-color:#d9d3db;">
+<!-- Explanation and instructions for the problem and simulation-->
 <div id="bigBoi" style="text-align:center;">
   <div id="problemExplanationWrapper">
     <p>
@@ -262,7 +267,7 @@
           }
         }
         
-        
+        //randomly generate preference lists for the school
         function makePrefLists(n){
           var listLen = [];
           var prefList = [];
@@ -281,6 +286,7 @@
           return prefList;
         }
         
+       //randomly generate preference lists for the student 
        function makePrefLists2(n){
          //var letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
         var listLen = [];
@@ -371,6 +377,7 @@
           }
         }
         
+        //these functions change the matching box to show stable, unstable, or incorrect matching
         function noMatching(){
           document.getElementById("isMatchedBox").style = "text-align:center; border-style:solid; border-width:1px; width:100%; padding-top:30px; padding-bottom:30px; background-color: white;";
           document.getElementById("isMatchedText").innerHTML = "Not a match, families have been assigned multiple animals.";
@@ -389,13 +396,17 @@
         
       });
     </script>
+
+
     <b>Number of animals and families: (max 26)</b>
     <input type="text" value=3 id="nInput">
     
+    <!-- The box which tells user if the matching is stable or not -->
     <div id="isMatchedBox" style="text-align:center; border-style:solid; border-width:1px; width:100%; padding-top:30px; padding-bottom:30px; background-color: white;">
       <p id="isMatchedText">Not a match, families have been assigned multiple animals.</p>
     </div>
     
+    <!-- Creates the table which holds the preference lists -->
     <div id="tableWrapper" style="margin:30px; padding:30px;">
       <table id="preferenceListTable" align="center" style="display:inline-block; vertical-align: top;">
         <tr>
@@ -404,17 +415,19 @@
           <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Family ID</th>
           <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Family's Preferences</th>
         </tr>
+
+        <!-- Links to the explanation -->
         <caption align="bottom"><b><a href = "GaleShapleyAlgorithm.html">Click here to view an explanation of the algorithm to create stable matches<br></a></b>
-          <b><a href = "../">Click here to go back to the homepage</a></b>
-        </caption>
+        </caption> 
       </table>
+
+      <!-- Table for user input -->
       <div id="line" style="display:inline-block; border-style:solid; border-wdith:1px; width:0px; height:0px; margin-left:10px; margin-right:10px;"></div>
       <table id="visualizerTable" align="center" style="display:inline-block; vertical-align: top;">
         <tr>
           <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Animal</th>
           <th style="border-style:solid;border-width:1px;margin:5px;padding:5px;">Family</th>
         </tr>
-
       </table>
     </div>
   </div>
