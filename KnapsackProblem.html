@@ -7,6 +7,8 @@
 	</head>
 
 	<body>
+
+		<!--website header-->
 		<div class="header">
 		  <h1>Welcome to the MHC Algorithms Help Website!</h1>
 
@@ -19,6 +21,7 @@
 		  <a href = "KnapsackProblem.html">Knapsack Problem</a>
 		</div>
 
+		<!--instructions for the knapsack problem -->
 		<div id ="instructionWrapper">
 			<button id="showInstruction" class="instructionButtons" type="button" onclick="$('#Instruction').css('display', 'block');
 				
@@ -50,7 +53,9 @@
 
 		</div>
 
+		<!--simulation formatting -->
 		<div id ="backgroundWrapper">
+			<!--buttons for the shop type-->
 			<div id="shopType">
 				<button id="bakeryButton">Bakery</button>
 				<button id="clothesButton">Clothing Store</button>
@@ -69,18 +74,20 @@
 			</p>
 			<div id="knapsack">
 			</div>
-	<!-- 		<div id="table_weight_label"></div>
-			<div id="table_obj_label"></div> -->
+
 			<div id="memoize_table"></div>
 			<div id="stats_DOM"></div>
 			<div id="explanation"></div>
 		</div>
+
+		<!-- UI for the user to adjust max weight and objects -->
 		<div id="UIWrapper">
 			<button type="button" id="newGame">New Game</button>
 			n: <input type=text value=4 id="nInput">
 			Max Weight: <input type=text value=6 id="max_weightInput">
 		</div>
 
+		<!--explanation for the algorithm-->
 		<div id="ExplanationWrapper">
 			<button id="showExplanation" class="explanationButtons" type="button" onclick="
 				$('#Explanation').css('display', 'block');

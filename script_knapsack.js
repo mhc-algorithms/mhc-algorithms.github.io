@@ -40,7 +40,7 @@ $(document).ready(function(){
 		["Spider Plant", 7, 20, "KnapsackPic/spiderplant.png"]
 	]
 
-	//default to bakery as per Audrey's request
+	//default to bakery
 	var ALL_ITEMS = BAKERY;
 
 	var n = 4;
@@ -236,8 +236,7 @@ $(document).ready(function(){
 	}
 
 
-	//creates a table with the values OR DOESN'T I CAN'T FIGURE OUT WHATS GOING ON
-	//I think this works?
+	//creates a table with the values
 	function buildMemTable(){
 		var table = [];
 
@@ -329,25 +328,9 @@ $(document).ready(function(){
 	//Takes in a 2D array and displays it
 	//Assumes a number of rows < 10
 	function displayMemTable(table){
-		// var weight_display = document.getElementById("table_weight_label");
-		// var obj_display = document.getElementById("table_obj_label");
 		var table_display = document.getElementById("memoize_table");
 
-		// while(weight_display.firstChild){
-		// 	weight_display.removeChild(weight_display.lastChild);
-		// }
-
-		// for(var r = 0; r < max_weight; r++){
-		// 	var row = document.createElement("tr");
-		// 	row.id = "label";
-		// 	var cell = document.createElement("td");
-		// 	cell.className = "memoize_cell";
-		// 	cell.id = r +"table";
-		// 	cell.innerHTML = 
-
-		// }
-
-
+		
 		//Clear the table
 		while(table_display.firstChild){
 			table_display.removeChild(table_display.lastChild);
