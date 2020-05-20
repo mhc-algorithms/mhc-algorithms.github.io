@@ -85,3 +85,5 @@ To add a simulation to the website:*
 	4) Copy the added hyperlink to the navbar on all other html files.
 	* Note: there is probably a better way to do this than editing all html files, but at the moment, this is how this must be done.
 
+Other simulations/algorithms we want to add:
+	- NP Completeness : maybe an interactive punchcard example from the theory of computation textbook?
