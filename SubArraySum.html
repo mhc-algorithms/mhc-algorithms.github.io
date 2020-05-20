@@ -143,7 +143,7 @@
 		
 		margin-top: 20px;
 		margin-left: 700px;
-		background-image: url('spraysign2.png');
+		background-image: url('SASImg/spraysign2.png');
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;
@@ -151,11 +151,6 @@
 		width:95px;
 		border: none;
 	}
-
-	/*#sprayPicture{
-		width:115px;
-
-	}*/
 
 
 	</style>
@@ -205,11 +200,11 @@
 
 		</div>
 
-		<div id ="backgroundWrapper" style="background-image: url('background1.png');">
+		<div id ="backgroundWrapper" style="background-image: url('SASImg/background1.png');">
 			<div id ="spacing"></div>
 			<div id="duckWrapper"></div>
 			<div id="hoseWrapper">
-				<img id="hose" src ="./hose.png"></img>
+				<img id="hose" src ="SASImg/hose.png"></img>
 
 			</div>
 			<!-- Button for checking -->
@@ -366,9 +361,9 @@
 		    	duck.id = "duck" + i;
 		    	duck.className = "duck";
 
-		    	//var duckImg = document.createElement("div");		//Div for now, will be img when we have img of duck
+		    	//creates item that looks like the duck
 		    	var duckImg = document.createElement("IMG");
-		    	duckImg.setAttribute("src", "./duck.png");
+		    	duckImg.setAttribute("src", "SASImg/duck.png");
 
 		    	duckImg.className = "duckPart";
 		    	duckImg.style = "width:80px;height:80px;";
