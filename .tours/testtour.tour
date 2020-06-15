@@ -39,7 +39,7 @@
     {
       "file": "StableMatchingSimulator.html",
       "line": 309,
-      "description": "This is the key function of this module. This function tests if the inputed values have a stable matching or not, and edits the match box to show to the user"
+      "description": "This is the key function of this module. This function tests if the inputted values have a stable matching or not, and edits the match box to show to the user"
     },
     {
       "file": "StableMatchingSimulator.html",
@@ -124,12 +124,12 @@
     {
       "file": "script_knapsack.js",
       "line": 2,
-      "description": "This is where the elements fro the knapsack simulator are created. We have commented out a template if you want to add more object sets to this."
+      "description": "This is where the elements for the knapsack simulator are created. We have commented out a template if you want to add more object sets to this."
     },
     {
       "file": "script_knapsack.js",
       "line": 17,
-      "description": "In order to have a graphical element, we couldn't randomize these objects, so we have three different shops instead."
+      "description": "In order to have a graphical element, we couldn't randomize these objects, so we have three different object sets or 'shops' instead."
     },
     {
       "file": "script_knapsack.js",
