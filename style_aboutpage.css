@@ -1,0 +1,37 @@
+html{background-color: #d9d3db;}
+
+.header{
+	padding: 40px;
+	text-align: center;
+	background: #9785a8;
+	color: white;
+}
+
+.header h1{
+	font-size: 40px;
+}
+
+.navbar{
+	overflow: hidden;
+	background-color: #ffffff;
+}
+
+.navbar a{
+	float:left;
+	display: block;
+	color: black;
+	text-align: center;
+	padding: 15px 15px;
+	text-decoration: none;
+}
+.navbar a:hover{
+	padding: 15px;
+	background-color: #d4bff5;
+	color: white;
+}
+
+.body{
+	padding: 20px;
+	text-align: left;
+	background-color: #d9d3db;
+}
