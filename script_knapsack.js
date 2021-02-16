@@ -25,8 +25,8 @@ $(document).ready(function(){
 	] 
 	
 	var BAKERY = [
-		["Cookie", 2, 8, "KnapsackPic/muffin.png"],
-		["Spookie", 2, 6, "KnapsackPic/cookie.png"],
+		["Cookie", 2, 8, "KnapsackPic/cookie.png"],
+		["Cheesecake", 2, 6, "KnapsackPic/cheesecake.png"],
 		["Jelly Roll", 3, 10, "KnapsackPic/jellyroll.png"],
 		["Cupcakes", 5, 15, "KnapsackPic/cupcakes.png"],
 	]
