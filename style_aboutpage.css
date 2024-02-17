@@ -1,19 +1,27 @@
-html{background-color: #d9d3db;}
+html{background-color: #D9C5FF;}
 
-.header{
+/* .header{
 	padding: 40px;
 	text-align: center;
-	background: #9785a8;
+	background: #D9C5FF;
 	color: white;
+	font-family: "Lucida Console", "Courier New", Monospace;
 }
 
 .header h1{
 	font-size: 40px;
-}
+} */
 
 .navbar{
+	margin-top: 40px;
 	overflow: hidden;
-	background-color: #ffffff;
+	background-color: rgba(255, 255, 255, 0.4); /* Transparent white color */
+	display: flex; /* Use flexbox */
+	justify-content: center; /* Center the items horizontally */
+	font-weight: 10px;
+	padding: 5px 0; /* Add padding to the top and bottom */
+	font-family: "Lucida Console", "Courier New", Monospace;
+
 }
 
 .navbar a{
@@ -33,5 +41,5 @@ html{background-color: #d9d3db;}
 .body{
 	padding: 20px;
 	text-align: left;
-	background-color: #d9d3db;
+	background-color: #D9C5FF;
 }
