@@ -4,18 +4,14 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="style_knapsack.css">
 		<script src="script_knapsack.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 		<style>
 			* {
 				margin: 0;
 				padding: 0;
 				border: 0;
-			}
-	
-			body {
-				background-color: #D9C5FF;
-				color: #222;
-				margin: 0;
-				font-family: "Lucida Console", "Courier New", Monospace;
 			}
 	
 			.header {
@@ -24,11 +20,13 @@
 				background: #D9C5FF;
 				color: white;
 				position: relative;
+				font-family: "Courier New";
 			}
 	
 			.header h1 {
 				font-size: 45px;
 				font-weight: bold;
+				font-family: "Courier New";
 				/* Make the header bold */
 			}
 	
@@ -62,6 +60,7 @@
 				padding: 15px 15px;
 				text-decoration: none;
 				cursor: pointer; /* Add cursor pointer */
+				font-family: 'Courier New', Courier, monospace;
 			}
 	
 			.navbar a:hover {
@@ -199,8 +198,14 @@
 			</script>
 
 		<!--instructions for the knapsack problem -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+		<div class="PageName"> 
+			<h2>Knapsack Problem</h2>
+		</div>
 		<br><br><br>
-		<div id ="instructionWrapper">
+		<div id ="instructionWrapper" font="Inter"> 
 			<button id="showInstruction" class="instructionButtons" type="button" onclick="$('#Instruction').css('display', 'block');
 				
 				$('#hideInstruction').css('display', 'block');
