@@ -2,208 +2,190 @@
 
 <!---styling the header with css-->
 <style>
-/* .header{
-	padding: 40px;
-	text-align: center;
-	background: #D9C5FF;
-	color: white;
-}
+	.SimHeader {
+		font-size: 25px;
+		text-align: center;
+		border-color: black;
+		border-bottom-style: solid;
+		border-width: 1px;
+		font-family: Arial;
+	}
 
-.header h1{
-	font-size: 40px;
-}
+	.defs {
+		border-style: dashed;
+		border-color: black;
+		border-width: 1px;
+		font-family: Arial;
+		padding: 10px 20px;
+	}
 
-.navbar{
-	overflow: hidden;
-	background-color: #ffffff;
-}
+	.button {
+		padding: 15px 15px;
+		border: none;
+		background-color: white;
+		color: black;
+		text-align: center;
+		display: inline-block;
+		font-size: 15px;
+		text-decoration: none;
+	}
 
-.navbar a{
-	float:left;
-	display: block;
-	color: black;
-	text-align: center;
-	padding: 15px 15px;
-	text-decoration: none;
-}
-.navbar a:hover{
-	padding: 15px;
-	background-color: #d4bff5;
-	color: white;
-}
+	.button-div {
+		text-align: center;
+	}
 
-.SimHeader {
-	font-size:25px;
-	text-align: center;
-	border-color: black;
-	border-bottom-style: solid;
-	border-width: 1px;
-	font-family: Arial;
-}
+	*/ .header {
+		padding: 40px;
+		text-align: center;
+		background: #D9C5FF;
+		color: white;
+		font-weight: bold;
+	}
 
-.defs {
-	border-style: dashed;
-	border-color: black;
-	border-width: 1px;
-	font-family: Arial;
-	padding: 10px 20px;
-}
+	body {
+		background-color: #D9C5FF;
+		color: black;
+		padding: 0px 200px;
+		/* margin: 100px; */
+		font-family: "Lucida Console", "Courier New", Monospace;
+		display: center;
+		justify-content: center;
+		align-items: center;
+		font-size: 15px;
+	}
 
-.button{
-	padding: 15px 15px;
-	border: none;
-	background-color: white;
-	color: black;
-	text-align: center;
-	display: inline-block;
-	font-size: 15px;
-	text-decoration: none;
-}
+	#CheatSheet {
+		/* text-align: center; */
+		border: 1px solid black;
+		padding: 20px;
+		background-color: rgba(255, 255, 255, 0.6);
+		font-size: 20px;
+	}
 
-.button-div{
-	text-align:center;
-} */
+	#Questions1 {
+		margin-top: 50px;
+		font-size: 20px;
+	}
 
-.header{
-	padding: 40px;
-	text-align: center;
-	background: #D9C5FF;
-	color: white;
-	font-weight: bold;
-}
-body {
-    background-color: #D9C5FF;
-    color: black;
-	padding: 0px 200px;
-    /* margin: 100px; */
-    font-family: "Lucida Console", "Courier New", Monospace;
-	display: center;
-	justify-content: center;
-    align-items: center;
-	font-size: 15px;
-}
-#CheatSheet {
-    /* text-align: center; */
-    border: 1px solid black;
-    padding: 20px;
-	background-color: rgba(255, 255, 255, 0.6);
-	font-size: 20px;
-}
-#Questions1 {
-	margin-top: 50px;
-	font-size: 20px;
-}
+	#Questions2 {
+		margin-top: 50px;
+		font-size: 20px;
+	}
 
-#Questions2 {
-	margin-top: 50px;
-	font-size: 20px;
-}
+	#Questions3 {
+		margin-top: 50px;
+		font-size: 20px;
+	}
 
-#Questions3 {
-	margin-top: 50px;
-	font-size: 20px;
-}
+	#Questions4 {
+		margin-top: 50px;
+		font-size: 20px;
+	}
 
-#Questions4 {
-	margin-top: 50px;
-	font-size: 20px;
-}
-        .header {
-            padding: 25px;
-            text-align: center;
-            background: #D9C5FF;
-            color: white;
-            position: relative;
-        }
+	.header {
+		padding: 25px;
+		text-align: center;
+		background: #D9C5FF;
+		color: white;
+		position: relative;
+	}
 
-        .header h1 {
-            font-size: 45px;
-            font-weight: bold;
-            /* Make the header bold */
-        }
+	.header h1 {
+		font-size: 45px;
+		font-weight: bold;
+		/* Make the header bold */
+	}
 
-        .navbar {
-            overflow: hidden;
-            /* background-color: rgba(255, 255, 255, 0.4); */
-            /* Transparent white color */
-            display: flex;
-            /* Use flexbox */
-            flex-direction: column; /* Align menu items vertically */
-            position: absolute;
-            /* Position the menu absolutely */
-            top: 0;
-            /* Align the menu to the top */
-            right: 0;
-            /* Align the menu to the right */
-            padding: 5px 0;
-            margin-top: 90px;
-            margin-right: 40px;
-            /* Add padding to the top and bottom */
-            z-index: 1;
-            /* Ensure the menu is above other content */
-            border-radius: 20px; /* Add border-radius to make the button rounded */
-        }
+	.navbar {
+		overflow: hidden;
+		/* background-color: rgba(255, 255, 255, 0.4); */
+		/* Transparent white color */
+		display: flex;
+		/* Use flexbox */
+		flex-direction: column;
+		/* Align menu items vertically */
+		position: absolute;
+		/* Position the menu absolutely */
+		top: 0;
+		/* Align the menu to the top */
+		right: 0;
+		/* Align the menu to the right */
+		padding: 5px 0;
+		margin-top: 90px;
+		margin-right: 40px;
+		/* Add padding to the top and bottom */
+		z-index: 1;
+		/* Ensure the menu is above other content */
+		border-radius: 20px;
+		/* Add border-radius to make the button rounded */
+	}
 
-        .navbar a {
-            background-color: rgba(255, 255, 255, 0.4);
-            display: block;
-            color: black;
-            text-align: center;
-            padding: 15px 15px;
-            text-decoration: none;
-            cursor: pointer; /* Add cursor pointer */
-        }
+	.navbar a {
+		background-color: rgba(255, 255, 255, 0.4);
+		display: block;
+		color: black;
+		text-align: center;
+		padding: 15px 15px;
+		text-decoration: none;
+		cursor: pointer;
+		/* Add cursor pointer */
+	}
 
-        .navbar a:hover {
-            background-color: #FFFF;
-        }
-        
-        .dropbtn {
-            background-color: rgba(255, 255, 255, 0.4);
-            padding: 20px 20px; 
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            font-family: "Lucida Console", "Courier New", Monospace;
-            border-radius: 20px; /* Add border-radius to make the button rounded */
-        }
+	.navbar a:hover {
+		background-color: #FFFF;
+	}
 
-        .dropbtn:hover, .dropbtn:focus {
-            background-color: #FFFF;
-        }
+	.dropbtn {
+		background-color: rgba(255, 255, 255, 0.4);
+		padding: 20px 20px;
+		font-size: 16px;
+		font-weight: bold;
+		border: none;
+		cursor: pointer;
+		font-family: "Lucida Console", "Courier New", Monospace;
+		border-radius: 20px;
+		/* Add border-radius to make the button rounded */
+	}
 
-        .dropdown {
-            float: right;
-            position: relative;
-            display: flex;
-        }
+	.dropbtn:hover,
+	.dropbtn:focus {
+		background-color: #FFFF;
+	}
 
-        .dropdown-content {
-            display: none;
-            position: flex;
-            background-color: rgba(255, 255, 255, 0.4);
-            min-width: 160px;
-            overflow: auto;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            right: 0;
-            z-index: 1;
-            border-radius: 20px;
-        }
+	.dropdown {
+		float: right;
+		position: relative;
+		display: flex;
+	}
 
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
+	.dropdown-content {
+		display: none;
+		position: flex;
+		background-color: rgba(255, 255, 255, 0.4);
+		min-width: 160px;
+		overflow: auto;
+		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+		right: 0;
+		z-index: 1;
+		border-radius: 20px;
+	}
 
-        .dropdown a:hover {background-color: black;}
+	.dropdown-content a {
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+	}
 
-        .show {display: block;}
+	.dropdown a:hover {
+		background-color: black;
+	}
 
-		
-	.button{
+	.show {
+		display: block;
+	}
+
+	.button {
 		margin-top: 80px;
 		padding: 20px 15px;
 		border: none;
@@ -216,19 +198,19 @@ body {
 		font-family: "Lucida Console", "Courier New", Monospace;
 	}
 
-	.button-div{
-		text-align:center;
-	} 
+	.button-div {
+		text-align: center;
+	}
 
-        #page {
-            text-align: center;
-            padding: 20px;
-        }
+	#page {
+		text-align: center;
+		padding: 20px;
+	}
 
-        canvas {
-            display: block;
-            margin: -70px auto;
-        }
+	canvas {
+		display: block;
+		margin: -70px auto;
+	}
 </style>
 
 
@@ -239,12 +221,12 @@ body {
 <div class="navbar">
 	<button onclick="myFunction()" class="dropbtn">Menu</button>
 	<div id="myDropdown" class="dropdown-content">
-	<a href="index.html" onclick="toggleMenu()">Home</a>
-	<a href="StableMatchIntro.html" onclick="toggleMenu()">Stable Matching Simulation</a>
-	<a href="Asymptotics.html" onclick="toggleMenu()">Asymptotics</a>
-	<a href="SubArraySum.html" onclick="toggleMenu()">Duck Game (Divide-and-Conquer)</a>
-	<a href="KnapsackProblem.html" onclick="toggleMenu()">Knapsack Problem</a>
-	<a href="AboutThisProject.html" onclick="toggleMenu()">About This Project</a>
+		<a href="index.html" onclick="toggleMenu()">Home</a>
+		<a href="StableMatchIntro.html" onclick="toggleMenu()">Stable Matching Simulation</a>
+		<a href="Asymptotics.html" onclick="toggleMenu()">Asymptotics</a>
+		<a href="SubArraySum.html" onclick="toggleMenu()">Duck Game (Divide-and-Conquer)</a>
+		<a href="KnapsackProblem.html" onclick="toggleMenu()">Knapsack Problem</a>
+		<a href="AboutThisProject.html" onclick="toggleMenu()">About This Project</a>
 	</div>
 </div>
 
@@ -286,14 +268,14 @@ body {
 
 <div id="CheatSheet">
 	<strong>Input:</strong> preference lists for n families &#127968; and n animals &#128054;&#128049;
-    <br>
-    <strong>Output:</strong> a stable matching &#127968; &#128153; &#128054;&#128049;
-    <br>
+	<br>
+	<strong>Output:</strong> a stable matching &#127968; &#128153; &#128054;&#128049;
+	<br>
 </div>
 
 <div id="Questions1">
 	<details>
-	<br>
+		<br>
 		<summary>What is a <em>matching</em>?</summary>
 		<div>
 			<strong>Matching</strong>: set M of family-animal pairs where each family/animal is in at most one pair
@@ -302,31 +284,32 @@ body {
 
 <div id="Questions2">
 	<details>
-	<br>
+		<br>
 		<summary>What is a <em> perfect matching</em>?</summary>
 		<div>
 			<strong>Perfect Matching</strong>: each family/animal in exactly one pair
-			(required to have <em>same</em> number of families as animals)		
+			(required to have <em>same</em> number of families as animals)
 		</div>
 </div>
 
 <div id="Questions3">
 	<details>
-	<br>
+		<br>
 		<summary>What is <em>instability</em>?</summary>
 		<div>
-			<strong>Instability</strong> (with respect to matching M): a pair <strong>(f, j)</strong> does not exist in M such that:
+			<strong>Instability</strong> (with respect to matching M): a pair <strong>(f, j)</strong> does not exist in
+			M such that:
 			<ul>
 				<li><strong>(f, j&rsquo;)</strong> exists in M, but f prefers j to j&rsquo;</li>
 				<li><strong>(f&rsquo;, j)</strong> exists in M, but j prefers f to f&rsquo;</li>
-			  </ul>	
+			</ul>
 			So <strong>(f, j)</strong> is the instability
 		</div>
 </div>
 
 <div id="Questions4">
 	<details>
-	<br>
+		<br>
 		<summary>What is a <em>stable matching</em>?</summary>
 		<div>
 			<strong>Stable Matching</strong>: perfect matching with no instabilities
@@ -335,7 +318,7 @@ body {
 
 <div class="button-div">
 	<button class="button" id="simButton">
-		<b><a href ="StableMatchingSimulator.html">Try the simulator here!</a></b>
+		<b><a href="StableMatchingSimulator.html">Try the simulator here!</a></b>
 	</button>
 </div>
 
@@ -343,22 +326,21 @@ body {
 	/* When the user clicks on the button, 
 	toggle between hiding and showing the dropdown content */
 	function myFunction() {
-	  document.getElementById("myDropdown").classList.toggle("show");
+		document.getElementById("myDropdown").classList.toggle("show");
 	}
-	
-	// Close the dropdown if the user clicks outside of it
-	window.onclick = function(event) {
-	  if (!event.target.matches('.dropbtn')) {
-		var dropdowns = document.getElementsByClassName("dropdown-content");
-		var i;
-		for (i = 0; i < dropdowns.length; i++) {
-		  var openDropdown = dropdowns[i];
-		  if (openDropdown.classList.contains('show')) {
-			openDropdown.classList.remove('show');
-		  }
-		}
-	  }
-	}
-	</script>
-</body>
 
+	// Close the dropdown if the user clicks outside of it
+	window.onclick = function (event) {
+		if (!event.target.matches('.dropbtn')) {
+			var dropdowns = document.getElementsByClassName("dropdown-content");
+			var i;
+			for (i = 0; i < dropdowns.length; i++) {
+				var openDropdown = dropdowns[i];
+				if (openDropdown.classList.contains('show')) {
+					openDropdown.classList.remove('show');
+				}
+			}
+		}
+	}
+</script>
+</body>
