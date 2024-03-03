@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<!---styling the header with css-->
-	<style>
-	.header{
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!---styling the header with css-->
+<style>
+	/* .header{
 	  padding: 40px;
 	  text-align: center;
 	  background: #9785a8;
@@ -48,63 +48,258 @@
 	  border-width: 1px;
 	  font-family: Arial;
 	  padding: 10px 20px;
+	} */
+
+	.button {
+		padding: 15px 15px;
+		border: none;
+		background-color: white;
+		color: black;
+		text-align: center;
+		display: inline-block;
+		font-size: 15px;
+		text-decoration: none;
+	}
+
+	.button-div {
+		text-align: center;
+	}
+
+	*/ .header {
+		padding: 40px;
+		text-align: center;
+		background: #D9C5FF;
+		color: white;
+		font-weight: bold;
+	}
+
+	body {
+		background-color: #D9C5FF;
+		color: black;
+		padding: 0px 200px;
+		/* margin: 100px; */
+		font-family: "Lucida Console", "Courier New", Monospace;
+		display: center;
+		justify-content: center;
+		align-items: center;
+		font-size: 15px;
+	}
+
+	.header {
+		padding: 85px;
+		text-align: center;
+		background: #D9C5FF;
+		color: white;
+		position: relative;
+	}
+
+	.header h1 {
+		font-size: 45px;
+		font-weight: bold;
+		/* Make the header bold */
+	}
+
+	.navbar {
+		overflow: hidden;
+		/* background-color: rgba(255, 255, 255, 0.4); */
+		/* Transparent white color */
+		display: flex;
+		/* Use flexbox */
+		flex-direction: column;
+		/* Align menu items vertically */
+		position: absolute;
+		/* Position the menu absolutely */
+		top: 0;
+		/* Align the menu to the top */
+		right: 0;
+		/* Align the menu to the right */
+		padding: 5px 0;
+		margin-top: 90px;
+		margin-right: 40px;
+		/* Add padding to the top and bottom */
+		z-index: 1;
+		/* Ensure the menu is above other content */
+		border-radius: 20px;
+		/* Add border-radius to make the button rounded */
+	}
+
+	.navbar a {
+		background-color: rgba(255, 255, 255, 0.4);
+		display: block;
+		color: black;
+		text-align: center;
+		padding: 15px 15px;
+		text-decoration: none;
+		cursor: pointer;
+		/* Add cursor pointer */
+	}
+
+	.navbar a:hover {
+		background-color: #FFFF;
+	}
+
+	.dropbtn {
+		background-color: rgba(255, 255, 255, 0.4);
+		padding: 20px 20px;
+		font-size: 16px;
+		font-weight: bold;
+		border: none;
+		cursor: pointer;
+		font-family: "Lucida Console", "Courier New", Monospace;
+		border-radius: 20px;
+		/* Add border-radius to make the button rounded */
+	}
+
+	.dropbtn:hover,
+	.dropbtn:focus {
+		background-color: #FFFF;
+	}
+
+	.dropdown {
+		float: right;
+		position: relative;
+		display: flex;
+	}
+
+	.dropdown-content {
+		display: none;
+		position: flex;
+		background-color: rgba(255, 255, 255, 0.4);
+		min-width: 160px;
+		overflow: auto;
+		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+		right: 0;
+		z-index: 1;
+		border-radius: 20px;
+	}
+
+	.dropdown-content a {
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+	}
+
+	.dropdown a:hover {
+		background-color: black;
+	}
+
+	.show {
+		display: block;
+	}
+
+	.button {
+		margin-top: 80px;
+		padding: 20px 15px;
+		border: none;
+		background-color: rgba(234, 209, 24, 0.939);
+		color: #1862;
+		text-align: center;
+		display: inline-block;
+		font-size: 20px;
+		border-radius: 10px;
+		font-family: "Lucida Console", "Courier New", Monospace;
+	}
+
+	.button-div {
+		text-align: center;
+	}
+
+	#page {
+		text-align: center;
+		padding: 20px;
+	}
+
+	canvas {
+		display: block;
+		margin: -70px auto;
+	}
+
+	@keyframes dropWords {
+		0% {
+			transform: translate(-100%, -100%);
+			opacity: 0;
+			font-size: 10px;
+		}
+
+		100% {
+			transform: translateX(0);
+			opacity: 1;
+			font-size: 45px;
+			font-weight: bold;
+			letter-spacing: 3px;
+		}
+	}
+
+	.dropping-word {
+		display: inline-block;
+		/* Make the words appear horizontally */
+		white-space: nowrap;
+		/* Prevent line breaks */
+		animation: dropWords 0.5s ease forwards;
+	}
+
+	/* Add space between words */
+	.dropping-word:not(:last-child) {
+		margin-right: 10px;
 	}
 
 	.duck {
-		margin:15px;
-		margin-top:0px;
-		display:inline-block;
-		width:50px;
-		height:50px;
+		margin: 15px;
+		margin-top: 0px;
+		display: inline-block;
+		width: 50px;
+		height: 50px;
 	}
 
-	#spacing{
-		height:200px;
+	#spacing {
+		height: 200px;
 	}
 
 	p {
 		/*This is a hack, please find a solution...*/
 		margin-top: -46px;
 		margin-left: 35px;
+		font-family: "Lucida Console", "Courier New", Monospace;
 	}
 
 	#duckWrapper {
-		margin:auto;
+		margin: auto;
 		text-align: center;
-		width:100%;
-		position:relative;
+		width: 100%;
+		position: relative;
 	}
 
 	#UIWrapper {
-		margin:auto;
-		margin-top:0px;
+		margin: auto;
+		margin-top: 0px;
 		text-align: center;
-		width:100%;
+		width: 100%;
 
 	}
 
 	#hose {
-		width:50px;
-		height:80px;
+		width: 50px;
+		height: 80px;
 	}
 
 	#hoseWrapper {
-		margin:auto;
-		margin-top:180px;
+		margin: auto;
+		margin-top: 180px;
 		text-align: center;
-		width:100%;
+		width: 100%;
 	}
 
-	#backgroundWrapper{
-		margin:auto;
-		margin-top:10px;
+	#backgroundWrapper {
+		margin: auto;
+		margin-top: 10px;
 		text-align: center;
-		background-size:cover;
-		width:975px;
-		height:650px;
+		background-size: cover;
+		width: 975px;
+		height: 650px;
 		object-fit: center;
 		background-repeat: no-repeat;
-
+		font-family: "Lucida Console", "Courier New", Monospace;
 	}
 
 	#Explanation {
@@ -120,27 +315,29 @@
 	.explanationButtons {
 		margin: auto;
 		text-align: center;
-		display:block;
+		display: block;
 	}
 
-	#Instruction{
+	#Instruction {
 		display: block;
 		margin: 15px;
-		text-align:center;
+		text-align: center;
 	}
-	#InstructionWrapper{
+
+	#InstructionWrapper {
 		margin: 50px;
+		font-family: "Lucida Console", "Courier New", Monospace;
 
 	}
 
-	.instructionButtons{
+	.instructionButtons {
 		margin: auto;
 		text-align: center;
-		display:block;
+		display: block;
 	}
 
-	#sprayButton{
-		
+	#sprayButton {
+
 		margin-top: 20px;
 		margin-left: 700px;
 		background-image: url('SASImg/spraysign2.png');
@@ -148,333 +345,368 @@
 		background-position: center;
 		background-size: cover;
 		height: 73px;
-		width:95px;
+		width: 95px;
 		border: none;
 	}
+</style>
+<div class="header">
+	<div class="dropping-word" style="animation-delay: 0.2s;">Duck</div>
+    <div class="dropping-word" style="animation-delay: 0.4s;">Game</div>
+    <div class="dropping-word" style="animation-delay: 0.6s;">(Divide-and-Conquer)</div>
+	<div class="dropping-word" style="animation-delay: 0.8s;"> &#129414;</div>
+</div>
 
-
-	</style>
-	<div class="header">
-	  <h1>Welcome to the MHC Algorithms Help Website!</h1>
-
+<div class="navbar">
+	<button onclick="myFunction()" class="dropbtn">Menu</button>
+	<div id="myDropdown" class="dropdown-content">
+		<a href="index.html" onclick="toggleMenu()">Home</a>
+		<a href="StableMatchIntro.html" onclick="toggleMenu()">Stable Matching Simulation</a>
+		<a href="Asymptotics.html" onclick="toggleMenu()">Asymptotics</a>
+		<a href="SubArraySum.html" onclick="toggleMenu()">Duck Game (Divide-and-Conquer)</a>
+		<a href="KnapsackProblem.html" onclick="toggleMenu()">Knapsack Problem</a>
+		<a href="AboutThisProject.html" onclick="toggleMenu()">About This Project</a>
 	</div>
+</div>
 
-	<div class="navbar">
-	  <a href = "index.html">Home</a>
-	  <a href = "StableMatchIntro.html">Stable Matching Simulation</a>
-	  <a href = "SubArraySum.html">Duck Game (Divide-and-Conquer)</a>
-	  <a href = "KnapsackProblem.html">Knapsack Problem</a>
-	  <a href = "AboutThisProject.html">About This Project</a>
-	</div>
+<script>
+	/* When the user clicks on the button, 
+	toggle between hiding and showing the dropdown content */
+	function myFunction() {
+		document.getElementById("myDropdown").classList.toggle("show");
+	}
 
+	// Close the dropdown if the user clicks outside of it
+	window.onclick = function (event) {
+		if (!event.target.matches('.dropbtn')) {
+			var dropdowns = document.getElementsByClassName("dropdown-content");
+			var i;
+			for (i = 0; i < dropdowns.length; i++) {
+				var openDropdown = dropdowns[i];
+				if (openDropdown.classList.contains('show')) {
+					openDropdown.classList.remove('show');
+				}
+			}
+		}
+	}
+</script>
 
-	<body>
-		<div id ="instructionWrapper">
-			<button id="hideInstruction" class="instructionButtons" type="button" onclick="
+<body>
+	<div id="instructionWrapper">
+		<button id="hideInstruction" class="instructionButtons" type="button" onclick="
 				$('#Instruction').css('display', 'none');
 				
 				$('#hideInstruction').css('display', 'none');
 				$('#showInstruction').css('display', 'block');
 			">Hide Instructions and Rules</button>
-			<button id="showInstruction" class="instructionButtons" style="display:none" type="button" onclick="$('#Instruction').css('display', 'block');
+		<button id="showInstruction" class="instructionButtons" style="display:none" type="button" onclick="$('#Instruction').css('display', 'block');
 				
 				$('#hideInstruction').css('display', 'block');
 				$('#showInstruction').css('display', 'none');
 				">Show Instructions and Rules
-			</button>
-			
-			<p id="Instruction">
-				In this game, your goal is to get the highest score possible! You have to choose a set of ducks that are in a row to spray with the hose. <br>
+		</button>
 
-				There are 3 levels, then a free play mode where you can pick the number of ducks (with a max of 16).
-				<br>
-				<br>
-				
-				You choose the ducks by clicking on the duck at the start and at the end of the selection you want to make.
-				<br>
+		<p id="Instruction">
+			In this game, your goal is to get the highest score possible! You have to choose a set of ducks that are in
+			a row to spray with the hose. <br>
 
-				You may deselect a duck at the start or end of your selection by clicking on those ducks.
-				<br><br>
+			There are 3 levels, then a free play mode where you can pick the number of ducks (with a max of 16).
+			<br>
+			<br>
 
-				If you think you have chosen the best set of ducks, click the button that says "Spray"
-			</p>
+			You choose the ducks by clicking on the duck at the start and at the end of the selection you want to make.
+			<br>
+
+			You may deselect a duck at the start or end of your selection by clicking on those ducks.
+			<br><br>
+
+			If you think you have chosen the best set of ducks, click the button that says "Spray"
+		</p>
+
+	</div>
+
+	<div id="backgroundWrapper" style="background-image: url('SASImg/background1.png');">
+		<div id="spacing"></div>
+		<div id="duckWrapper"></div>
+		<div id="hoseWrapper">
+			<img id="hose" src="SASImg/hose.png"></img>
 
 		</div>
-
-		<div id ="backgroundWrapper" style="background-image: url('SASImg/background1.png');">
-			<div id ="spacing"></div>
-			<div id="duckWrapper"></div>
-			<div id="hoseWrapper">
-				<img id="hose" src ="SASImg/hose.png"></img>
-
-			</div>
-			<!-- Button for checking -->
-			<button id="sprayButton" type="button" onclick="hose()"></button>
-			<div id="UIWrapper">
-				<button type="button" onclick="repopulate()">New Game</button>
-				<input type=text value=2 id="nInput">
-			</div>
+		<!-- Button for checking -->
+		<button id="sprayButton" type="button" onclick="hose()"></button>
+		<div id="UIWrapper">
+			<button type="button" onclick="repopulate()">New Game</button>
+			<input type=text value=2 id="nInput">
 		</div>
+	</div>
 
-	
-		<!-- Algorithm explanation and expansion -->
-		<div id="ExplanationWrapper">
-			<p id ="explainationIntro" style="text-align:center">
-				Have you figured out a pattern to always get the highest score?
-				<br>
-				What if there were more ducks, maybe 100, 1,000, or even 1,000,000? Do you think you could still find a solution?
-				<br>
-				See how you could solve this with a divide-and-conquer method below.
-			</p>
-			<button id="showExplanation" class="explanationButtons" type="button" onclick="
+
+	<!-- Algorithm explanation and expansion -->
+	<div id="ExplanationWrapper">
+		<p id="explainationIntro" style="text-align:center">
+			Have you figured out a pattern to always get the highest score?
+			<br>
+			What if there were more ducks, maybe 100, 1,000, or even 1,000,000? Do you think you could still find a
+			solution?
+			<br>
+			See how you could solve this with a divide-and-conquer method below.
+		</p>
+		<button id="showExplanation" class="explanationButtons" type="button" onclick="
 				$('#Explanation').css('display', 'block');
 				
 				$('#hideExplanation').css('display', 'block');
 				$('#showExplanation').css('display', 'none');
 			">Show Algorithm Explanation</button>
-			<button id="hideExplanation" class="explanationButtons" style="display:none" type="button" onclick="
+		<button id="hideExplanation" class="explanationButtons" style="display:none" type="button" onclick="
 				$('#Explanation').css('display', 'none');
 				
 				$('#hideExplanation').css('display', 'none');
 				$('#showExplanation').css('display', 'block');
 			">Hide Algorithm Explanation</button>
-			<p id="Explanation">
-				<br><br>
-				<a href="https://www.youtube.com/watch?v=6yBYcFg-v5g&feature=youtu.be">We've put together this video which explains the divide-and-conquer method for this problem.</a>
-				<br><br>
+		<p id="Explanation">
+			<br><br>
+			<a href="https://www.youtube.com/watch?v=6yBYcFg-v5g&feature=youtu.be">We've put together this video which
+				explains the divide-and-conquer method for this problem.</a>
+			<br><br>
 
-				This algorithm works very cleanly for arrays with a number of elements equal to some power of two. The process is the same for less convenient numbers, but the math isn't as beautiful.<br><br><br>
+			This algorithm works very cleanly for arrays with a number of elements equal to some power of two. The
+			process is the same for less convenient numbers, but the math isn't as beautiful.<br><br><br>
 
 
-				Feel free to experiment with different values of n! Once you get to level 8 (where the number of ducks = n = 8), you are free to type in any number between 1 and 16 inclusive and try out your algorithmic understanding.
+			Feel free to experiment with different values of n! Once you get to level 8 (where the number of ducks = n =
+			8), you are free to type in any number between 1 and 16 inclusive and try out your algorithmic
+			understanding.
 
-				<br><br>
+			<br><br>
 
-				<a href="https://youtu.be/ohHWQf1HDfU?t=431">If you'd like a more detailed explanation, we recommend this video!</a>
-			</p>
-		</div>
-		<a href="https://docs.google.com/forms/d/e/1FAIpQLSf2dw8dqcWHaisEcfV_Wr_IYGrooIAzXOP3MzzXmH5zBCcTYA/viewform?embedded=true">Feedback Form</a>
-		<script>
-			var level = 0;
+			<a href="https://youtu.be/ohHWQf1HDfU?t=431">If you'd like a more detailed explanation, we recommend this
+				video!</a>
+		</p>
+	</div>
+	<a
+		href="https://docs.google.com/forms/d/e/1FAIpQLSf2dw8dqcWHaisEcfV_Wr_IYGrooIAzXOP3MzzXmH5zBCcTYA/viewform?embedded=true">Feedback
+		Form</a>
+	<script>
+		var level = 0;
 
-			var n = 2;
-			var maxN = 16;
+		var n = 2;
+		var maxN = 16;
 
-			var duckDOMs = [];
-			var duckValues = [];
-			var startDuck = -1;
-			var endDuck = -1;
+		var duckDOMs = [];
+		var duckValues = [];
+		var startDuck = -1;
+		var endDuck = -1;
 
-			var playerSum = null;
+		var playerSum = null;
 
-			repopulate();
+		repopulate();
 
-			//setInterval(checkLevel, 500); 
-        	//setInterval(checkN, 500); //Every 500 millis checks to see if n has changed
+		//setInterval(checkLevel, 500); 
+		//setInterval(checkN, 500); //Every 500 millis checks to see if n has changed
 
-        	//set levels
-        	function checkLevel(){
-	        	if(level==0){
-	        		n=2;
-	        		document.getElementById("nInput").value = n;
-	        		repopulate();
-	        	}
-	        	else if(level==1){
-	        		n=4;
-	        		document.getElementById("nInput").value = n;
-	        		repopulate();
-	        	}
-	        	else if(level==2){
-	        		n=8;
-	        		document.getElementById("nInput").value = n;
-	        		repopulate();
-	        	}
-	        	else{
-	        		repopulate();
-	        		setInterval(checkN, 500); 
-	        		if(n<=12){
-		      			document.getElementById("hoseWrapper").style.marginTop = "180px";
-		     		}
-		     		else if(n>12){
-		      			document.getElementById("hoseWrapper").style.marginTop = "115px";
-		    		}
-
-	        		//allow to make own numbers
-	        	}
-        	}
-
-        	//Checks if n has changed
-		    function checkN(){
-		   
-		      var newN = document.getElementById("nInput").value;
-		      if(newN != n && newN > 0 && newN <= maxN){
-		        n = newN;	
-		        checkLevel();	        
-		        repopulate();
-		       }
-		    }
-		    
-
-		    //Restarts the game
-		    function repopulate(){
-				//Clear #duckWrapper
-				for(var i = 0; i < duckDOMs.length; i++){
-	        		document.getElementById("duckWrapper").removeChild(duckDOMs[i]);
-	        	}
-
-	        	duckDOMs = [];
-	        	duckValues = [];
-	        	startDuck = -1;
-	        	endDuck = -1;
-
-	        	playerSum = null;
-
-	        	duckValues = generateArray(n);
-
-	        	for(var i = 0; i < n; i++){
-	        		var duck = makeDuck(duckValues[i], i);
-	        		duckDOMs[i] = duck;
-	        		duckWrapper.appendChild(duck);
-	        	}
-		    }
-
-		    //Updates the GUI and selected subarray of ducks
-		    function updateDuckSelection(){
-		    	var runningSum = 0;
-		    	for(var i = 0; i < n; i++){
-		    		var text = duckDOMs[i].children[1];
-
-		    		if(startDuck <= i && i <= endDuck){
-		    			text.style = "color:red";
-		    			var val = parseInt(text.innerHTML);
-		    			runningSum += val;
-		    		}else{
-		    			text.style = "color:black";
-		    		}
-		    	}
-		    	
-		    	playerSum = runningSum;
-		    }
-
-		    //Returns a duck GUI element with a value of val and id of duck + i
-		    function makeDuck(val, i){
-		    	var duck = document.createElement("div");
-		    	duck.id = "duck" + i;
-		    	duck.className = "duck";
-
-		    	//creates item that looks like the duck
-		    	var duckImg = document.createElement("IMG");
-		    	duckImg.setAttribute("src", "SASImg/duck.png");
-
-		    	duckImg.className = "duckPart";
-		    	duckImg.style = "width:80px;height:80px;";
-
-		    	var duckNum = document.createElement("p");
-		    	duckNum.className = "duckPart";
-		    	duckNum.innerHTML = val;
-
-		    	duck.appendChild(duckImg);
-		    	duck.appendChild(duckNum);
-
-		    	return duck;
-		    }
-
-		    //Play the hose animation and check to see if player was right
-		    function hose(){
-		    	if(startDuck == -1){
-		    		alert("Please make a selection");
-		    	}else{
-			    	var correctSum = maxSubarraySum(duckValues);
-
-			    	if(correctSum == playerSum){
-			    		alert("Winner! Your value of " + playerSum + " was the best you could get!");
-			    		level++;
-			    		checkLevel();
-			    	}else{
-			    		alert("Sorry :( Your sum was " + playerSum + ", but you could have gotten " + correctSum);
-			    	}
-			    }
-		    }
-
-			//creates an array of size n of values between -10 and 10
-			function generateArray(n){
-				var points = [];
-				var min = -4; 
-				var max = 10;
-				var negativeCount = 0;
-
-				for(var i=0; i<n; i++){
-					var rand = Math.floor(Math.random()*(+max - +min))+ +min;
-					
-					//this prevents all the numbers from being negative
-					if(rand<0){
-						negativeCount++;
-					}
-					if(negativeCount==n){
-						rand = rand*-1;
-					}
-					points.push(rand);
+		//set levels
+		function checkLevel() {
+			if (level == 0) {
+				n = 2;
+				document.getElementById("nInput").value = n;
+				repopulate();
+			}
+			else if (level == 1) {
+				n = 4;
+				document.getElementById("nInput").value = n;
+				repopulate();
+			}
+			else if (level == 2) {
+				n = 8;
+				document.getElementById("nInput").value = n;
+				repopulate();
+			}
+			else {
+				repopulate();
+				setInterval(checkN, 500);
+				if (n <= 12) {
+					document.getElementById("hoseWrapper").style.marginTop = "180px";
+				}
+				else if (n > 12) {
+					document.getElementById("hoseWrapper").style.marginTop = "115px";
 				}
 
-				return points;
+				//allow to make own numbers
+			}
+		}
+
+		//Checks if n has changed
+		function checkN() {
+
+			var newN = document.getElementById("nInput").value;
+			if (newN != n && newN > 0 && newN <= maxN) {
+				n = newN;
+				checkLevel();
+				repopulate();
+			}
+		}
+
+
+		//Restarts the game
+		function repopulate() {
+			//Clear #duckWrapper
+			for (var i = 0; i < duckDOMs.length; i++) {
+				document.getElementById("duckWrapper").removeChild(duckDOMs[i]);
 			}
 
-			function maxSubarraySum(array){
-				var max_end = 0;
-				var max_count = 0;
+			duckDOMs = [];
+			duckValues = [];
+			startDuck = -1;
+			endDuck = -1;
 
-				for(var i = 0; i<array.length; i++){
-					max_end += array[i];
+			playerSum = null;
 
-					if(max_count < max_end){
-						max_count = max_end;
-					}
+			duckValues = generateArray(n);
 
-					if(max_end < 0){
-						max_end = 0;
+			for (var i = 0; i < n; i++) {
+				var duck = makeDuck(duckValues[i], i);
+				duckDOMs[i] = duck;
+				duckWrapper.appendChild(duck);
+			}
+		}
+
+		//Updates the GUI and selected subarray of ducks
+		function updateDuckSelection() {
+			var runningSum = 0;
+			for (var i = 0; i < n; i++) {
+				var text = duckDOMs[i].children[1];
+
+				if (startDuck <= i && i <= endDuck) {
+					text.style = "color:red";
+					var val = parseInt(text.innerHTML);
+					runningSum += val;
+				} else {
+					text.style = "color:black";
+				}
+			}
+
+			playerSum = runningSum;
+		}
+
+		//Returns a duck GUI element with a value of val and id of duck + i
+		function makeDuck(val, i) {
+			var duck = document.createElement("div");
+			duck.id = "duck" + i;
+			duck.className = "duck";
+
+			//creates item that looks like the duck
+			var duckImg = document.createElement("IMG");
+			duckImg.setAttribute("src", "SASImg/duck.png");
+
+			duckImg.className = "duckPart";
+			duckImg.style = "width:80px;height:80px;";
+
+			var duckNum = document.createElement("p");
+			duckNum.className = "duckPart";
+			duckNum.innerHTML = val;
+
+			duck.appendChild(duckImg);
+			duck.appendChild(duckNum);
+
+			return duck;
+		}
+
+		//Play the hose animation and check to see if player was right
+		function hose() {
+			if (startDuck == -1) {
+				alert("Please make a selection");
+			} else {
+				var correctSum = maxSubarraySum(duckValues);
+
+				if (correctSum == playerSum) {
+					alert("Winner! Your value of " + playerSum + " was the best you could get!");
+					level++;
+					checkLevel();
+				} else {
+					alert("Sorry :( Your sum was " + playerSum + ", but you could have gotten " + correctSum);
+				}
+			}
+		}
+
+		//creates an array of size n of values between -10 and 10
+		function generateArray(n) {
+			var points = [];
+			var min = -4;
+			var max = 10;
+			var negativeCount = 0;
+
+			for (var i = 0; i < n; i++) {
+				var rand = Math.floor(Math.random() * (+max - +min)) + +min;
+
+				//this prevents all the numbers from being negative
+				if (rand < 0) {
+					negativeCount++;
+				}
+				if (negativeCount == n) {
+					rand = rand * -1;
+				}
+				points.push(rand);
+			}
+
+			return points;
+		}
+
+		function maxSubarraySum(array) {
+			var max_end = 0;
+			var max_count = 0;
+
+			for (var i = 0; i < array.length; i++) {
+				max_end += array[i];
+
+				if (max_count < max_end) {
+					max_count = max_end;
+				}
+
+				if (max_end < 0) {
+					max_end = 0;
+				}
+			}
+			//if it's all negative numbers it defaults to zero... added preventative measure to genArray
+			return max_count;
+		}
+
+		$(document).ready(function () {
+			//Handle Duck Being Clicked
+			$("body").on("click", ".duck", function () {
+				var duck = $(this)[0];
+				var duckId = duck.id;
+				var duckNum = parseInt(duckId.substring(4));
+
+				if (startDuck == -1 && endDuck == -1) {		//First Click of the Game
+					startDuck = duckNum;
+					endDuck = duckNum;
+				} else {								//There already exists a start and end duck
+					if (duckNum == startDuck && startDuck == endDuck) {
+						startDuck = -1;
+						endDuck = -1;
+					} else if (duckNum == startDuck) {
+						startDuck++;
+					} else if (duckNum == endDuck) {
+						endDuck--;
+					} else if (duckNum > endDuck) {	//This should be the new end duck
+						endDuck = duckNum;
+					} else if (duckNum < startDuck) {	//This should be the new start duck
+						startDuck = duckNum;
+					} else {							//This should be the new start or end duck, whichever is closest
+						var distToStart = duckNum - startDuck;
+						var distToEnd = endDuck - duckNum;
+
+						if (distToEnd < distToStart) {
+							endDuck = duckNum;
+						} else {
+							startDuck = duckNum;
+						}
 					}
 				}
-				//if it's all negative numbers it defaults to zero... added preventative measure to genArray
-				return max_count;
-			}
 
-			$(document).ready(function(){
-			    //Handle Duck Being Clicked
-			    $("body").on("click", ".duck", function(){
-			    	var duck = $(this)[0];
-			    	var duckId = duck.id;
-			    	var duckNum = parseInt(duckId.substring(4));
-
-			    	if(startDuck == -1 && endDuck == -1){		//First Click of the Game
-			    		startDuck = duckNum;
-			    		endDuck = duckNum;
-			    	}else{								//There already exists a start and end duck
-			    		if(duckNum == startDuck && startDuck == endDuck){
-			    			startDuck = -1;
-			    			endDuck = -1;
-			    		}else if(duckNum == startDuck){
-			    			startDuck++;
-			    		}else if(duckNum == endDuck){
-			    			endDuck--;
-			    		}else if(duckNum > endDuck){	//This should be the new end duck
-			    			endDuck = duckNum;
-			    		}else if(duckNum < startDuck){	//This should be the new start duck
-			    			startDuck = duckNum;
-			    		}else{							//This should be the new start or end duck, whichever is closest
-			    			var distToStart = duckNum - startDuck;
-			    			var distToEnd = endDuck - duckNum;
-
-			    			if(distToEnd < distToStart){
-			    				endDuck = duckNum;
-			    			}else{
-			    				startDuck = duckNum;
-			    			}
-			    		}
-			    	}
-
-			    	updateDuckSelection();
-			    });
+				updateDuckSelection();
 			});
-		</script>	
-	</body>
+		});
+	</script>
+</body>
+
 </html>
