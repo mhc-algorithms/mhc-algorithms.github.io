@@ -2,6 +2,157 @@
 <html>
 	<head> 
 		<link rel="stylesheet" type="text/css" href="style_aboutpage.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				border: 0;
+			}
+	
+			body {
+				background-color: #D9C5FF;
+				color: #222;
+				margin: 0;
+				font-family: "Lucida Console", "Courier New", Monospace;
+			}
+	
+			.header {
+				padding: 25px;
+				text-align: center;
+				background: #D9C5FF;
+				color: white;
+				position: relative;
+			}
+	
+			.header h1 {
+				font-size: 45px;
+				font-weight: bold;
+				/* Make the header bold */
+			}
+	
+			.navbar {
+				overflow: hidden;
+				/* background-color: rgba(255, 255, 255, 0.4); */
+				/* Transparent white color */
+				display: flex;
+				/* Use flexbox */
+				flex-direction: column; /* Align menu items vertically */
+				position: absolute;
+				/* Position the menu absolutely */
+				top: 0;
+				/* Align the menu to the top */
+				right: 0;
+				/* Align the menu to the right */
+				padding: 5px 0;
+				margin-top: 90px;
+				margin-right: 40px;
+				/* Add padding to the top and bottom */
+				z-index: 1;
+				/* Ensure the menu is above other content */
+				border-radius: 20px; /* Add border-radius to make the button rounded */
+			}
+	
+			.navbar a {
+				background-color: rgba(255, 255, 255, 0.4);
+				display: block;
+				color: black;
+				text-align: center;
+				padding: 15px 15px;
+				text-decoration: none;
+				cursor: pointer; /* Add cursor pointer */
+			}
+	
+			.navbar a:hover {
+				background-color: #FFFF;
+			}
+			
+			.dropbtn {
+				background-color: rgba(255, 255, 255, 0.4);
+				padding: 20px 20px; 
+				font-size: 16px;
+				font-weight: bold;
+				border: none;
+				cursor: pointer;
+				font-family: "Lucida Console", "Courier New", Monospace;
+				border-radius: 20px; /* Add border-radius to make the button rounded */
+			}
+	
+			.dropbtn:hover, .dropbtn:focus {
+				background-color: #FFFF;
+			}
+	
+			.dropdown {
+				float: right;
+				position: relative;
+				display: flex;
+			}
+	
+			.dropdown-content {
+				display: none;
+				position: flex;
+				background-color: rgba(255, 255, 255, 0.4);
+				min-width: 160px;
+				overflow: auto;
+				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+				right: 0;
+				z-index: 1;
+				border-radius: 20px;
+			}
+	
+			.dropdown-content a {
+				color: black;
+				padding: 12px 16px;
+				text-decoration: none;
+				display: block;
+			}
+	
+			.dropdown a:hover {background-color: black;}
+	
+			.show {display: block;}
+	
+			#page {
+				text-align: center;
+				padding: 20px;
+			}
+	
+			canvas {
+				display: block;
+				margin: -70px auto;
+			}
+	
+			@keyframes dropWords {
+				0% {
+					transform: translate(-100%, -100%);
+					opacity: 0;
+					font-size: 10px;
+				}
+	
+				100% {
+					transform: translateX(0);
+					opacity: 1;
+					font-size: 45px;
+					font-weight: bold;
+					letter-spacing: 3px;
+				}
+			}
+	
+			.dropping-word {
+				display: inline-block;
+				/* Make the words appear horizontally */
+				white-space: nowrap;
+				/* Prevent line breaks */
+				animation: dropWords 0.5s ease forwards;
+			}
+	
+			/* Add space between words */
+			.dropping-word:not(:last-child) {
+				margin-right: 10px;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -12,16 +163,44 @@
 
 		</div>
 
-		<div class="navbar">
-		  <a href = "index.html">Home</a>
-		  <a href = "StableMatchIntro.html">Stable Matching Simulation</a>
-		  <a href = "SubArraySum.html">Duck Game (Divide-and-Conquer)</a>
-		  <a href = "KnapsackProblem.html">Knapsack Problem</a>
-		  <a href = "AboutThisProject.html">About This Project</a>
+		<div class="PageName"> 
+			<h2>About This Project</h2>
 		</div>
 
+		<div class="navbar">
+			<button onclick="myFunction()" class="dropbtn">Menu</button>
+			<div id="myDropdown" class="dropdown-content">
+			<a href="index.html" onclick="toggleMenu()">Home</a>
+			<a href="StableMatchIntro.html" onclick="toggleMenu()">Stable Matching Simulation</a>
+			<a href="Asymptotics.html" onclick="toggleMenu()">Asymptotics</a>
+			<a href="SubArraySum.html" onclick="toggleMenu()">Duck Game (Divide-and-Conquer)</a>
+			<a href="KnapsackProblem.html" onclick="toggleMenu()">Knapsack Problem</a>
+			<a href="AboutThisProject.html" onclick="toggleMenu()">About This Project</a>
+			</div>
+		</div>
+		<script>
+			/* When the user clicks on the button, 
+			toggle between hiding and showing the dropdown content */
+			function myFunction() {
+			  document.getElementById("myDropdown").classList.toggle("show");
+			}
+			
+			// Close the dropdown if the user clicks outside of it
+			window.onclick = function(event) {
+			  if (!event.target.matches('.dropbtn')) {
+				var dropdowns = document.getElementsByClassName("dropdown-content");
+				var i;
+				for (i = 0; i < dropdowns.length; i++) {
+				  var openDropdown = dropdowns[i];
+				  if (openDropdown.classList.contains('show')) {
+					openDropdown.classList.remove('show');
+				  }
+				}
+			  }
+			}
+			</script>
 		<br><br><br>
-		<div class="body">
+		<div class="body" id="rectangle">
 			<p id="About">
 				This project was created by Mount Holyoke College students Ivy O'Neal-Odom ('20) and Caroline Knote ('20). We worked on it as an independent study during the spring semester of 2020 and were advised by Audrey St. John.
 				<br><br>
@@ -32,6 +211,8 @@
 				We created our modules with the intention to have interactive applications that gave immediate feedback to a student so that they could learn as they interacted with the program. 
 				<br><br>
 				We created modules for three algorithms: Stable Matching, the maximum sub array sum problem, and the knapsack problem. We hope to pass this project on to other students who may be interested in working more on this and creating other modules, as there are many algorithms that we did not get the chance to cover. 
+				<br><br>
+				Then, in Spring 2024, Mount Holyoke College students Claudia Gonzalez-Vazquez ('25') and Anh Thach ('25') worked on improving the site and creating new content. With their help, the website got renovated with a new look, bugs were fixed and a new page was built for Divide-and-Conquer algorithms.
 
 			</p>
 		</div>

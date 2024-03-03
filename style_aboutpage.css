@@ -12,30 +12,13 @@ html{background-color: #D9C5FF;}
 	font-size: 40px;
 } */
 
-.navbar{
-	margin-top: 40px;
-	overflow: hidden;
-	background-color: rgba(255, 255, 255, 0.4); /* Transparent white color */
-	display: flex; /* Use flexbox */
-	justify-content: center; /* Center the items horizontally */
-	font-weight: 10px;
-	padding: 5px 0; /* Add padding to the top and bottom */
-	font-family: "Lucida Console", "Courier New", Monospace;
-
-}
-
-.navbar a{
-	float:left;
+.PageName{
 	display: block;
-	color: black;
+	position: center;
 	text-align: center;
-	padding: 15px 15px;
-	text-decoration: none;
-}
-.navbar a:hover{
-	padding: 15px;
-	background-color: #d4bff5;
-	color: white;
+	margin-top: 50px;
+	font-family: "Inter", Verdana, sans-serif;
+	color: rgb(124, 64, 150);
 }
 
 .body{
@@ -43,3 +26,18 @@ html{background-color: #D9C5FF;}
 	text-align: left;
 	background-color: #D9C5FF;
 }
+
+.body p{
+	display: block;
+	font-family: "Inter", "Courier New", Monospace;
+	text-shadow: 1px 1px 4px #FFFFFF;
+}
+
+#rectangle {
+	background-color: rgba(178, 142, 246, 0.4);
+	padding: 40px;
+	border-radius: 25px;
+	margin: 15px;
+}
+
+

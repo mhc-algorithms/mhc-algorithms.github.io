@@ -1,32 +1,4 @@
-.header{
-  padding: 40px;
-  text-align: center;
-  background: #9785a8;
-  color: white;
-}
-
-.header h1{
-  font-size: 40px;
-}
-
-.navbar{
-  overflow: hidden;
-  background-color: #ffffff;
-}
-
-.navbar a{
-  float:left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 15px 15px;
-  text-decoration: none;
-}
-.navbar a:hover{
-  padding: 15px;
-  background-color: #d4bff5;
-  color: white;
-}
+html{background-color: #D9C5FF;}
 
 .SimHeader {
   font-size:25px;
@@ -45,16 +17,31 @@
   padding: 10px 20px;
 }
 
+.PageName{
+	display: block;
+	position: center;
+	text-align: center;
+	margin-top: 50px;
+	font-family: "Inter", Verdana, sans-serif;
+	color: rgb(124, 64, 150);
+}
+
 p {
 	/*This is a hack, please find a solution...*/
 	margin-top: -46px;
 	margin-left: 35px;
+	font-family: "Inter", Verdana, sans-serif;
+}
+
+a {
+	font-family: "Inter", Verdana, sans-serif; 
 }
 
 #shelf {
 	padding: 5px;
 	margin: 10px;
 	border: 2px solid black;
+	font-family: "Inter", Verdana, sans-serif;
 
 }
 
@@ -87,6 +74,7 @@ p {
 	margin-top: 40px;
 	/*position: absolute;*/
 	/*left: 10px;*/
+	font-family: "Inter", Verdana, sans-serif;
 }
 
 #explanation {
@@ -95,10 +83,13 @@ p {
 }
 
 #UIWrapper {
-	margin:auto;
 	margin-top:50px;
 	text-align: center;
 	width:100%;
+	font-family: "Inter", Verdana, sans-serif;
+	font-size: 14px;
+	margin: 30px;
+	padding: 10px;
 }
 
 #backgroundWrapper{
@@ -117,16 +108,19 @@ p {
 	display: none;
 	margin: 15px;
 	text-align: center;
+	
 }
 
 #ExplanationWrapper {
 	margin: 50px;
 }
 
+
 .explanationButtons {
 	margin: auto;
 	text-align: center;
 	display:block;
+	font-family: "Inter", Verdana, sans-serif;
 }
 
 #Instruction{
@@ -136,18 +130,22 @@ p {
 }
 #InstructionWrapper{
 	margin: 50px;
+	padding-top: 15px;
 }
 
 .instructionButtons{
+
 	margin: auto;
 	text-align: center;
 	display:block;
+	font-family: "Inter", Verdana, sans-serif;
 }
 
 #memoize_table{
 	display: inline-block;
 	position:absolute;
 	right: 20px;
+	font-family: "Inter", Verdana, sans-serif;
 }
 
 .memoize_row {
