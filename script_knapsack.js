@@ -82,6 +82,7 @@ $(document).ready(function(){
 	  if((newN != n && newN > 0 && newN <= maxN) || (new_max_weight != max_weight && new_max_weight <= max_max_weight)){
 	    n = newN;        
 	    max_weight = new_max_weight;
+		//I think I should make the mem table
 	    repopulate();
 	   }
 	}
@@ -349,7 +350,7 @@ $(document).ready(function(){
 					cell.className = "weight_cell";
 
 					if(c != -1){
-						cell.innerHTML = "<b>" + c + "lbs.</b>"
+						cell.innerHTML = "<b>" + c + " lbs.</b>"
 					}
 
 					row.appendChild(cell);

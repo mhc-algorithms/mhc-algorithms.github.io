@@ -228,10 +228,9 @@
 
 				Your goal is to take things from the shelf and put them in your knapsack such that you maximize the value of your knapsack without going over the maximum.<br><br>
 
-				<b>Left Click on a Shelf Item to put it in your Knapsack, Left Click on a Knapsack Item to put it back on the Shelf</b><br><br><br>
+				<b>Left Click on a Shelf Item to put it in your Knapsack, Left Click on a Knapsack Item to put it back on the Shelf</b><br><br>
 
-
-				On the right side of the page there is the memoization table for your shelf.<br>
+				On the right side of the page there is the memoization table for your shelf.<br><br>
 				Once you know what that is and how to use it, it might help you fill your knapsack...
 			</p>
 
@@ -259,11 +258,10 @@
 			<div id="knapsack">
 			</div>
 
-			<div id="memoize_table"></div>
+			<div id="memoize_table" style="word-break: break-word;"></div>
 			<div id="stats_DOM"></div>
 			<div id="explanation"></div>
 		</div>
-
 		<!-- UI for the user to adjust max weight and objects -->
 		<div id="UIWrapper">
 			<button type="button" id="newGame">New Game</button>
@@ -286,7 +284,8 @@
 				$('#showExplanation').css('display', 'block');
 			">Hide Algorithm Explanation</button>
 			<p id="Explanation">
-				The Knapsack problem is a problem solved by dynamic programming!<br>
+				The Knapsack problem is a problem solved by dynamic programming!<br><br>
+
 				This is similar to the divide-and-conquer approach, but it also includes memoization.
 
 				<br><br>
@@ -295,7 +294,6 @@
 				<br><br>
 
 				For the knapsack problem, we have a limited weight in our knapsack, but we want to maximize the value of items we select. In the table, we either have the choice of including an item or not including it, depending on if it will fit within the weight limits, and we calculate the maximum value from those choices. 
-
 
 				<br><br>
 
