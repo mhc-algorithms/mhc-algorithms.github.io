@@ -28,8 +28,6 @@ html{background-color: #D9C5FF;}
 
 p {
 	/*This is a hack, please find a solution...*/
-	margin-top: -46px;
-	margin-left: 35px;
 	font-family: "Inter", Verdana, sans-serif;
 }
 
@@ -61,8 +59,8 @@ a {
 
 #knapsack {
 	border: 2px solid black;
-	width: 30%;
-	height:585px;
+	width: 100%;
+	height:190px;
 	margin-left: 10px;
 	position: relative;
 	z-index: 0;
@@ -74,23 +72,31 @@ a {
 #stats_DOM {
 	margin: 10px;
 	margin-top: 40px;
+	margin-bottom: 20px;
 	/*position: absolute;*/
 	/*left: 10px;*/
 	font-family: "Inter", Verdana, sans-serif;
+	font-size: 17px;
+	font-weight: 500;
 }
 
 #explanation {
 /*	position: absolute;*/
 	right: 10px;
+	font-family: "Inter", Verdana, sans-serif;
+	margin: 10px;
+	background-color: #C2CBFF;
+	border: 1px solid black;
+	border-radius: 15px;
+	padding: 8px;
 }
 
 #UIWrapper {
-	margin-top:50px;
+	margin-top:10px;
 	text-align: center;
 	width:100%;
 	font-family: "Inter", Verdana, sans-serif;
 	font-size: 15px;
-	margin: 30px;
 	padding: 10px;
 	font-weight: 600;
 	position: relative;
@@ -111,7 +117,7 @@ a {
 	margin: 10px;
 }
 
-#backgroundWrapper{
+#backgroundWrapper p {
 	/*margin:auto;*/
 	/*margin-top:0px;*/
 	/*text-align: center;*/
@@ -120,6 +126,9 @@ a {
 	height:650px;*/
 	/*object-fit: center;*/
 	/*background-repeat: no-repeat;*/
+	width: 100%;
+	margin-left: 11px;
+	font-weight: 500;
 
 }
 
@@ -137,6 +146,7 @@ a {
 #ExplanationWrapper {
 	margin: 50px;
 }
+
 
 
 .explanationButtons {
@@ -176,15 +186,20 @@ a {
 
 #memoize_table{
 	display: inline-block;
-	position:absolute;
+	/*position: f;*/
 	right: 20px;
 	font-family: "Inter", Verdana, sans-serif;
-	margin-left: 500px; /* this is hack. Find better ways to have div items not write over each other */
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	width:100%;
+	/*margin-left: 500px; /* this is hack. Find better ways to have div items not write over each other */
 
 }
 
 .memoize_row {
 	border: 1px solid black;
+	background-color: #ffffff;
 }
 
 .memoize_cell {
