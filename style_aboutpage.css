@@ -27,17 +27,23 @@ html{background-color: #D9C5FF;}
 	background-color: #D9C5FF;
 }
 
-.body p{
-	display: block;
-	font-family: "Inter", "Courier New", Monospace;
-	text-shadow: 1px 1px 4px #FFFFFF;
+.Goals {
+	margin: 15px;
+	width: 55%;
+	margin-right: 60px;
+	text-align: justify;
+}
+
+.Contributors{
+	margin: 15px;
 }
 
 #rectangle {
 	background-color: rgba(178, 142, 246, 0.4);
 	padding: 40px;
 	border-radius: 25px;
-	margin: 15px;
+	display: flex;
+	margin-bottom: 50px;
 }
 
 
