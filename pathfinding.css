@@ -1,0 +1,23 @@
+.body{
+	padding: 20px;
+	background-color: #D9C5FF;
+}
+
+.Pathfinding{
+    display: flex;
+    position: relative;
+    margin: 40px;
+}
+
+.credits{
+    margin-left: 40px;
+    margin-right: 40px;
+    padding-bottom: 40px;
+}
+
+.credits h4{
+
+    align-content: center;
+    text-align: center;
+
+}
