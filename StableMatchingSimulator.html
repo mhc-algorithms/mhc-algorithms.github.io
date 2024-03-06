@@ -213,7 +213,7 @@
         <p>
           <b style="font-size: 1.3em;">&#128227; Instructions:</b><br><br>
         <div
-          style="text-align: center; border-style: solid; border-width: 1px; width: 50%; padding-top: 20px; margin-left: auto; margin-right: auto; margin-top: 10px; margin-bottom: 20px; background-color: white;">
+          style="text-align: center; border-style: solid; border-width: 1px; width: 50%; padding-top: 20px; margin-left: auto; margin-right: auto; margin-top: 10px; margin-bottom: 20px; border-radius: 20px; background-color: #C2CBFF;">
           Use the <strong>menus</strong> on the <strong>right</strong> to select which animal goes to which family.
           <br> For example, if you want animal 1 to go to family c,
           <br>then click the drop menu next to the row with animal 1, and set it to family c.
@@ -504,18 +504,18 @@
 
             //these functions change the matching box to show stable, unstable, or incorrect matching
             function noMatching() {
-              document.getElementById("isMatchedBox").style = "text-align: center; border-style: solid; border-width: 1px; width: 50%; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px; background-color: white;";
+              document.getElementById("isMatchedBox").style = "text-align: center; border-style: solid; border-width: 1px; width: 50%; margin-left: auto; margin-right: auto; margin-top: 20px; border-radius: 20px; margin-bottom: 20px; background-color: white;";
               document.getElementById("isMatchedText").innerHTML = "Not a match, families have been assigned multiple animals.";
             }
 
             function stableMatching() {
-              document.getElementById("isMatchedBox").style = "text-align: center; border-style: solid; border-width: 1px; width: 50%; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px; background-color: green;";
+              document.getElementById("isMatchedBox").style = "text-align: center; border-style: solid; border-width: 1px; width: 50%; margin-left: auto; margin-right: auto; margin-top: 20px; border-radius: 20px; margin-bottom: 20px; background-color: green;";
               document.getElementById("isMatchedText").innerHTML = "The Matching is Stable";
             }
 
             function unstableMatching(problemList) {
               var problemString = problemList.toString().replace(/,/g, "<br>Also: ");
-              document.getElementById("isMatchedBox").style = "text-align: center; border-style: solid; border-width: 1px; width: 50%; margin-left: auto; margin-right: auto; margin-top: 20px; margin-bottom: 20px; background-color: #bf2e2e;";
+              document.getElementById("isMatchedBox").style = "text-align: center; border-style: solid; border-width: 1px; width: 50%; margin-left: auto; margin-right: auto; margin-top: 20px; border-radius: 20px; margin-bottom: 20px; background-color: #bf2e2e;";
               document.getElementById("isMatchedText").innerHTML = "The Matching is NOT Stable:<br><br>" + problemString;
             }
 
