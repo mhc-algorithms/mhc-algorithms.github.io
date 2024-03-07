@@ -259,6 +259,9 @@
 		display: none;
 		margin: 15px;
 		text-align: center;
+		background-color: #C2CBFF;
+		border: 1px solid black;
+		border-radius: 15px;
 	}
 
 	#ExplanationWrapper {
@@ -269,12 +272,20 @@
 		margin: auto;
 		text-align: center;
 		display: block;
+		background-color: white;
+		font-family: "Lucida Console", "Courier New", Monospace;
+		border: 1px solid black;
+		border-radius: 15px;
 	}
 
 	#Instruction {
-		display: block;
+		/* display: none; */
 		margin: 15px;
-		text-align: center;
+		text-align: left;
+		background-color: #C2CBFF;
+		border: 1px solid black;
+		border-radius: 15px;
+		padding: 20px;
 	}
 
 	#InstructionWrapper {
@@ -287,6 +298,10 @@
 		margin: auto;
 		text-align: center;
 		display: block;
+		font-family: "Courier New", Verdana, sans-serif;
+		padding: 7px;
+		border-radius: 25px;
+		background-color: white;
 	}
 
 	#sprayButton {
@@ -304,8 +319,8 @@
 </style>
 <div class="header">
 	<div class="dropping-word" style="animation-delay: 0.2s;">Duck</div>
-    <div class="dropping-word" style="animation-delay: 0.4s;">Game</div>
-    <div class="dropping-word" style="animation-delay: 0.6s;">(Divide-and-Conquer)</div>
+	<div class="dropping-word" style="animation-delay: 0.4s;">Game</div>
+	<div class="dropping-word" style="animation-delay: 0.6s;">(Divide-and-Conquer)</div>
 	<div class="dropping-word" style="animation-delay: 0.8s;"> &#129414;</div>
 </div>
 
@@ -314,9 +329,10 @@
 	<div id="myDropdown" class="dropdown-content">
 		<a href="index.html" onclick="toggleMenu()">Home</a>
 		<a href="StableMatchIntro.html" onclick="toggleMenu()">Stable Matching Simulation</a>
-		<a href="Asymptotics.html" onclick="toggleMenu()">Asymptotics</a>
+		<a href="PathFinding.html" onclick="toggleMenu()">Graph Traversals</a>
+		<a href="KnapsackProblem.html" onclick="toggleMenu()">Knapsack Problem (DP)</a>
+		<a href="Unrolling.html" onclick="toggleMenu()">Unrolling (Divide-and-Conquer)</a>
 		<a href="SubArraySum.html" onclick="toggleMenu()">Duck Game (Divide-and-Conquer)</a>
-		<a href="KnapsackProblem.html" onclick="toggleMenu()">Knapsack Problem</a>
 		<a href="AboutThisProject.html" onclick="toggleMenu()">About This Project</a>
 	</div>
 </div>
