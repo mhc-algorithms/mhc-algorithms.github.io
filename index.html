@@ -37,7 +37,8 @@
             /* Transparent white color */
             display: flex;
             /* Use flexbox */
-            flex-direction: column; /* Align menu items vertically */
+            flex-direction: column;
+            /* Align menu items vertically */
             position: absolute;
             /* Position the menu absolutely */
             top: 0;
@@ -50,7 +51,8 @@
             /* Add padding to the top and bottom */
             z-index: 1;
             /* Ensure the menu is above other content */
-            border-radius: 20px; /* Add border-radius to make the button rounded */
+            border-radius: 20px;
+            /* Add border-radius to make the button rounded */
         }
 
         .navbar a {
@@ -60,25 +62,28 @@
             text-align: center;
             padding: 15px 15px;
             text-decoration: none;
-            cursor: pointer; /* Add cursor pointer */
+            cursor: pointer;
+            /* Add cursor pointer */
         }
 
         .navbar a:hover {
             background-color: #FFFF;
         }
-        
+
         .dropbtn {
             background-color: rgba(255, 255, 255, 0.4);
-            padding: 20px 20px; 
+            padding: 20px 20px;
             font-size: 16px;
             font-weight: bold;
             border: none;
             cursor: pointer;
             font-family: "Lucida Console", "Courier New", Monospace;
-            border-radius: 20px; /* Add border-radius to make the button rounded */
+            border-radius: 20px;
+            /* Add border-radius to make the button rounded */
         }
 
-        .dropbtn:hover, .dropbtn:focus {
+        .dropbtn:hover,
+        .dropbtn:focus {
             background-color: #FFFF;
         }
 
@@ -94,7 +99,7 @@
             background-color: rgba(255, 255, 255, 0.4);
             min-width: 160px;
             overflow: auto;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
             right: 0;
             z-index: 1;
             border-radius: 20px;
@@ -107,9 +112,13 @@
             display: block;
         }
 
-        .dropdown a:hover {background-color: black;}
+        .dropdown a:hover {
+            background-color: black;
+        }
 
-        .show {display: block;}
+        .show {
+            display: block;
+        }
 
         #page {
             text-align: center;
@@ -170,13 +179,13 @@
     <div class="navbar">
         <button onclick="myFunction()" class="dropbtn">Menu</button>
         <div id="myDropdown" class="dropdown-content">
-        <a href="index.html" onclick="toggleMenu()">Home</a>
-        <a href="StableMatchIntro.html" onclick="toggleMenu()">Stable Matching Simulation</a>
-        <a href="Asymptotics.html" onclick="toggleMenu()">Asymptotics</a>
-        <a href="PathFinding.html" onclick="toggleMenu()">Graph Traversals</a>
-        <a href="SubArraySum.html" onclick="toggleMenu()">Duck Game (Divide-and-Conquer)</a>
-        <a href="KnapsackProblem.html" onclick="toggleMenu()">Knapsack Problem</a>
-        <a href="AboutThisProject.html" onclick="toggleMenu()">About This Project</a>
+            <a href="index.html" onclick="toggleMenu()">Home</a>
+            <a href="StableMatchIntro.html" onclick="toggleMenu()">Stable Matching Simulation</a>
+            <a href="PathFinding.html" onclick="toggleMenu()">Graph Traversals</a>
+            <a href="KnapsackProblem.html" onclick="toggleMenu()">Knapsack Problem (DP)</a>
+            <a href="Unrolling.html" onclick="toggleMenu()">Unrolling (Divide-and-Conquer)</a>
+            <a href="SubArraySum.html" onclick="toggleMenu()">Duck Game (Divide-and-Conquer)</a>
+            <a href="AboutThisProject.html" onclick="toggleMenu()">About This Project</a>
         </div>
     </div>
 
@@ -188,23 +197,23 @@
         /* When the user clicks on the button, 
         toggle between hiding and showing the dropdown content */
         function myFunction() {
-          document.getElementById("myDropdown").classList.toggle("show");
+            document.getElementById("myDropdown").classList.toggle("show");
         }
-        
+
         // Close the dropdown if the user clicks outside of it
-        window.onclick = function(event) {
-          if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-              var openDropdown = dropdowns[i];
-              if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-              }
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
             }
-          }
         }
-        </script>
+    </script>
 </body>
 
 </html>

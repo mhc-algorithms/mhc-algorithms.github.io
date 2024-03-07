@@ -229,8 +229,8 @@ button{
 #shopType button{
 	padding: 4px;
 	margin: 2px ;
-	font-size: 14px;
-	border-radius: 10px;
+	/* font-size: 14px; */
+	border-radius: 15px;
 	background-color: white;
 }
 
