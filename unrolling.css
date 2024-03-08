@@ -1,0 +1,157 @@
+html{background-color: #D9C5FF;}
+
+.SimHeader {
+  font-size:25px;
+  text-align: center;
+  border-color: black;
+  border-bottom-style: solid;
+  border-width: 1px;
+  font-family: Arial;
+}
+
+.defs {
+  border-style: dashed;
+  border-color: black;
+  border-width: 1px;
+  font-family: Arial;
+  padding: 10px 20px;
+}
+
+.PageName{
+	display: block;
+	position: center;
+	text-align: center;
+	margin-top: 50px;
+	font-family: "Courier New", Verdana, sans-serif;
+	color: rgb(124, 64, 150);
+}
+
+p {
+	/*This is a hack, please find a solution...*/
+	font-family: "Courier New", Verdana, sans-serif;
+}
+
+a {
+	font-family: "Courier New", Verdana, sans-serif; 
+}
+
+#explanation {
+/*	position: absolute;*/
+	right: 10px;
+	font-family: "Courier New", Verdana, sans-serif;
+	margin: 10px;
+	background-color: #C2CBFF;
+	border: 1px solid black;
+	border-radius: 15px;
+	padding: 8px;
+}
+
+#UIWrapper {
+	margin-top:10px;
+	text-align: center;
+	width:100%;
+	font-family: "Courier New", Verdana, sans-serif;
+	font-size: 15px;
+	padding: 10px;
+	font-weight: 600;
+	position: relative;	
+}
+
+#UIWrapper button{
+	padding: 20px;
+	border-radius: 25px;
+	background-color: white;
+	margin-right: 10px;
+
+}
+
+#UIWrapper input{
+	padding: 7px;
+	border-radius: 25px;
+	background-color: white;
+	margin: 10px;
+}
+
+#backgroundWrapper p {
+	/*margin:auto;*/
+	/*margin-top:0px;*/
+	/*text-align: center;*/
+	/*background-size:cover;*/
+	/*width:975px;
+	height:650px;*/
+	/*object-fit: center;*/
+	/*background-repeat: no-repeat;*/
+	width: 100%;
+	margin-left: 11px;
+	font-weight: 500;
+}
+
+#Explanation {
+	display: none;
+	margin: 15px;
+	text-align: left;
+	background-color: #C2CBFF;
+	border: 1px solid black;
+	border-radius: 15px;
+	padding: 20px;
+	
+}
+
+#ExplanationWrapper {
+	margin: 50px;
+}
+
+button{
+	font-family: "Courier New";
+}
+
+.explanationButtons {
+	margin: auto;
+	text-align: center;
+	display:block;
+	font-family: "Courier New", Verdana, sans-serif;
+	padding: 7px;
+	border-radius: 25px;
+	background-color: white;
+}
+
+#Instruction{
+	display: none;
+	margin: 15px;
+	text-align:left;
+	background-color: #C2CBFF;
+	border: 1px solid black;
+	border-radius: 15px;
+	padding: 20px;
+    width: 900px;
+    height: 90px;
+}
+#InstructionWrapper{
+	margin: 50px;
+	padding-top: 15px;
+}
+
+.instructionButtons{
+	margin: auto;
+	text-align: center;
+	display:block;
+	font-family: "Courier New", Verdana, sans-serif;
+	padding: 7px;
+	border-radius: 15px;
+	background-color: white;
+}
+
+#shopType{
+	padding: 15px;
+	margin: 20px;
+    /* font-size: 20px; */
+}
+
+#shopType button{
+	padding: 4px;
+	margin: 2px ;
+	font-size: 15px;
+	border-radius: 10px;
+	background-color: white;
+}
+
