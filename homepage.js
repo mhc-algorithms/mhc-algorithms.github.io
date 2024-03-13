@@ -1,6 +1,6 @@
 import * as THREE from "./node_modules/three";
 import { TrackballControls } from "./node_modules/three/examples/jsm/controls/TrackballControls";
-import * as TWEEN from '@tweenjs/tween.js';
+import * as TWEEN from './node_modules/@tweenjs/tween.js';
 
 
 var DOT_SIZE = 20;
