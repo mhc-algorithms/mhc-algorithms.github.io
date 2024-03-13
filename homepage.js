@@ -2,7 +2,6 @@ import * as THREE from "./node_modules/three";
 import { TrackballControls } from "./node_modules/three/examples/jsm/controls/TrackballControls";
 import * as TWEEN from '@tweenjs/tween.js';
 
-// import {TrackballControls} from "./node_modules/./node_modules/three/examples/jsm/controls/TrackballControls"
 
 var DOT_SIZE = 20;
 var X_START_POS = -8 * DOT_SIZE;
