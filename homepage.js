@@ -3,7 +3,6 @@ import { TrackballControls } from "three/examples/jsm/controls/TrackballControls
 import * as TWEEN from '@tweenjs/tween.js';
 
 
-
 var DOT_SIZE = 20;
 var X_START_POS = -8 * DOT_SIZE;
 var Y_START_POS = -8 * DOT_SIZE;

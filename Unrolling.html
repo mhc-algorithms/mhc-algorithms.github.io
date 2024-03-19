@@ -215,36 +215,55 @@
     <br>
     <div id="instructionWrapper" font="Courier New">
         <center>
-        <button id="showInstruction" class="instructionButtons" type="button" onclick="$('#Instruction').css('display', 'block');
-            
-            $('#hideInstruction').css('display', 'block');
-            $('#showInstruction').css('display', 'none');
-            ">Show Instructions and Rules
-        </button>
-        <button id="hideInstruction" class="instructionButtons" style="display:none" type="button" onclick="
-            $('#Instruction').css('display', 'none');
-            
-            $('#hideInstruction').css('display', 'none');
-            $('#showInstruction').css('display', 'block');
-        ">Hide Instructions and Rules</button>
-        <br>
-        <p id="Instruction">
-            <strong>Step 1:</strong> Choose one algorithm (Binary Search, Merge Sort, Fibbonacci).<br><br>
-            <strong>Step 2:</strong> .<br><br>
-            <strong>Step 3:</strong> <br><br>
-        </p>
-    </center>
+            <div id ="instructionWrapper" font="Courier New"> 
+                <button id="showInstruction" class="instructionButtons" type="button" onclick="$('#Instruction').css('display', 'block');
+                    
+                    $('#hideInstruction').css('display', 'block');
+                    $('#showInstruction').css('display', 'none');
+                    ">Show Instructions and Rules
+                </button>
+                <button id="hideInstruction" class="instructionButtons" style="display:none" type="button" onclick="
+                    $('#Instruction').css('display', 'none');
+                    
+                    $('#hideInstruction').css('display', 'none');
+                    $('#showInstruction').css('display', 'block');
+                ">Hide Instructions and Rules</button>
+            </button>
+            <p id="Instruction">
+                <strong>Step 1:</strong> Choose one algorithm (Binary Search, Merge Sort, Fibbonacci).<br><br>
+                <strong>Step 2:</strong> .<br><br>
+                <strong>Step 3:</strong> <br><br>
+            </p>
+        </center>
     </div>
 
-    <div id ="backgroundWrapper">
+    <div id="backgroundWrapper">
         <!--buttons for the shop type-->
         <center>
-        <div id="shopType" style="font-family: 'Courier New', Courier, monospace">
-            <button id="bakeryButton">Binary Search</button>
-            <button id="clothesButton">Merge Sort</button>
-            <button id="gardenButton">Fibbonacci</button>
+            <div id="unrollingType" style="font-family: 'Courier New', Courier, monospace">
+                <button id="binarySearchButton">Binary Search</button>
+                <button id="mergeSortButton">Merge Sort</button>
+                <button id="FibonacciButton">Fibonacci</button>
         </center>
+    </div>
 
-        </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var fibonacciButton = document.getElementById('FibonacciButton');
+            
+            fibonacciButton.addEventListener('click', function() {
+                // Check if 'fib.js' has already been loaded
+                if (!document.getElementById('fibScript')) {
+                    var script = document.createElement('script');
+                    script.src = 'fib.js';
+                    script.id = 'fibScript'; // Add an ID to the script tag to check if it's already been added
+                    document.body.appendChild(script);
+                    
+                    // Optional: disable the button after loading the script, if needed
+                    this.disabled = true;
+                }
+            });
+        });
+    </script>
 
 </body>

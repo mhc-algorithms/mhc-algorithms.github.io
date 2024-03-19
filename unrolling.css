@@ -6,14 +6,14 @@ html{background-color: #D9C5FF;}
   border-color: black;
   border-bottom-style: solid;
   border-width: 1px;
-  font-family: Arial;
+  font-family: 'Open Sans', Arial, sans-serif;
 }
 
 .defs {
   border-style: dashed;
   border-color: black;
   border-width: 1px;
-  font-family: Arial;
+  font-family: 'Open Sans', Arial, sans-serif;
   padding: 10px 20px;
 }
 
@@ -22,23 +22,23 @@ html{background-color: #D9C5FF;}
 	position: center;
 	text-align: center;
 	margin-top: 50px;
-	font-family: "Courier New", Verdana, sans-serif;
+	font-family: 'Open Sans', Arial, sans-serif;
 	color: rgb(124, 64, 150);
 }
 
 p {
 	/*This is a hack, please find a solution...*/
-	font-family: "Courier New", Verdana, sans-serif;
+	font-family: 'Open Sans', Arial, sans-serif;
 }
 
 a {
-	font-family: "Courier New", Verdana, sans-serif; 
+	font-family:'Open Sans', Arial, sans-serif;
 }
 
 #explanation {
 /*	position: absolute;*/
 	right: 10px;
-	font-family: "Courier New", Verdana, sans-serif;
+	font-family: 'Open Sans', Arial, sans-serif;
 	margin: 10px;
 	background-color: #C2CBFF;
 	border: 1px solid black;
@@ -50,7 +50,7 @@ a {
 	margin-top:10px;
 	text-align: center;
 	width:100%;
-	font-family: "Courier New", Verdana, sans-serif;
+	font-family: 'Open Sans', Arial, sans-serif;
 	font-size: 15px;
 	padding: 10px;
 	font-weight: 600;
@@ -73,14 +73,6 @@ a {
 }
 
 #backgroundWrapper p {
-	/*margin:auto;*/
-	/*margin-top:0px;*/
-	/*text-align: center;*/
-	/*background-size:cover;*/
-	/*width:975px;
-	height:650px;*/
-	/*object-fit: center;*/
-	/*background-repeat: no-repeat;*/
 	width: 100%;
 	margin-left: 11px;
 	font-weight: 500;
@@ -102,14 +94,14 @@ a {
 }
 
 button{
-	font-family: "Courier New";
+	font-family: 'Open Sans', Arial, sans-serif;
 }
 
 .explanationButtons {
 	margin: auto;
 	text-align: center;
 	display:block;
-	font-family: "Courier New", Verdana, sans-serif;
+	font-family: 'Open Sans', Arial, sans-serif;
 	padding: 7px;
 	border-radius: 25px;
 	background-color: white;
@@ -134,24 +126,107 @@ button{
 .instructionButtons{
 	margin: auto;
 	text-align: center;
-	display:block;
-	font-family: "Courier New", Verdana, sans-serif;
+	display: block;
+	font-family: 'Open Sans', Arial, sans-serif;
 	padding: 7px;
 	border-radius: 15px;
 	background-color: white;
 }
 
-#shopType{
+#unrollingType{
 	padding: 15px;
 	margin: 20px;
     /* font-size: 20px; */
 }
 
-#shopType button{
-	padding: 4px;
+#unrollingType button{
+	padding: 6px;
 	margin: 2px ;
 	font-size: 15px;
-	border-radius: 10px;
+	border-radius: 20px;
 	background-color: white;
 }
 
+#unrollingType button:hover {
+    background-color: #f3ed56;
+}
+
+.fib-container {
+    color: #333; /* Slightly softer than pure black for text */
+    letter-spacing: 0.5px;
+    text-align: center;
+    padding: 20px;
+    margin: 20px auto; /* Center the container */
+    border-radius: 15px;
+    display: flex;
+	width: 70%;
+	max-width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fib-item {
+    display: inline-block;
+    background: #C2CBFF;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid black; /* Matching the container border */
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin: 10px 0; /* Adjusted for visual balance */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for depth */
+}
+
+/* The `fib-left` and `fib-right` classes are for the <div>s which make up the
+ * Fibonacci tree.  You won't know whether an item goes on the left or the
+ * right until after you have already created it, so hold off on assigning a
+ * <div> to one of these classes until after the function which creates the
+ * <div> returns.  You will be able to modify its class attribute at that time.
+ */
+.fib-left {
+    float: left;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.fib-right {
+    float: right;
+    display: inline-block;
+    margin-left: 4px;
+}
+
+
+/* The fib-list class is provided as a special-purpose container for the <div>
+ * containing the Fibonacci list I recommend you make as a stepping-stone to
+ * understanding the recursive Fibonacci function.
+ */
+ .fib-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; /* Center items for better visual alignment */
+    width: 100%;
+}
+
+/* Enhance buttons within .fib-item for a more integrated look */
+.fib-item button {
+    color: black; /* Button text color */
+    border: 1px solid black; /* Button border */
+    padding: 5px 5px;
+    border-radius: 5px;
+}
+
+.fib-item button:hover {
+    background-color: #f3ed56; 
+}
+
+.fib-item button.clicked {
+    background-color: #f3ed56; 
+}
+#tree-label {
+	font-size: 24px;
+	font-weight: bold;
+	font-family: 'Open Sans', Arial, sans-serif;;
+}
