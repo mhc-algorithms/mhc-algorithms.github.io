@@ -229,11 +229,23 @@
                     $('#showInstruction').css('display', 'block');
                 ">Hide Instructions and Rules</button>
             </button>
-            <p id="Instruction">
+            <div id="Instruction">
                 <strong>Step 1:</strong> Choose one algorithm (Binary Search, Merge Sort, Fibbonacci).<br><br>
-                <strong>Step 2:</strong> .<br><br>
-                <strong>Step 3:</strong> <br><br>
-            </p>
+                <strong>For Binary Search: </strong> <br>
+                <ul>
+                    <li>Drag the circle in the slider to select the number we want to find from our sorted array. </li>
+                    <li>The function should give us back the index of the element we chose from the slider. </li>
+                    <li>Click on the expand buttons to see the full unrolled tree that makes up BinaryS(x)</li>
+                </ul>
+                <br>
+                <strong>For Fibonacci: </strong> <br>
+                <ul>
+                    <li>Drag the circle in the slider to increase the amount of input we will put into the function. </li>
+                    <li>Click on the expand buttons to see the full unrolled tree that makes up Fib(x)</li>
+                    <li>The output of Fib(x) is the result of the recursive Fibbonacci sequence. </li>
+                </ul>
+                <br>
+            </div>
         </center>
     </div>
 
@@ -250,7 +262,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var fibonacciButton = document.getElementById('FibonacciButton');
-            
+            var binaryButton = document.getElementById('binarySearchButton');
+
             fibonacciButton.addEventListener('click', function() {
                 // Check if 'fib.js' has already been loaded
                 if (!document.getElementById('fibScript')) {
@@ -263,6 +276,19 @@
                     this.disabled = true;
                 }
             });
+
+            binarySearchButton.addEventListener('click', function(){
+                // Check if 'fib.js' has already been loaded
+                if (!document.getElementById('binaryScript')) {
+                    var script = document.createElement('script');
+                    script.src = 'binarySearch.js';
+                    script.id = 'binaryScript'; // Add an ID to the script tag to check if it's already been added
+                    document.body.appendChild(script);
+                    
+                    // Optional: disable the button after loading the script, if needed
+                    this.disabled = true;
+                }
+            })
         });
     </script>
 

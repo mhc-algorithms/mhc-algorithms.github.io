@@ -116,7 +116,13 @@ button{
 	border-radius: 15px;
 	padding: 20px;
     width: 900px;
-    height: 90px;
+    height: 90%;
+	padding-left: 40px;
+	font-family: 'Open Sans', Arial, sans-serif;
+}
+
+#Instruction ul{
+	padding-left: 50px;
 }
 #InstructionWrapper{
 	margin: 50px;
@@ -229,4 +235,113 @@ button{
 	font-size: 24px;
 	font-weight: bold;
 	font-family: 'Open Sans', Arial, sans-serif;;
+}
+
+
+/* Binary Search */ 
+
+
+.bsearch-container {
+    color: #333; /* Slightly softer than pure black for text */
+    letter-spacing: 0.5px;
+    text-align: center;
+    padding: 20px;
+    margin: 20px auto; /* Center the container */
+    border-radius: 15px;
+    display: flex;
+	width: 70%;
+	max-width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bsearch-item {
+    display: inline-block;
+    background: #C2CBFF;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid black; /* Matching the container border */
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin: 10px 0; /* Adjusted for visual balance */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for depth */
+}
+
+/* The `fib-left` and `fib-right` classes are for the <div>s which make up the
+ * Fibonacci tree.  You won't know whether an item goes on the left or the
+ * right until after you have already created it, so hold off on assigning a
+ * <div> to one of these classes until after the function which creates the
+ * <div> returns.  You will be able to modify its class attribute at that time.
+ */
+.bsearch-left {
+    float: left;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.bsearch-right {
+    float: right;
+    display: inline-block;
+    margin-left: 4px;
+}
+
+
+/* The fib-list class is provided as a special-purpose container for the <div>
+ * containing the Fibonacci list I recommend you make as a stepping-stone to
+ * understanding the recursive Fibonacci function.
+ */
+ .bsearch-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; /* Center items for better visual alignment */
+    width: 100%;
+}
+
+/* Enhance buttons within .fib-item for a more integrated look */
+.bsearch-item button {
+    color: black; /* Button text color */
+    border: 1px solid black; /* Button border */
+    padding: 5px 5px;
+    border-radius: 5px;
+}
+
+.bsearch-item button:hover {
+    background-color: #f3ed56; 
+}
+
+.bsearch-item button.clicked {
+    background-color: #f3ed56; 
+}
+#tree-label {
+	font-size: 24px;
+	font-weight: bold;
+	font-family: 'Open Sans', Arial, sans-serif;;
+}
+
+.arrayRectangles{
+	background-color: #f8c2ff;
+	border: 0.8px solid black;
+	justify-content: center;
+	align-items: center;
+	width: 400px;
+	height: 50px;
+	text-align: center;
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.weight_cell {
+	border: 0.8px solid black;
+	height: 50px;
+	font-family: 'Open Sans', Arial, sans-serif;
+	text-align: center;
+	margin: 10px;
+	width:4.5%;
+	line-height:50px;
+	color: purple
+	;
 }
