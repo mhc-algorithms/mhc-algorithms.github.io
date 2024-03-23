@@ -140,7 +140,7 @@ button{
 }
 
 #unrollingType button{
-	padding: 6px;
+	padding: 2px;
 	margin: 2px ;
 	font-size: 15px;
 	border-radius: 20px;
@@ -151,8 +151,8 @@ button{
     background-color: #f3ed56;
 }
 
-.fib-container {
-    color: #333; /* Slightly softer than pure black for text */
+.unrollingContainer {
+    color: #333; 
     letter-spacing: 0.5px;
     text-align: center;
     padding: 20px;
@@ -164,6 +164,7 @@ button{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+	/* display: table-column; */
 }
 
 .fib-item {
@@ -171,12 +172,12 @@ button{
     background: #C2CBFF;
     padding: 10px 20px;
     border-radius: 10px;
-    border: 1px solid black; /* Matching the container border */
+    /* border: 1px solid #C2CBFF; Matching the container border */
     flex-direction: column;
     align-items: center;
     position: relative;
     margin: 10px 0; /* Adjusted for visual balance */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 /* The `fib-left` and `fib-right` classes are for the <div>s which make up the
@@ -187,13 +188,13 @@ button{
  */
 .fib-left {
     float: left;
-    display: inline-block;
+    display: block;
     margin-right: 4px;
 }
 
 .fib-right {
     float: right;
-    display: inline-block;
+    display: block;
     margin-left: 4px;
 }
 
@@ -226,7 +227,16 @@ button{
     background-color: #f3ed56; 
 }
 #tree-label {
-	font-size: 24px;
-	font-weight: bold;
+	/* font-size: 10px; */
+	/* font-weight: bold; */
 	font-family: 'Open Sans', Arial, sans-serif;;
+}
+
+.clickable {
+    cursor: pointer;
+    color: rgb(0, 0, 0); /* Optional: to visually indicate it's clickable */
+}
+
+.expanded {
+    font-weight: bold;
 }
