@@ -229,67 +229,69 @@
                     $('#showInstruction').css('display', 'block');
                 ">Hide Instructions and Rules</button>
             </button>
-            <div id="Instruction">
-                <strong>Step 1:</strong> Choose one algorithm (Binary Search, Merge Sort, Fibbonacci).<br><br>
-                <strong>For Binary Search: </strong> <br>
-                <ul>
-                    <li>Drag the circle in the slider to select the number we want to find from our sorted array. </li>
-                    <li>The function should give us back the index of the element we chose from the slider. </li>
-                    <li>Click on the expand buttons to see the full unrolled tree that makes up BinaryS(x)</li>
-                </ul>
-                <br>
-                <strong>For Fibonacci: </strong> <br>
-                <ul>
-                    <li>Drag the circle in the slider to increase the amount of input we will put into the function. </li>
-                    <li>Click on the expand buttons to see the full unrolled tree that makes up Fib(x)</li>
-                    <li>The output of Fib(x) is the result of the recursive Fibbonacci sequence. </li>
-                </ul>
-                <br>
-            </div>
+            <p id="Instruction">
+                <strong> &#127794; For Fibonacci: </strong>
+                    <br> &#128073; Click on the button that says Fibonacci.
+                    <br> &#128073; Enter a number in the square slot.
+                    <br> &#128073; Click on the "Generate Tree" to see the unrolling of Fib(x).
+                    <br> &#128073; Then click on the blue square with T(x) to expand the unrolling tree.
+            </p>
         </center>
     </div>
 
     <div id="backgroundWrapper">
         <!--buttons for the shop type-->
         <center>
-            <div id="unrollingType" style="font-family: 'Courier New', Courier, monospace">
+            <div id="unrollingType" style="font-family: 'Courier New', Courier, monospace;">
                 <button id="binarySearchButton">Binary Search</button>
                 <button id="mergeSortButton">Merge Sort</button>
                 <button id="FibonacciButton">Fibonacci</button>
         </center>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var fibonacciButton = document.getElementById('FibonacciButton');
-            var binaryButton = document.getElementById('binarySearchButton');
 
-            fibonacciButton.addEventListener('click', function() {
-                // Check if 'fib.js' has already been loaded
-                if (!document.getElementById('fibScript')) {
-                    var script = document.createElement('script');
-                    script.src = 'fib.js';
-                    script.id = 'fibScript'; // Add an ID to the script tag to check if it's already been added
-                    document.body.appendChild(script);
-                    
-                    // Optional: disable the button after loading the script, if needed
-                    this.disabled = true;
-                }
-            });
+<!-- Fibonacci Sequence Display Area -->
 
-            binarySearchButton.addEventListener('click', function(){
-                // Check if 'fib.js' has already been loaded
-                if (!document.getElementById('binaryScript')) {
-                    var script = document.createElement('script');
-                    script.src = 'binarySearch.js';
-                    script.id = 'binaryScript'; // Add an ID to the script tag to check if it's already been added
-                    document.body.appendChild(script);
-                    
-                    // Optional: disable the button after loading the script, if needed
-                    this.disabled = true;
-                }
-            })
+
+<!-- Link to your external JavaScript file (assuming it's named fib.js) -->
+<div id="fibonacciSection" style="display: none;">
+    <center> 
+        <div style="text-align: center; margin-top: 20px; font-family: Arial, Helvetica, sans-serif;">
+            <label for="userInput">Enter a number for Fibonacci tree (0-12): </label>
+            <input id="userInput" type="number" min="0" max="12" style="margin-top: 10px;">
+            <br>
+            <button onclick="generateTreeFromInput()" class="generate-tree-button" style="margin-top: 20px; border-radius: 10px; padding: 5px;">Generate Tree</button>
+            <br>
+        </div>
+        <h2 style="text-align: center; margin-top: 40px;">
+            T(n) = T(n-1) + T(n-2)
+        </h2>
+    </center>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var fibonacciButton = document.getElementById('FibonacciButton');
+        var fibonacciSection = document.getElementById('fibonacciSection');
+        
+        fibonacciButton.addEventListener('click', function() {
+            // Make the Fibonacci section visible
+            fibonacciSection.style.display = 'block';
+            
+            // Load the 'fib.js' script only once if it hasn't been loaded yet
+            if (!document.getElementById('fibScript')) {
+                var script = document.createElement('script');
+                script.src = 'fib.js';
+                script.id = 'fibScript'; // Add an ID to the script tag to check if it's already been added
+                document.body.appendChild(script);
+                
+                // Optional: disable the button after loading the script, if needed
+                this.disabled = true;
+            }
         });
-    </script>
+    });
+</script>
 
+
+</div>
 </body>
