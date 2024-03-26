@@ -116,7 +116,6 @@ button{
 	border-radius: 15px;
 	padding: 20px;
     width: 900px;
-    height: 90px;
 }
 #InstructionWrapper{
 	margin: 50px;
@@ -125,18 +124,21 @@ button{
 
 .instructionButtons{
 	margin: auto;
-	text-align: center;
-	display: block;
+	text-align: right;
 	font-family: 'Open Sans', Arial, sans-serif;
 	padding: 7px;
 	border-radius: 15px;
 	background-color: white;
 }
+.instructionButtons:hover {
+	background-color: rgb(252, 255, 65); /* Color changes to green on hover */
+}
 
 #unrollingType{
-	padding: 15px;
+	padding: 30px;
 	margin: 20px;
-    /* font-size: 20px; */
+	border-radius: 15px;
+
 }
 
 #unrollingType button{
@@ -151,8 +153,8 @@ button{
     background-color: #f3ed56;
 }
 
-.fib-container {
-    color: #333; /* Slightly softer than pure black for text */
+.unrollingContainer {
+    color: #333; 
     letter-spacing: 0.5px;
     text-align: center;
     padding: 20px;
@@ -171,12 +173,11 @@ button{
     background: #C2CBFF;
     padding: 10px 20px;
     border-radius: 10px;
-    border: 1px solid black; /* Matching the container border */
     flex-direction: column;
     align-items: center;
     position: relative;
-    margin: 10px 0; /* Adjusted for visual balance */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for depth */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	border: 1px solid black;
 }
 
 /* The `fib-left` and `fib-right` classes are for the <div>s which make up the
@@ -187,13 +188,13 @@ button{
  */
 .fib-left {
     float: left;
-    display: inline-block;
+    display: block;
     margin-right: 4px;
 }
 
 .fib-right {
     float: right;
-    display: inline-block;
+    display: block;
     margin-left: 4px;
 }
 
@@ -226,7 +227,26 @@ button{
     background-color: #f3ed56; 
 }
 #tree-label {
-	font-size: 24px;
-	font-weight: bold;
+	/* font-size: 10px; */
+	/* font-weight: bold; */
 	font-family: 'Open Sans', Arial, sans-serif;;
+}
+
+.clickable {
+    cursor: pointer;
+    color: rgb(0, 0, 0); /* Optional: to visually indicate it's clickable */
+}
+
+.expanded {
+    font-weight: bold;
+}
+/* Generate button */
+.generate-tree-button { 
+  background-color: #FFFF;
+  margin-top: 20px;
+  border-radius: 10px;
+  padding: 5px;
+}
+.generate-tree-button:hover {
+  background-color: rgb(252, 255, 65); /* Color changes to green on hover */
 }
