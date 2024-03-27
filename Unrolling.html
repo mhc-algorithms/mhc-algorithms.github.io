@@ -247,20 +247,6 @@
                 <button id="FibonacciButton">Fibonacci</button>
         </center>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var mergeSortButton = document.getElementById('mergeSortButton');
-            var binarySearchButton = document.getElementById('binarySearchButton');
-            var fibonacciButton = document.getElementById('FibonacciButton');
-            var fibonacciSection = document.getElementById('fibonacciSection');
-            var mergeSortSection = document.getElementById('mergeSortSection');
-            
-            // Disable the "Merge Sort" and "Binary Search" buttons
-            mergeSortButton.disabled = true;
-            binarySearchButton.disabled = true;
-        });
-    </script>
     
 <!-- Fibonacci Sequence Display Area -->
 <div id="fibonacciSection" style="display: none;">
@@ -276,9 +262,11 @@
             T(n) = T(n-1) + T(n-2)
         </h2>
     </center>
-</div>
-
 <script>
+    // Make Binary and Merge Sort disabled
+    mergeSortButton.disabled = true;
+    binarySearchButton.disabled = true;
+    
     document.addEventListener('DOMContentLoaded', function() {
         var fibonacciButton = document.getElementById('FibonacciButton');
         var fibonacciSection = document.getElementById('fibonacciSection');
@@ -299,41 +287,5 @@
         });
     });
 </script>
-
-
-<!-- Merge Sort Sequence Display Area -->
-<div id="mergeSortSection" style="display: none;">
-    <center> 
-        <div style="text-align: center; margin-top: 20px; font-family: Arial, Helvetica, sans-serif;">
-            <label for="mergeSortInput">Enter an interger array </label>
-            <input id="mergeSortInput" type="text" placeholder="e.g., 3,1,4,1,5" style="margin-top: 20px;">
-            <br>
-            <br>
-            <button onclick="generateTreeFromInput()" class="generate-tree-button" style="margin-top: 20px; border-radius: 10px; padding: 5px;">Generate Tree</button>
-            <br>
-        </div>
-        <h2 style="text-align: center; margin-top: 40px;">
-            T(n) = 2T(n/2) + O(n)
-        </h2>
-    </center>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var mergeSortButton = document.getElementById('mergeSortButton');
-        var mergeSortSection = document.getElementById('mergeSortSection');
-        
-        mergeSortButton.addEventListener('click', function() {
-            mergeSortSection.style.display = 'block';
-            fibonacciSection.style.display = 'none';
-
-            if (!document.getElementById('mergeSortScript')) {
-                var script = document.createElement('script');
-                script.src = 'mergeSort.js';
-                script.id = 'mergeSortScript'; // Add an ID to the script tag to check if it's already been added
-                document.body.appendChild(script);
-            }
-        });
-    });
-</script>
 </body>
