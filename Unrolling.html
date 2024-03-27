@@ -240,7 +240,6 @@
     </div>
 
     <div id="backgroundWrapper">
-        <!--buttons for the shop type-->
         <center>
             <div id="unrollingType" style="font-family: 'Courier New', Courier, monospace;">
                 <button id="binarySearchButton">Binary Search</button>
@@ -249,16 +248,26 @@
         </center>
     </div>
 
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var mergeSortButton = document.getElementById('mergeSortButton');
+            var binarySearchButton = document.getElementById('binarySearchButton');
+            var fibonacciButton = document.getElementById('FibonacciButton');
+            var fibonacciSection = document.getElementById('fibonacciSection');
+            var mergeSortSection = document.getElementById('mergeSortSection');
+            
+            // Disable the "Merge Sort" and "Binary Search" buttons
+            mergeSortButton.disabled = true;
+            binarySearchButton.disabled = true;
+        });
+    </script>
+    
 <!-- Fibonacci Sequence Display Area -->
-
-
-<!-- Link to your external JavaScript file (assuming it's named fib.js) -->
 <div id="fibonacciSection" style="display: none;">
     <center> 
         <div style="text-align: center; margin-top: 20px; font-family: Arial, Helvetica, sans-serif;">
-            <label for="userInput">Enter a number for Fibonacci tree (0-12): </label>
-            <input id="userInput" type="number" min="0" max="12" style="margin-top: 10px;">
+            <label for="fibInput">Enter a number for Fibonacci tree (0-12): </label>
+            <input id="fibInput" type="number" min="0" max="12" style="margin-top: 10px;">
             <br>
             <button onclick="generateTreeFromInput()" class="generate-tree-button" style="margin-top: 20px; border-radius: 10px; padding: 5px;">Generate Tree</button>
             <br>
@@ -277,21 +286,55 @@
         fibonacciButton.addEventListener('click', function() {
             // Make the Fibonacci section visible
             fibonacciSection.style.display = 'block';
-            
+            mergeSortSection.style.display = 'none';
+
+            this.style.backgroundColor = '#f3ed56'; 
+
             // Load the 'fib.js' script only once if it hasn't been loaded yet
             if (!document.getElementById('fibScript')) {
                 var script = document.createElement('script');
                 script.src = 'fib.js';
                 script.id = 'fibScript'; // Add an ID to the script tag to check if it's already been added
                 document.body.appendChild(script);
-                
-                // Optional: disable the button after loading the script, if needed
-                this.disabled = true;
             }
         });
     });
 </script>
 
 
+<!-- Merge Sort Sequence Display Area -->
+<div id="mergeSortSection" style="display: none;">
+    <center> 
+        <div style="text-align: center; margin-top: 20px; font-family: Arial, Helvetica, sans-serif;">
+            <label for="mergeSortInput">Enter an interger array </label>
+            <input id="mergeSortInput" type="text" placeholder="e.g., 3,1,4,1,5" style="margin-top: 20px;">
+            <br>
+            <br>
+            <button onclick="generateTreeFromInput()" class="generate-tree-button" style="margin-top: 20px; border-radius: 10px; padding: 5px;">Generate Tree</button>
+            <br>
+        </div>
+        <h2 style="text-align: center; margin-top: 40px;">
+            T(n) = 2T(n/2) + O(n)
+        </h2>
+    </center>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var mergeSortButton = document.getElementById('mergeSortButton');
+        var mergeSortSection = document.getElementById('mergeSortSection');
+        
+        mergeSortButton.addEventListener('click', function() {
+            mergeSortSection.style.display = 'block';
+            fibonacciSection.style.display = 'none';
+
+            if (!document.getElementById('mergeSortScript')) {
+                var script = document.createElement('script');
+                script.src = 'mergeSort.js';
+                script.id = 'mergeSortScript'; // Add an ID to the script tag to check if it's already been added
+                document.body.appendChild(script);
+            }
+        });
+    });
+</script>
 </body>
