@@ -252,8 +252,8 @@
 <div id="fibonacciSection" style="display: none;">
     <center> 
         <div style="text-align: center; margin-top: 20px; font-family: Arial, Helvetica, sans-serif;">
-            <label for="userInput">Enter a number for Fibonacci tree (0-12): </label>
-            <input id="userInput" type="number" min="0" max="12" style="margin-top: 10px;">
+            <label for="fibInput">Enter a number for Fibonacci tree (0-12): </label>
+            <input id="fibInput" type="number" min="0" max="12" style="margin-top: 10px;">
             <br>
             <button onclick="generateTreeFromInput()" class="generate-tree-button" style="margin-top: 20px; border-radius: 10px; padding: 5px;">Generate Tree</button>
             <br>
@@ -266,12 +266,21 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        var mergeSortButton = document.getElementById('mergeSortButton');
+        var binarySearchButton = document.getElementById('binarySearchButton');
+        // Disable the "Merge Sort" and "Binary Search" buttons
+        mergeSortButton.disabled = true;
+        binarySearchButton.disabled = true;
+
         var fibonacciButton = document.getElementById('FibonacciButton');
         var fibonacciSection = document.getElementById('fibonacciSection');
         
         fibonacciButton.addEventListener('click', function() {
             // Make the Fibonacci section visible
             fibonacciSection.style.display = 'block';
+
+            // Change the color of the "Fibonacci" button
+            this.style.backgroundColor = '#f3ed56';
             
             // Load the 'fib.js' script only once if it hasn't been loaded yet
             if (!document.getElementById('fibScript')) {
