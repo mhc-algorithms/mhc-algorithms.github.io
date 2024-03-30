@@ -215,7 +215,7 @@
     <br>
     <div id="instructionWrapper" font="Courier New">
         <center>
-            <div id ="instructionWrapper" font="Courier New"> 
+            <div id="instructionWrapper" font="Courier New">
                 <button id="showInstruction" class="instructionButtons" type="button" onclick="$('#Instruction').css('display', 'block');
                     
                     $('#hideInstruction').css('display', 'block');
@@ -228,19 +228,18 @@
                     $('#hideInstruction').css('display', 'none');
                     $('#showInstruction').css('display', 'block');
                 ">Hide Instructions and Rules</button>
-            </button>
-            <p id="Instruction">
-                <strong> &#127794; For Fibonacci: </strong>
+                </button>
+                <p id="Instruction">
+                    <strong> &#127794; For Fibonacci: </strong>
                     <br> &#128073; Click on the button that says Fibonacci.
                     <br> &#128073; Enter a number in the square slot.
-                    <br> &#128073; Click on the "Generate Tree" to see the unrolling of Fib(x).
-                    <br> &#128073; Then click on the blue square with T(x) to expand the unrolling tree.
-            </p>
+                    <br> &#128073; Click on the "Generate Tree" to see the unrolling of Fib(n).
+                    <br> &#128073; Then click on the blue square with T(n) to expand the unrolling tree.
+                </p>
         </center>
     </div>
 
     <div id="backgroundWrapper">
-        <!--buttons for the shop type-->
         <center>
             <div id="unrollingType" style="font-family: 'Courier New', Courier, monospace;">
                 <button id="binarySearchButton">Binary Search</button>
@@ -249,49 +248,64 @@
         </center>
     </div>
 
+    <div id="fibonacciSection" style="display: none;">
+        <!-- Fibonacci Section Content -->
+        <center>
+            <div style="text-align: center; margin-top: 20px; font-family: Arial, Helvetica, sans-serif;">
+                <label for="fibInput">Enter a number for Fibonacci tree (0-10): </label>
+                <input id="fibInput" type="number" min="0" max="10" style="margin-top: 10px;">
+                <br>
+                <button onclick="generateFibTreeFromInput()" class="generate-tree-button"
+                    style="margin-top: 20px; border-radius: 10px; padding: 5px;">Generate Fibonacci Tree</button>
+                <br>
+            </div>
+            <h2 style="text-align: center; margin-top: 40px;">
+                T(n) = T(n-1) + T(n-2)
+            </h2>
+        </center>
+    </div>
 
-<!-- Fibonacci Sequence Display Area -->
+    <div id="mergeSortSection" style="display: none;">
+        <!-- Merge Sort Section Content -->
+            <center>
+                <div style="text-align: center; margin-top: 20px; font-family: Arial, Helvetica, sans-serif;">
+                    <label for="mergeInput">Enter a number for the length of your array (0-10): </label>
+                    <input id="mergeInput" type="number" min="0" max="10" style="margin-top: 10px;">
+                    <br>
+                    <button onclick="generateMergeSortTreeFromInput()" class="generate-tree-button"
+                        style="margin-top: 20px; border-radius: 10px; padding: 5px;">Generate Merge Sort Tree</button>
+                    <br>
+                </div>
+                <h2 style="text-align: center; margin-top: 40px;">
+                    T(n) = 2T(n/2) + O(n)
+                </h2>
+            </center>    
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var fibonacciButton = document.getElementById('FibonacciButton');
+            var mergeSortButton = document.getElementById('mergeSortButton');
+            var binarySearchButton = document.getElementById('binarySearchButton');
+            var fibonacciSection = document.getElementById('fibonacciSection');
+            var mergeSortSection = document.getElementById('mergeSortSection');
 
+            mergeSortButton.disabled = true;
+            binarySearchButton.disabled = true;
 
-<!-- Link to your external JavaScript file (assuming it's named fib.js) -->
-<div id="fibonacciSection" style="display: none;">
-    <center> 
-        <div style="text-align: center; margin-top: 20px; font-family: Arial, Helvetica, sans-serif;">
-            <label for="userInput">Enter a number for Fibonacci tree (0-12): </label>
-            <input id="userInput" type="number" min="0" max="12" style="margin-top: 10px;">
-            <br>
-            <button onclick="generateTreeFromInput()" class="generate-tree-button" style="margin-top: 20px; border-radius: 10px; padding: 5px;">Generate Tree</button>
-            <br>
-        </div>
-        <h2 style="text-align: center; margin-top: 40px;">
-            T(n) = T(n-1) + T(n-2)
-        </h2>
-    </center>
-</div>
+            fibonacciButton.addEventListener('click', function () {
+                fibonacciSection.style.display = 'block';
+                mergeSortSection.style.display = 'none';
+                loadScript('fib.js', 'fibScript');
+            });
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var fibonacciButton = document.getElementById('FibonacciButton');
-        var fibonacciSection = document.getElementById('fibonacciSection');
-        
-        fibonacciButton.addEventListener('click', function() {
-            // Make the Fibonacci section visible
-            fibonacciSection.style.display = 'block';
-            
-            // Load the 'fib.js' script only once if it hasn't been loaded yet
-            if (!document.getElementById('fibScript')) {
-                var script = document.createElement('script');
-                script.src = 'fib.js';
-                script.id = 'fibScript'; // Add an ID to the script tag to check if it's already been added
-                document.body.appendChild(script);
-                
-                // Optional: disable the button after loading the script, if needed
-                this.disabled = true;
+            function loadScript(scriptURL, scriptID) {
+                if (!document.getElementById(scriptID)) {
+                    var script = document.createElement('script');
+                    script.src = scriptURL;
+                    script.id = scriptID;
+                    document.body.appendChild(script);
+                }
             }
         });
-    });
-</script>
-
-
-</div>
+    </script>
 </body>
