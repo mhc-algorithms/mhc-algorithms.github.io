@@ -230,6 +230,10 @@
                 ">Hide Instructions and Rules</button>
                 </button>
                 <p id="Instruction">
+                    <strong> &#127794; For Merge Sort: </strong>
+                    <br> &#128073;
+                    <br> &#128073;
+                    <br>
                     <strong> &#127794; For Fibonacci: </strong>
                     <br> &#128073; Click on the button that says Fibonacci.
                     <br> &#128073; Enter a number in the square slot.
@@ -267,19 +271,19 @@
 
     <div id="mergeSortSection" style="display: none;">
         <!-- Merge Sort Section Content -->
-            <center>
-                <div style="text-align: center; margin-top: 20px; font-family: Arial, Helvetica, sans-serif;">
-                    <label for="mergeInput">Enter a number for the length of your array (0-10): </label>
-                    <input id="mergeInput" type="number" min="0" max="10" style="margin-top: 10px;">
-                    <br>
-                    <button onclick="generateMergeSortTreeFromInput()" class="generate-tree-button"
-                        style="margin-top: 20px; border-radius: 10px; padding: 5px;">Generate Merge Sort Tree</button>
-                    <br>
-                </div>
-                <h2 style="text-align: center; margin-top: 40px;">
-                    T(n) = 2T(n/2) + O(n)
-                </h2>
-            </center>    
+        <center>
+            <div style="text-align: center; margin-top: 20px; font-family: Arial, Helvetica, sans-serif;">
+                <label for="mergeInput">Enter a number for the length of your array (0-10): </label>
+                <input id="mergeInput" type="number" min="0" max="10" style="margin-top: 10px;">
+                <br>
+                <button onclick="generateMergeSortTreeFromInput()" class="generate-tree-button"
+                    style="margin-top: 20px; border-radius: 10px; padding: 5px;">Generate Merge Sort Tree</button>
+                <br>
+            </div>
+            <h2 style="text-align: center; margin-top: 40px;">
+                T(n) = 2T(n/2) + O(n)
+            </h2>
+        </center>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -289,21 +293,50 @@
             var fibonacciSection = document.getElementById('fibonacciSection');
             var mergeSortSection = document.getElementById('mergeSortSection');
 
-            mergeSortButton.disabled = true;
             binarySearchButton.disabled = true;
 
             fibonacciButton.addEventListener('click', function () {
                 fibonacciSection.style.display = 'block';
                 mergeSortSection.style.display = 'none';
-                loadScript('fib.js', 'fibScript');
+                loadScript('fib.js', 'fibScript', fibonacciSection);
+                // Select elements that have a class containing "unrollingContainer" but not "fibUnrollingContainer"
+                const elementsToRemove = document.querySelectorAll('.unrollingContainer:not(.fibUnrollingContainer');
+
+                // set display to none
+                elementsToRemove.forEach(function (element) {
+                    element.style.display='none'
+                });
+                // elements to appear
+                const elementsToAppear = document.querySelectorAll('.fibUnrollingContainer');
+                elementsToAppear.forEach(function (element) {
+                    element.style.display='block'
+                })
             });
 
-            function loadScript(scriptURL, scriptID) {
+            mergeSortButton.addEventListener('click', function () {
+                mergeSortSection.style.display = 'block';
+                fibonacciSection.style.display = 'none';
+                loadScript('mergeSort.js', 'mergeScript', mergeSortSection);
+                // Select elements that have a class containing "unrollingContainer" but not "mergeUnrollingContainer"
+                const elementsToRemove = document.querySelectorAll('.unrollingContainer:not(.mergeUnrollingContainer)');
+
+                // set display to none
+                elementsToRemove.forEach(function (element) {
+                    element.style.display='none'
+                });
+                // elements to appear
+                const elementsToAppear = document.querySelectorAll('.mergeUnrollingContainer');
+                elementsToAppear.forEach(function (element) {
+                    element.style.display='block'
+                })
+            });
+
+            function loadScript(scriptURL, scriptID, parent) {
                 if (!document.getElementById(scriptID)) {
                     var script = document.createElement('script');
                     script.src = scriptURL;
                     script.id = scriptID;
-                    document.body.appendChild(script);
+                    parent.appendChild(script);
                 }
             }
         });
