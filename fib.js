@@ -73,7 +73,7 @@ var numToFib = function (num) {
 };
 
 // Improved version of treeSlider to handle updates smoothly
-var generateTreeFromInput = function (me) {
+var generateFibTreeFromInput = function (me) {
   var value = parseInt(document.getElementById('fibInput').value, 10);
 
   // Create a new tree container if it doesn't exist or clear the existing one
