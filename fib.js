@@ -38,7 +38,7 @@ listDiv.appendChild(d1);
 
 //create a div to hold the fibonacci sequence as a tree
 var treeDiv = document.createElement("div");
-treeDiv.setAttribute("class", "black unrollingContainer");
+treeDiv.setAttribute("class", "black unrollingContainer fibUnrollingContainer");
 document.querySelector("body").appendChild(treeDiv);
 
 //create a form which contains a slider
@@ -56,7 +56,7 @@ treeForm.appendChild(treeInput);
 //create default value
 var div1 = document.createElement("div");
 div1.setAttribute("class", "fib-container");
-div1.setAttribute("id", "tree-of-divs");
+div1.setAttribute("id", "tree-of-divs-fib");
 var div2 = document.createElement("div");
 div2.setAttribute("class", "fib-item");
 var pg1 = document.createElement("p");
@@ -77,10 +77,11 @@ var generateFibTreeFromInput = function (me) {
   var value = parseInt(document.getElementById('fibInput').value, 10);
 
   // Create a new tree container if it doesn't exist or clear the existing one
-  var fibTree = document.querySelector("#tree-of-divs");
+  var fibTree = document.querySelector("#tree-of-divs-fib");
   if (!fibTree) {
+    console.log("creating new fib tree")
     fibTree = document.createElement("div");
-    fibTree.setAttribute("id", "tree-of-divs");
+    fibTree.setAttribute("id", "tree-of-divs-fib");
     fibTree.setAttribute("class", "fib-container");
     treeDiv.appendChild(fibTree);
   } else {
@@ -131,7 +132,7 @@ function recursiveBinTree(depth, parentDiv = null) {
   if (parentDiv) {
       parentDiv.appendChild(newNode);
   } else {
-      document.getElementById("tree-of-divs").appendChild(newNode);
+      document.getElementById("tree-of-divs-fib").appendChild(newNode);
   }
 
   return newNode; // This allows for manipulation of the node if necessary
