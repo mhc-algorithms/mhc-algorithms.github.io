@@ -38,7 +38,7 @@ listDiv.appendChild(d1);
 
 //create a div to hold the binary search sequence as a tree
 var treeDiv = document.createElement("div");
-treeDiv.setAttribute("class", "black unrollingContainer");
+treeDiv.setAttribute("class", "black unrollingContainer binaryUnrollingContainer");
 document.querySelector("body").appendChild(treeDiv);
 
 //create a form which contains a slider
@@ -98,7 +98,7 @@ function binarySearch(arr, x)
 }
 
 // Improved version of treeSlider to handle updates smoothly
-var generateTreeFromInput = function (me) {
+var generateBSTreeFromInput = function (me) {
     var value = parseInt(document.getElementById('userInputBS').value, 10);
   
     // Create a new tree container if it doesn't exist or clear the existing one
@@ -124,7 +124,7 @@ function recursiveBinTree(depth, parentDiv = null) {
     var newNode = document.createElement("div");
     newNode.classList.add("bsearch-item");
     var newP = document.createElement("p");
-    newP.innerHTML = `T(${depth})` + ` + O(1)`; ;
+    newP.innerHTML = `T(${depth})`; ;
     if (depth > 1) {
         newP.classList.add("clickable");
     }
@@ -133,21 +133,37 @@ function recursiveBinTree(depth, parentDiv = null) {
 
   
     if (depth === 0 || depth === 1) {
-        newP.innerHTML += ` = ${depth}`;
+        newP.innerHTML += ` = O(1)`;
     } else {
         newP.onclick = function() {
             this.classList.remove("clickable");
             this.classList.add("expanded");
             this.onclick = null; // Prevent further clicks on this element
   
+            
             // Expand further
             const expansionDiv = document.createElement("div");
             expansionDiv.classList.add("bsearch-expansion");
             newNode.appendChild(expansionDiv);
   
             const Node = recursiveBinTree(depth - 1, expansionDiv);
-  
             expansionDiv.appendChild(Node);
+
+            expansionDiv.style.display = "flex"; // Use flex layout
+            expansionDiv.style.alignItems = "center"; // Center items vertically
+            expansionDiv.style.justifyContent = "center"; // Center items horizontally
+
+
+            // Right Node for O(depth)
+            const rightNodeContainer = document.createElement("div");
+            rightNodeContainer.classList.add("fib-right");
+            rightNodeContainer.classList.add("fib-item");
+            const rightNode = document.createElement("p");
+            const plusText = document.createTextNode(" + ");
+            rightNode.textContent = `O(1)`; // Represents the merge operation's complexity
+            rightNodeContainer.appendChild(rightNode);
+            expansionDiv.appendChild(plusText);
+            expansionDiv.appendChild(rightNodeContainer);
         };
     }
   
