@@ -233,8 +233,15 @@
                 <strong> &#127794; For Fibonacci: </strong>
                     <br> &#128073; Click on the button that says Fibonacci.
                     <br> &#128073; Enter a number in the square slot.
-                    <br> &#128073; Click on the "Generate Tree" to see the unrolling of Fib(x).
+                    <br> &#128073; Click on the "Generate Tree" to see the unrolling of T(n).
                     <br> &#128073; Then click on the blue square with T(x) to expand the unrolling tree.
+                <br> <br>
+                <strong> &#127794; For Binary Search: </strong>
+                    <br> &#128073; Click on the button that says Binary Search.
+                    <br> &#128073; Enter a number in the square slot to specify a length for a sorted array.
+                    <br> &#128073; Click on the "Generate Tree" to see the unrolling T(n).
+                    <br> &#128073; Then click on the blue square with T(n) to expand the unrolling tree.
+
             </p>
         </center>
     </div>
@@ -269,11 +276,31 @@
     </center>
 </div>
 
+<!-- Link to your external JavaScript file -->
+<div id="binarySearchSection" style="display: none;">
+    <center> 
+        <div style="text-align: center; margin-top: 20px; font-family: Arial, Helvetica, sans-serif;">
+            <label for="userInputBS">Enter an array length for a binary search tree (0-12): </label>
+            <input id="userInputBS" type="number" min="0" max="12" style="margin-top: 10px;">
+            <br>
+            <button onclick="generateTreeFromInput()" class="generate-tree-button" style="margin-top: 20px; border-radius: 10px; padding: 5px;">Generate Tree</button>
+            <br>
+        </div>
+        <h2 style="text-align: center; margin-top: 40px;">
+            T(n) = T(n/2) + O(1)
+        </h2>
+    </center>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var fibonacciButton = document.getElementById('FibonacciButton');
         var fibonacciSection = document.getElementById('fibonacciSection');
-        
+
+        var bsearchButton = document.getElementById('binarySearchButton');
+        var bsearchSection = document.getElementById('binarySearchSection');
+
+
         fibonacciButton.addEventListener('click', function() {
             // Make the Fibonacci section visible
             fibonacciSection.style.display = 'block';
@@ -289,7 +316,28 @@
                 this.disabled = true;
             }
         });
+        
+        bsearchButton.addEventListener('click', function() {
+
+            // Make the Binary Search section visible
+            binarySearchSection.style.display = 'block';
+            
+            // Load the 'binarySearch.js' script only once if it hasn't been loaded yet
+            if (!document.getElementById('bsearchScript')) {
+                var script = document.createElement('script');
+                script.src = 'binarySearch.js';
+                script.id = 'bsearchScript'; // Add an ID to the script tag to check if it's already been added
+                document.body.appendChild(script);
+                
+                // Optional: disable the button after loading the script, if needed
+                this.disabled = true;
+            }
+        });
+
+
+
     });
+
 </script>
 
 
