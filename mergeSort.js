@@ -1,5 +1,5 @@
 // Re-set the document title
-document.title = "Dynamic Fibonacci Sequence";
+document.title = "Merge Sort Sequence";
 
 //create a div to hold the fibonacci sequence as a list
 var listDiv = document.createElement("div");
@@ -38,7 +38,7 @@ listDiv.appendChild(d1);
 
 //create a div to hold the fibonacci sequence as a tree
 var treeDiv = document.createElement("div");
-treeDiv.setAttribute("class", "black unrollingContainer fibUnrollingContainer");
+treeDiv.setAttribute("class", "black unrollingContainer mergeUnrollingContainer");
 document.querySelector("body").appendChild(treeDiv);
 
 //create a form which contains a slider
@@ -51,12 +51,11 @@ var treeInput = document.createElement("input");
 //add to div
 treeForm.appendChild(treeLabel);
 treeForm.appendChild(treeInput);
-// treeDiv.appendChild(treeForm);
 
 //create default value
 var div1 = document.createElement("div");
-div1.setAttribute("class", "fib-container");
-div1.setAttribute("id", "tree-of-divs-fib");
+div1.setAttribute("class", "merge-container");
+div1.setAttribute("id", "tree-of-divs-merge");
 var div2 = document.createElement("div");
 div2.setAttribute("class", "fib-item");
 var pg1 = document.createElement("p");
@@ -66,22 +65,21 @@ div1.appendChild(div2);
 treeDiv.appendChild(div1);
 
 //function that turns a number into its fibonacci sequence value
-var numToFib = function (num) {
-  if (num == 1) return 1;
-  if (num == 0) return 0;
-  return numToFib(num - 1) + numToFib(num - 2);
-};
+// var numToFib = function (num) {
+//   if (num == 1) return 1;
+//   if (num == 0) return 0;
+//   return numToFib(num - 1) + numToFib(num - 2);
+// };
 
 // Improved version of treeSlider to handle updates smoothly
-var generateFibTreeFromInput = function (me) {
-  var value = parseInt(document.getElementById('fibInput').value, 10);
+var generateMergeSortTreeFromInput = function (me) {
+  var value = parseInt(document.getElementById("mergeInput").value, 10);
 
   // Create a new tree container if it doesn't exist or clear the existing one
-  var fibTree = document.querySelector("#tree-of-divs-fib");
+  var fibTree = document.querySelector("#tree-of-divs-merge");
   if (!fibTree) {
-    console.log("creating new fib tree")
     fibTree = document.createElement("div");
-    fibTree.setAttribute("id", "tree-of-divs-fib");
+    fibTree.setAttribute("id", "tree-of-divs-merge");
     fibTree.setAttribute("class", "fib-container");
     treeDiv.appendChild(fibTree);
   } else {
@@ -97,43 +95,63 @@ var generateFibTreeFromInput = function (me) {
 
 function recursiveBinTree(depth, parentDiv = null) {
   var newNode = document.createElement("div");
-  newNode.classList.add("fib-item");
+  newNode.classList.add("fib-item"); // You might want to rename this class to match merge sort rather than Fibonacci.
   var newP = document.createElement("p");
   newP.innerHTML = `T(${depth})`;
   if (depth > 1) {
-      newP.classList.add("clickable");
+    newP.classList.add("clickable");
   }
 
   newNode.appendChild(newP);
 
   if (depth === 0 || depth === 1) {
-      newP.innerHTML += ` = ${depth}`;
+    newP.innerHTML += ` = ${depth}`;
   } else {
-      newP.onclick = function() {
-          this.classList.remove("clickable");
-          this.classList.add("expanded");
-          this.onclick = null; // Prevent further clicks on this element
+    newP.onclick = function () {
+      this.classList.remove("clickable");
+      this.classList.add("expanded");
+      this.onclick = null; // Prevent further clicks on this element
 
-          // Expand further
-          const expansionDiv = document.createElement("div");
-          expansionDiv.classList.add("fib-expansion");
-          newNode.appendChild(expansionDiv);
+      const expansionDiv = document.createElement("div");
+      expansionDiv.classList.add("fib-expansion");
+      expansionDiv.style.display = "flex"; // Use flex layout
+      expansionDiv.style.alignItems = "center"; // Center items vertically
+      expansionDiv.style.justifyContent = "center"; // Center items horizontally
+      newNode.appendChild(expansionDiv);
 
-          const leftNode = recursiveBinTree(depth - 1, expansionDiv);
-          const plusText = document.createTextNode(" + ");
-          const rightNode = recursiveBinTree(depth - 2, expansionDiv);
+      const halfDepth = Math.ceil(depth / 2);
 
-          expansionDiv.appendChild(leftNode);
-          expansionDiv.appendChild(plusText);
-          expansionDiv.appendChild(rightNode);
-      };
+      // Create a container for "2*T(halfDepth)"
+      const leftNodeContainer = document.createElement("div");
+      leftNodeContainer.classList.add("fib-left");
+      expansionDiv.appendChild(leftNodeContainer);
+
+      // Prefix "2*" for the left node
+      const prefixText = document.createElement("span");
+      prefixText.textContent = "2*";
+      leftNodeContainer.appendChild(prefixText);
+
+      // Actual recursive call for the left node
+      recursiveBinTree(halfDepth, leftNodeContainer);
+
+      // Right Node for O(depth)
+      const rightNodeContainer = document.createElement("div");
+      rightNodeContainer.classList.add("fib-right");
+      rightNodeContainer.classList.add("fib-item");
+      const rightNode = document.createElement("p");
+      const plusText = document.createTextNode(" + ");
+      rightNode.textContent = `O(${depth})`; // Represents the merge operation's complexity
+      rightNodeContainer.appendChild(rightNode);
+      expansionDiv.appendChild(plusText);
+      expansionDiv.appendChild(rightNodeContainer);
+    };
   }
 
   if (parentDiv) {
-      parentDiv.appendChild(newNode);
+    parentDiv.appendChild(newNode);
   } else {
-      document.getElementById("tree-of-divs-fib").appendChild(newNode);
+    document.getElementById("tree-of-divs-merge").appendChild(newNode);
   }
 
-  return newNode; // This allows for manipulation of the node if necessary
+  return newNode;
 }
