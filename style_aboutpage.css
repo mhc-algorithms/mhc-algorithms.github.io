@@ -27,11 +27,13 @@ html{background-color: #D9C5FF;}
 }
 
 #rectangle {
-	background-color: rgba(178, 142, 246, 0.4);
+	background-color: #C2CBFF;
 	padding: 40px;
+	margin: 20px;
 	border-radius: 25px;
 	display: flex;
 	margin-bottom: 50px;
+	border: 1px solid black;
 }
 
 

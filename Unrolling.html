@@ -230,16 +230,24 @@
                 ">Hide Instructions and Rules</button>
                 </button>
                 <p id="Instruction">
+                    <strong> &#127794; For Binary Search: </strong>
+                    <br> &#128073; Click on the button that says Binary Search.
+                    <br> &#128073; Enter a number in the square slot to specify a length for a sorted array.
+                    <br> &#128073; Click on the "Generate Tree" to see the unrolling T(n).
+                    <br> &#128073; Then click on the blue square with T(n) to expand the unrolling tree.
+                    <br> <br>
                     <strong> &#127794; For Merge Sort: </strong>
-                    <br> &#128073;
-                    <br> &#128073;
-                    <br>
+                    <br> &#128073; Click on the button that says Merge Sort.
+                    <br> &#128073; Enter a number in the square slot to specify a length for a unsorted array.
+                    <br> &#128073; Click on the "Generate Tree" to see the unrolling of T(n).
+                    <br> &#128073; Then click on the blue square with T(n) to expand the unrolling tree.
+                    <br> <br>
                     <strong> &#127794; For Fibonacci: </strong>
                     <br> &#128073; Click on the button that says Fibonacci.
                     <br> &#128073; Enter a number in the square slot.
-                    <br> &#128073; Click on the "Generate Tree" to see the unrolling of Fib(n).
+                    <br> &#128073; Click on the "Generate Tree" to see the unrolling of T(n).
                     <br> &#128073; Then click on the blue square with T(n) to expand the unrolling tree.
-                </p>
+                    <br> <br>
         </center>
     </div>
 
@@ -285,19 +293,60 @@
             </h2>
         </center>
     </div>
+
+    <div id="binarysSearchSection" style="display: none;">
+        <!-- Fibonacci Section Content -->
+        <center>
+            <div style="text-align: center; margin-top: 20px; font-family: Arial, Helvetica, sans-serif;">
+                <label for="userInputBS">Enter an array length for binary search (0-10): </label>
+                <input id="userInputBS" type="number" min="0" max="10" style="margin-top: 10px;">
+                <br>
+                <button onclick="generateBSTreeFromInput()" class="generate-tree-button"
+                    style="margin-top: 20px; border-radius: 10px; padding: 5px;">Generate Binary Search Tree</button>
+                <br>
+            </div>
+            <h2 style="text-align: center; margin-top: 40px;">
+                T(n) = T(n/2) + O(1)
+            </h2>
+        </center>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var fibonacciButton = document.getElementById('FibonacciButton');
             var mergeSortButton = document.getElementById('mergeSortButton');
             var binarySearchButton = document.getElementById('binarySearchButton');
+            var binarysSearchSection = document.getElementById('binarysSearchSection');
             var fibonacciSection = document.getElementById('fibonacciSection');
             var mergeSortSection = document.getElementById('mergeSortSection');
 
-            binarySearchButton.disabled = true;
+            //binarySearchButton.disabled = true;
+
+            binarySearchButton.addEventListener('click', function () {
+                binarysSearchSection.style.display = 'block';
+                mergeSortSection.style.display = 'none';
+                fibonacciSection.style.display = 'none';
+
+                loadScript('binarySearch.js', 'binarySearchScript', binarysSearchSection);
+                // Select elements that have a class containing "unrollingContainer" but not "fibUnrollingContainer"
+                const elementsToRemove = document.querySelectorAll('.unrollingContainer:not(.binaryUnrollingContainer');
+
+                // set display to none
+                elementsToRemove.forEach(function (element) {
+                    element.style.display='none'
+                });
+                // elements to appear
+                const elementsToAppear = document.querySelectorAll('.binaryUnrollingContainer');
+                elementsToAppear.forEach(function (element) {
+                    element.style.display='block'
+                })
+            });
 
             fibonacciButton.addEventListener('click', function () {
                 fibonacciSection.style.display = 'block';
                 mergeSortSection.style.display = 'none';
+                binarysSearchSection.style.display = 'none';
+
                 loadScript('fib.js', 'fibScript', fibonacciSection);
                 // Select elements that have a class containing "unrollingContainer" but not "fibUnrollingContainer"
                 const elementsToRemove = document.querySelectorAll('.unrollingContainer:not(.fibUnrollingContainer');
@@ -316,6 +365,8 @@
             mergeSortButton.addEventListener('click', function () {
                 mergeSortSection.style.display = 'block';
                 fibonacciSection.style.display = 'none';
+                binarysSearchSection.style.display = 'none';
+
                 loadScript('mergeSort.js', 'mergeScript', mergeSortSection);
                 // Select elements that have a class containing "unrollingContainer" but not "mergeUnrollingContainer"
                 const elementsToRemove = document.querySelectorAll('.unrollingContainer:not(.mergeUnrollingContainer)');
