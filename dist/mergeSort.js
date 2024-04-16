@@ -64,13 +64,6 @@ div2.appendChild(pg1);
 div1.appendChild(div2);
 treeDiv.appendChild(div1);
 
-//function that turns a number into its fibonacci sequence value
-// var numToFib = function (num) {
-//   if (num == 1) return 1;
-//   if (num == 0) return 0;
-//   return numToFib(num - 1) + numToFib(num - 2);
-// };
-
 // Improved version of treeSlider to handle updates smoothly
 var generateMergeSortTreeFromInput = function (me) {
   var value = parseInt(document.getElementById("mergeInput").value, 10);
@@ -152,6 +145,5 @@ function recursiveBinTree(depth, parentDiv = null) {
   } else {
     document.getElementById("tree-of-divs-merge").appendChild(newNode);
   }
-
   return newNode;
 }
