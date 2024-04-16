@@ -6,7 +6,6 @@ html{background-color: #D9C5FF;}
   border-color: black;
   border-bottom-style: solid;
   border-width: 1px;
-  font-family: 'Open Sans', Arial, sans-serif;;
 }
 
 .defs {
@@ -22,7 +21,6 @@ html{background-color: #D9C5FF;}
 	position: center;
 	text-align: center;
 	margin-top: 50px;
-	font-family: "Inter", Verdana, sans-serif;
 	color: rgb(124, 64, 150);
 }
 
