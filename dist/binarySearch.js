@@ -132,8 +132,8 @@ function recursiveBinTree(depth, parentDiv = null) {
     newNode.appendChild(newP);
 
   
-    if (depth === 0 || depth === 1) {
-        newP.innerHTML += ` = O(1)`;
+    if (depth === 0 || depth === 1 || depth < 1 ) {
+        newP.innerHTML += ``;
     } else {
         newP.onclick = function() {
             this.classList.remove("clickable");
@@ -145,10 +145,17 @@ function recursiveBinTree(depth, parentDiv = null) {
             const expansionDiv = document.createElement("div");
             expansionDiv.classList.add("bsearch-expansion");
             newNode.appendChild(expansionDiv);
-  
-            const Node = recursiveBinTree(depth - 1, expansionDiv);
-            expansionDiv.appendChild(Node);
 
+            // var value = depth/2;
+            // if(value % 2 != 0){
+            //     const Node = recursiveBinTree(depth-1, expansionDiv);
+            // }else{
+            //     const Node = recursiveBinTree(depth/2, expansionDiv);
+            // }
+
+  
+            const Node = recursiveBinTree(depth/2, expansionDiv);
+            expansionDiv.appendChild(Node);
             expansionDiv.style.display = "flex"; // Use flex layout
             expansionDiv.style.alignItems = "center"; // Center items vertically
             expansionDiv.style.justifyContent = "center"; // Center items horizontally
