@@ -159,9 +159,6 @@ button{
 	border-radius: 25px;
 	background-color: white;
 }
-
-
-
 #Instruction{
 	display: none;
 	margin: 15px;
@@ -187,15 +184,12 @@ button{
 
 #memoize_table{
 	display: inline-block;
-	/*position: f;*/
 	right: 20px;
 	font-family:'Open Sans', Arial, sans-serif;
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-top: 10px;
 	width:100%;
-	/*margin-left: 500px; /* this is hack. Find better ways to have div items not write over each other */
-
 }
 
 .memoize_row {
